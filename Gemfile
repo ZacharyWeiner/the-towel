@@ -35,7 +35,7 @@ gem 'devise'
 
 #For Image Upload 
 gem 'carrierwave', '~> 1.0'
-gem "fog-aws"
+gem 'carrierwave-aws'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
