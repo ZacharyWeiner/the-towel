@@ -37,6 +37,13 @@ gem 'devise'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
 
+#design 
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'jquery-turbolinks'
+
 #Storing Sensitive Keys 
 gem 'dotenv-rails', groups: [:development, :test]
 
