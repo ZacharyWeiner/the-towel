@@ -1,56 +1,56 @@
 <div class='container'>
 <%= form_with(model: cohort, local: true) do |form| %>
-<% if cohort.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(cohort.errors.count, "error") %> prohibited this cohort from being saved:</h2>
+  <% if cohort.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(cohort.errors.count, "error") %> prohibited this cohort from being saved:</h2>
 
-  <ul>
-    <% cohort.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-<div class='row'>
-  <div clas="col-md-6">
-    <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :cohort_name, class: 'form-control' %>
+    <ul>
+      <% cohort.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class='row'>
+    <div clas="col-md-6">
+      <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :cohort_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description, id: :cohort_description, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :start_date %>
+        <%= form.date_select :start_date, id: :cohort_start_date, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :end_date %>
+        <%= form.date_select :end_date, id: :cohort_end_date, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :banner_image %>
+        <%= form.text_area :banner_image, id: :cohort_banner_image, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :image %>
+        <%= form.text_area :image, id: :cohort_image, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
     </div>
-
-    <div class="form-group">
-      <%= form.label :description %>
-      <%= form.text_area :description, id: :cohort_description, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :start_date %>
-      <%= form.date_select :start_date, id: :cohort_start_date, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :end_date %>
-      <%= form.date_select :end_date, id: :cohort_end_date, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :banner_image %>
-      <%= form.text_area :banner_image, id: :cohort_banner_image, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :image %>
-      <%= form.text_area :image, id: :cohort_image, class: 'form-control' %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit %>
+    <div clas="col-md-6">
+      <%= render '/admin/partials/cohort_members' %>
     </div>
   </div>
-  <div clas="col-md-6">
-    <%= render '/admin/partials/cohort_members' %>
-  </div>
-</div>
 
 <% end %>
 </div>

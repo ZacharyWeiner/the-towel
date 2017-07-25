@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :events
   resources :locations
   resources :cohorts do 
-    post 'user/:id', to: 'cohorts#add_user', as: 'add_user'
+    get 'add/:id', to: 'cohorts#add_user', as: 'add_user'
+    get 'remove/:id', to: 'cohorts#remove_user', as: 'remove_user'
   end 
   get 'pages/home'
   get 'pages/about'

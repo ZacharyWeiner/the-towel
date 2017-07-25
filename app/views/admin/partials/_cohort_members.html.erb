@@ -1,8 +1,10 @@
-<div class='container'>
   <% User.all.each do |user| %>
     <div class='row'>
       <div class="col-md-8"><%= user.email %></div>
-      <div class="col-md-4"><%= link_to "Add", cohort_add_user_path(@cohort, user) %></div>
+      <% if user.cohorts.include?(@cohort) %>
+        <div class="col-md-4"><%= link_to "Remove", cohort_remove_user_path(@cohort, user) %></div>
+      <% else %>
+         <div class="col-md-4"><%= link_to "Add", cohort_add_user_path(@cohort, user) %></div>
+        <%end%>
     </div>
   <% end %>
-</div>
