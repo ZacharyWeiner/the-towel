@@ -1,6 +1,7 @@
 class CreateLodgings < ActiveRecord::Migration[5.1]
   def change
     create_table :lodgings do |t|
+      t.string :name
       t.date :checkin_date
       t.time :checkin_time
       t.date :checkout_date

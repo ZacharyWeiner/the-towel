@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20170725161835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: :cascade do |t|
-    t.string "activity_type"
+  create_table "actions", force: :cascade do |t|
+    t.string "action_type"
     t.string "user_id"
     t.integer "model_id"
     t.integer "cohort_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170725161835) do
     t.string "website"
     t.string "phone_number"
     t.string "contact_email"
+    t.string "company_type"
     t.boolean "whatsapp"
     t.text "logo"
     t.text "banner_image"
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 20170725161835) do
   end
 
   create_table "lodgings", force: :cascade do |t|
+    t.string "name"
     t.date "checkin_date"
     t.time "checkin_time"
     t.date "checkout_date"

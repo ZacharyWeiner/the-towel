@@ -6,6 +6,7 @@ class CreateCompanies < ActiveRecord::Migration[5.1]
       t.string :website
       t.string :phone_number
       t.string :contact_email
+      t.string :company_type
       t.boolean :whatsapp
       t.text :logo
       t.text :banner_image
