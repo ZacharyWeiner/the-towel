@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :locations
   resources :cohorts
   get 'pages/home'
   get 'pages/about'
