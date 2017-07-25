@@ -11,6 +11,17 @@ libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter", st
 
 meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer", start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
 ################################## End Cohorts #######################################
+
+################################## Users  #######################################
+################################## End Users #######################################
+paulina = User.create!(email: "paulina@ry.com", password: 'password')
+westy = User.create!(email: "westy@ry.com", password: 'password')
+alexandra = User.create!(email: "alexandra@ry.com", password: 'password')
+coti = User.create!(email: "coti@ry.com", password: 'password') 
+jo = User.create!(email: "jose@ry.com", password: 'password')
+zack = User.create!(email:'zack@ry.com', password: 'password')
+trabka = User.create!(email:'trabka@ry.com', password: 'password')
+andrea = User.create!(email:'andrea@ry.com', password: 'password')
 ################################## Locations #######################################
 puts 'Build Locations'
 asia = Location.create!(name:"Asia", location_type: 'region')

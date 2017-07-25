@@ -1,5 +1,5 @@
 class CohortsController < ApplicationController
-  before_action :set_cohort, only: [:show, :edit, :update, :destroy]
+  before_action :set_cohort, only: [:show, :edit, :update, :destroy, :add_user]
 
   # GET /cohorts
   # GET /cohorts.json
@@ -61,6 +61,12 @@ class CohortsController < ApplicationController
     end
   end
 
+  def add_user
+    if params[:user_id] && @cohort.users.includes?(params[:user_id]) == false 
+      @cohort.users << User.find(params[:user_id ])  
+    end 
+    render edit_cohort_path(@cohort)
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cohort

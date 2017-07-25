@@ -1,0 +1,8 @@
+<div class='container'>
+  <% User.all.each do |user| %>
+    <div class='row'>
+      <div class="col-md-8"><%= user.email %></div>
+      <div class="col-md-4"><%= link_to "Add", cohort_add_user_path(@cohort, user) %></div>
+    </div>
+  <% end %>
+</div>
