@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725152642) do
+ActiveRecord::Schema.define(version: 20170725161835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,19 @@ ActiveRecord::Schema.define(version: 20170725152642) do
     t.bigint "users_id"
     t.index ["cohort_id"], name: "index_cohorts_users_on_cohort_id"
     t.index ["users_id"], name: "index_cohorts_users_on_users_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "contact_name"
+    t.string "website"
+    t.string "phone_number"
+    t.string "contact_email"
+    t.boolean "whatsapp"
+    t.text "logo"
+    t.text "banner_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -77,6 +90,39 @@ ActiveRecord::Schema.define(version: 20170725152642) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lodgings", force: :cascade do |t|
+    t.date "checkin_date"
+    t.time "checkin_time"
+    t.date "checkout_date"
+    t.time "checkout_time"
+    t.string "phone"
+    t.string "website"
+    t.string "address"
+    t.bigint "location_id"
+    t.text "map"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_lodgings_on_location_id"
+  end
+
+  create_table "transits", force: :cascade do |t|
+    t.date "date"
+    t.time "departure_time"
+    t.string "title"
+    t.string "travel_type"
+    t.bigint "company_id"
+    t.string "route_number"
+    t.bigint "departure_location_id"
+    t.text "departure_map"
+    t.bigint "arrival_location_id"
+    t.time "arrival_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["arrival_location_id"], name: "index_transits_on_arrival_location_id"
+    t.index ["company_id"], name: "index_transits_on_company_id"
+    t.index ["departure_location_id"], name: "index_transits_on_departure_location_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -99,4 +145,6 @@ ActiveRecord::Schema.define(version: 20170725152642) do
   add_foreign_key "events", "locations"
   add_foreign_key "events_users", "events"
   add_foreign_key "events_users", "users", column: "users_id"
+  add_foreign_key "lodgings", "locations"
+  add_foreign_key "transits", "companies"
 end
