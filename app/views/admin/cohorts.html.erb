@@ -1,0 +1,23 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Group Page</h1>
+    <p class="lead">This Page Should have Bootstrap  </p>
+  </div>
+</div>
+<%= link_to "+", new_cohort_path, class: 'btn btn-primary right'%>
+<div class='container'>
+    <% Cohort.all.each do |cohort| %>
+    <div class='row'>
+      <div class="col-md-4">
+        <%= cohort.name %>
+      </div>
+      <div class="col-md-6">
+        <strong>start:</strong> <%= cohort.start_date.to_time.strftime('%B %e') %> 
+        <strong>end:</strong> <%= cohort.end_date.to_time.strftime('%B %e') %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to "Manage", edit_cohort_path(cohort), class: 'btn btn-warning'%>
+      </div>
+    </div> 
+    <% end %>
+</div> 
