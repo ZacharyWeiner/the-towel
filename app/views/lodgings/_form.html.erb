@@ -1,0 +1,62 @@
+<%= form_with(model: lodging, local: true) do |form| %>
+  <% if lodging.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lodging.errors.count, "error") %> prohibited this lodging from being saved:</h2>
+
+      <ul>
+      <% lodging.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :checkin_date %>
+    <%= form.date_select :checkin_date, id: :lodging_checkin_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :checkin_time %>
+    <%= form.time_select :checkin_time, id: :lodging_checkin_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :checkout_date %>
+    <%= form.date_select :checkout_date, id: :lodging_checkout_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :checkout_time %>
+    <%= form.time_select :checkout_time, id: :lodging_checkout_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, id: :lodging_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :website %>
+    <%= form.text_field :website, id: :lodging_website %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :lodging_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= form.text_field :location_id, id: :lodging_location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :map %>
+    <%= form.text_area :map, id: :lodging_map %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-07-25
+  departure_time: 2017-07-25 13:15:52
+  title: MyString
+  travel_type: MyString
+  company: one
+  route_number: MyString
+  departure_location: one
+  departure_map: MyText
+  arrival_location: one
+  arrival_time: 2017-07-25 13:15:52
+
+two:
+  date: 2017-07-25
+  departure_time: 2017-07-25 13:15:52
+  title: MyString
+  travel_type: MyString
+  company: two
+  route_number: MyString
+  departure_location: two
+  departure_map: MyText
+  arrival_location: two
+  arrival_time: 2017-07-25 13:15:52

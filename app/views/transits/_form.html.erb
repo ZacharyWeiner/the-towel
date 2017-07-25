@@ -1,0 +1,67 @@
+<%= form_with(model: transit, local: true) do |form| %>
+  <% if transit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transit.errors.count, "error") %> prohibited this transit from being saved:</h2>
+
+      <ul>
+      <% transit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :transit_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departure_time %>
+    <%= form.time_select :departure_time, id: :transit_departure_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :transit_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :travel_type %>
+    <%= form.text_field :travel_type, id: :transit_travel_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id, id: :transit_company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :route_number %>
+    <%= form.text_field :route_number, id: :transit_route_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departure_location_id %>
+    <%= form.text_field :departure_location_id, id: :transit_departure_location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departure_map %>
+    <%= form.text_area :departure_map, id: :transit_departure_map %>
+  </div>
+
+  <div class="field">
+    <%= form.label :arrival_location_id %>
+    <%= form.text_field :arrival_location_id, id: :transit_arrival_location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :arrival_time %>
+    <%= form.time_select :arrival_time, id: :transit_arrival_time %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @transit.date %>
+</p>
+
+<p>
+  <strong>Departure time:</strong>
+  <%= @transit.departure_time %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @transit.title %>
+</p>
+
+<p>
+  <strong>Travel type:</strong>
+  <%= @transit.travel_type %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @transit.company %>
+</p>
+
+<p>
+  <strong>Route number:</strong>
+  <%= @transit.route_number %>
+</p>
+
+<p>
+  <strong>Departure location:</strong>
+  <%= @transit.departure_location %>
+</p>
+
+<p>
+  <strong>Departure map:</strong>
+  <%= @transit.departure_map %>
+</p>
+
+<p>
+  <strong>Arrival location:</strong>
+  <%= @transit.arrival_location %>
+</p>
+
+<p>
+  <strong>Arrival time:</strong>
+  <%= @transit.arrival_time %>
+</p>
+
+<%= link_to 'Edit', edit_transit_path(@transit) %> |
+<%= link_to 'Back', transits_path %>

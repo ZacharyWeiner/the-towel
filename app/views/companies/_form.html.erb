@@ -1,0 +1,57 @@
+<%= form_with(model: company, local: true) do |form| %>
+  <% if company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :company_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_name %>
+    <%= form.text_field :contact_name, id: :company_contact_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :website %>
+    <%= form.text_field :website, id: :company_website %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, id: :company_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_email %>
+    <%= form.text_field :contact_email, id: :company_contact_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :whatsapp %>
+    <%= form.check_box :whatsapp, id: :company_whatsapp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :logo %>
+    <%= form.text_area :logo, id: :company_logo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :banner_image %>
+    <%= form.text_area :banner_image, id: :company_banner_image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

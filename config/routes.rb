@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :lodgings
+  resources :transits
+  resources :companies
   resources :events
   resources :locations
   resources :cohorts

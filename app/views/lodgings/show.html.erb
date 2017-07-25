@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Checkin date:</strong>
+  <%= @lodging.checkin_date %>
+</p>
+
+<p>
+  <strong>Checkin time:</strong>
+  <%= @lodging.checkin_time %>
+</p>
+
+<p>
+  <strong>Checkout date:</strong>
+  <%= @lodging.checkout_date %>
+</p>
+
+<p>
+  <strong>Checkout time:</strong>
+  <%= @lodging.checkout_time %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @lodging.phone %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @lodging.website %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @lodging.address %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @lodging.location %>
+</p>
+
+<p>
+  <strong>Map:</strong>
+  <%= @lodging.map %>
+</p>
+
+<%= link_to 'Edit', edit_lodging_path(@lodging) %> |
+<%= link_to 'Back', lodgings_path %>
