@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725150505) do
+ActiveRecord::Schema.define(version: 20170725152642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,32 @@ ActiveRecord::Schema.define(version: 20170725150505) do
     t.index ["users_id"], name: "index_cohorts_users_on_users_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.date "date"
+    t.time "start_time"
+    t.time "end_time"
+    t.string "title"
+    t.text "description"
+    t.integer "cost"
+    t.integer "capacity"
+    t.bigint "location_id"
+    t.text "meeting_point"
+    t.string "event_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_events_on_location_id"
+  end
+
+  create_table "events_users", id: false, force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id", null: false
+    t.bigint "users_id"
+    t.boolean "paid"
+    t.text "notes"
+    t.index ["event_id"], name: "index_events_users_on_event_id"
+    t.index ["users_id"], name: "index_events_users_on_users_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "location_type"
@@ -70,4 +96,7 @@ ActiveRecord::Schema.define(version: 20170725150505) do
 
   add_foreign_key "cohorts_users", "cohorts"
   add_foreign_key "cohorts_users", "users", column: "users_id"
+  add_foreign_key "events", "locations"
+  add_foreign_key "events_users", "events"
+  add_foreign_key "events_users", "users", column: "users_id"
 end
