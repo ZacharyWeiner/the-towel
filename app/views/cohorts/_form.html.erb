@@ -10,35 +10,34 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :cohort_name %>
+    <%= form.text_field :name, id: :cohort_name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :cohort_description %>
+    <%= form.text_area :description, id: :cohort_description, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :start_date %>
-    <%= form.date_select :start_date, id: :cohort_start_date %>
+    <%= form.date_select :start_date, id: :cohort_start_date, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :end_date %>
-    <%= form.date_select :end_date, id: :cohort_end_date %>
+    <%= form.date_select :end_date, id: :cohort_end_date, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :banner_image %>
-    <%= form.text_area :banner_image, id: :cohort_banner_image %>
+    <%= form.text_area :banner_image, id: :cohort_banner_image, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :image %>
-    <%= form.text_area :image, id: :cohort_image %>
+    <%= form.text_area :image, id: :cohort_image, class: 'form-control' %>
   </div>
 
   <div class="actions">
