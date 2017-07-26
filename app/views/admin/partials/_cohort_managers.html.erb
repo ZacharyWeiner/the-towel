@@ -1,0 +1,38 @@
+  <% role = Role.where(title: 'cohort_admin').first %>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <% @cohort.users.each do |user| %>
+          <div class='row'>
+            <div class="col-md-8">
+              <%= user.email %>
+            </div>
+            <% if user.roles.include?(role) %>
+              <div class="col-md-4"><%= link_to "Remove", remove_cohort_manager_path(@cohort, user) %>
+              </div>
+            <% else %>
+              <div class="col-md-4"><%= link_to "Add", add_cohort_manager_path(@cohort, user) %>
+              </div>
+            <%end%>
+          </div>
+        <% end %> 
+      </div>
+      <div class='col-md-6'> 
+        <% User.all.each do |user| %>
+          <div class='row'>
+            <div class="col-md-8">
+              <%= user.email %>
+            </div>
+            <% if user.roles.include?(role) %>
+              <div class="col-md-4"><%= link_to "Remove", remove_cohort_manager_path(@cohort, user) %>
+              </div>
+            <% else %>
+              <div class="col-md-4"><%= link_to "Add", add_cohort_manager_path(@cohort, user) %>
+              </div>
+            <%end%>
+          </div>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+  
