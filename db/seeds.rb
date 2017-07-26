@@ -16,6 +16,7 @@ puts 'End Build Roles'
 
 ################################## Cohorts #######################################
 puts 'Build Cohorts'
+nation = Cohort.create!(name: "Remote Nation", description:"That Nomad Life",)
 libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter", start_date:Date.parse('28-08-2016'), end_date: Date.parse('26-08-2017'))
 
 meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer", start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
@@ -36,6 +37,12 @@ andrea = User.create!(email:'andrea@ry.com', password: 'password')
 libertatem.users << [zack, trabka, andrea]
 puts 'End Build Users'
 ################################## End Users #######################################
+
+################################## Posts  #####################################
+Post.create!(user: zack, cohort: libertatem, content: "This Trip Is Awesome")
+Post.create!(user: andrea, cohort: libertatem, content: "Andreas Trip Is Awesome")
+Post.create!(user: zack, cohort: nation, content: "Ima citizen!")
+################################## End Posts  #####################################
 
 ################################## Locations #######################################
 puts 'Build Locations'
@@ -77,4 +84,4 @@ bangkok_hilton = Lodging.create!(name: "Hilton", phone: '1-888-888-8888', websit
 london_4Seasons = Lodging.create!(name: "Four Seasons", phone: '1-888-888-8888', website: 'www.fourseasons.com/london', address:'123 london street', location:london)
 airbnb_paris = Lodging.create!(name: "Air BnB", phone: '1-888-888-8888', website: 'www.airbnb.com/asdsa', address:'987 paris street', location:paris)
 puts 'End Build Lodging'
-################################## End Lodging  #######################################
+################################## End Lodging  #####################################

@@ -1,0 +1,12 @@
+<div class='row'>
+<% @posts.each do |post| %>
+<div class="card" style='width:100%'>
+  <div class="card-header">
+    <%= image_tag post.user.gravitar_url, style: 'max-height:20px' %><%= link_to "#{post.user.email}", show_user_path(post.user) %> 
+  </div>
+  <div class="card-block">
+    <p class="card-text"> <div class='post-container' ><%= auto_html(post.content.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %> </div></p>
+  </div>
+</div>
+<% end %>
+</div>

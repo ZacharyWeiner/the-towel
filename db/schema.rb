@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726140025) do
+ActiveRecord::Schema.define(version: 20170726185312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,18 @@ ActiveRecord::Schema.define(version: 20170726140025) do
     t.index ["location_id"], name: "index_lodgings_on_location_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cohort_id"
+    t.text "content"
+    t.bigint "actions_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actions_id"], name: "index_posts_on_actions_id"
+    t.index ["cohort_id"], name: "index_posts_on_cohort_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "title"
     t.integer "permissions"
@@ -165,6 +177,9 @@ ActiveRecord::Schema.define(version: 20170726140025) do
   add_foreign_key "events_users", "events"
   add_foreign_key "events_users", "users", column: "users_id"
   add_foreign_key "lodgings", "locations"
+  add_foreign_key "posts", "actions", column: "actions_id"
+  add_foreign_key "posts", "cohorts"
+  add_foreign_key "posts", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "transits", "companies"

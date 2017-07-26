@@ -44,6 +44,8 @@ gem 'jquery-ui-rails'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem 'jquery-turbolinks'
 
+gem "auto_html"
+
 #Storing Sensitive Keys 
 gem 'dotenv-rails', groups: [:development, :test]
 
