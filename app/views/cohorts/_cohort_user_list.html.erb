@@ -1,6 +1,5 @@
 <div class="list-group">
   <% @cohort.users.each do |user| %>
-  <!-- #TODO Replace link with profile link -->  
-  <%= link_to "#{user.email}", 'users/:id', class: 'list-group-item list-group-item-action' %>
+  <%= link_to "#{user.email}", show_user_path(user), class: 'list-group-item list-group-item-action' %>
   <% end %>
 </div>
