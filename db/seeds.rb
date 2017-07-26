@@ -5,15 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+################################## Roles  #######################################
+puts 'Build Roles'
+site_admin = Role.create(title: 'site_admin')
+cohort_admin = Role.create(title: 'cohort_admin')
+city_admin = Role.create(title: 'city_admin')
+client = Role.create(title: 'client')
+puts 'End Build Roles'
+################################## End Roles  #######################################
 
 ################################## Cohorts #######################################
+puts 'Build Cohorts'
 libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter", start_date:Date.parse('28-08-2016'), end_date: Date.parse('26-08-2017'))
 
 meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer", start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
+puts 'End Build Cohorts'
 ################################## End Cohorts #######################################
 
 ################################## Users  #######################################
-################################## End Users #######################################
+puts 'Build Users'
 paulina = User.create!(email: "paulina@ry.com", password: 'password')
 westy = User.create!(email: "westy@ry.com", password: 'password')
 alexandra = User.create!(email: "alexandra@ry.com", password: 'password')
@@ -22,6 +32,9 @@ jo = User.create!(email: "jose@ry.com", password: 'password')
 zack = User.create!(email:'zack@ry.com', password: 'password')
 trabka = User.create!(email:'trabka@ry.com', password: 'password')
 andrea = User.create!(email:'andrea@ry.com', password: 'password')
+puts 'End Build Users'
+################################## End Users #######################################
+
 ################################## Locations #######################################
 puts 'Build Locations'
 asia = Location.create!(name:"Asia", location_type: 'region')
@@ -53,10 +66,13 @@ avianca = Company.create!(name:'Avianca', website:'www.avianca.com', company_typ
 delta = Company.create!(name:'Delta', website:'www.delta.com', company_type: 'airline')
 greyhound = Company.create!(name:'Greyhound', website:'www.greyhound.com', company_type: 'bus')
 adventure_company = Company.create!(name:'Great Adventures', website:'www.greatadventures.com', company_type: 'activity')
+puts 'End Build Companies'
 ################################## End Companies #######################################
+
 ################################## Lodging  #######################################
+puts 'End Build Lodging'
 bangkok_hilton = Lodging.create!(name: "Hilton", phone: '1-888-888-8888', website: 'www.hilton.com/bangkok', address:'123 bangkok street', location:bangkok)
 london_4Seasons = Lodging.create!(name: "Four Seasons", phone: '1-888-888-8888', website: 'www.fourseasons.com/london', address:'123 london street', location:london)
 airbnb_paris = Lodging.create!(name: "Air BnB", phone: '1-888-888-8888', website: 'www.airbnb.com/asdsa', address:'987 paris street', location:paris)
-
+puts 'End Build Lodging'
 ################################## End Lodging  #######################################
