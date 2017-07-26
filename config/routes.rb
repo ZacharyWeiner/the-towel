@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :cohorts do 
     get 'add/:id', to: 'cohorts#add_user', as: 'add_user'
     get 'remove/:id', to: 'cohorts#remove_user', as: 'remove_user'
+    get 'events/new', to: 'events#new', as: 'new_event'
+    get 'events', to: 'events#index', as: 'list_events'
   end 
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'

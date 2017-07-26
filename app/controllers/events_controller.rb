@@ -15,6 +15,11 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    if params[:cohort_id] 
+      @cohort = Cohort.find(params[:cohort_id])
+    else
+      @cohort = Cohort.first 
+    end 
   end
 
   # GET /events/1/edit
@@ -25,7 +30,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
+    byebug
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -69,6 +74,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type)
+      params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type, :cohort_id)
     end
 end

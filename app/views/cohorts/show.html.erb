@@ -14,6 +14,9 @@
 
 <p id="notice"><%= notice %></p>
 <div class='container'>
+<div class='row' style="text-align: right">
+  <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning' %>
+</div>
 <div class='row'>
   <div class='col-md-3'>
     <h3> Memebers </h3>
