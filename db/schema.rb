@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725161835) do
+ActiveRecord::Schema.define(version: 20170725203527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20170725161835) do
     t.string "event_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cohort_id"
+    t.index ["cohort_id"], name: "index_events_on_cohort_id"
     t.index ["location_id"], name: "index_events_on_location_id"
   end
 
@@ -144,6 +146,7 @@ ActiveRecord::Schema.define(version: 20170725161835) do
 
   add_foreign_key "cohorts_users", "cohorts"
   add_foreign_key "cohorts_users", "users", column: "users_id"
+  add_foreign_key "events", "cohorts"
   add_foreign_key "events", "locations"
   add_foreign_key "events_users", "events"
   add_foreign_key "events_users", "users", column: "users_id"
