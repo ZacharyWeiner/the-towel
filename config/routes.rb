@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     get 'add/:id', to: 'cohorts#add_user', as: 'add_user'
     get 'remove/:id', to: 'cohorts#remove_user', as: 'remove_user'
   end 
-  get 'pages/home'
-  get 'pages/about'
-  get 'pages/contact'
+  get 'home', to: 'pages#home'
+  get 'about', to: 'pages#about'
+  get 'contact', to: 'pages#contact'
 
   devise_for :users
   get 'users/:id', to: 'users#show', as: 'show_user'
