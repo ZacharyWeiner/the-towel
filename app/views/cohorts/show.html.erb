@@ -1,22 +1,33 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-3"><%= @cohort.name%></h1>
-    <p class="lead"><%= @cohort.description %>  </p>
+<div id='outlier'> 
+<div class="jumbotron jumbotron-fluid" style='background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("<%= @cohort.banner_image.url %>")'>
+  <div class="container" style='color:white'>
+    <div class='row'>
+      <div class='col-md-2'><%= image_tag @cohort.image, style:'width:100%'%></div>
+      <div class='col-md-10'>
+      <h1 class="display-3"><%= @cohort.name%></h1>
+      <p class="lead"><%= @cohort.description %>  </p>
+      <div class='col-md-3'></div>
+    </div>
   </div>
+</div>
 </div>
 
 <p id="notice"><%= notice %></p>
 <div class='container'>
-  <div class='md-col-3'>
+<div class='row'>
+  <div class='col-md-3'>
+    <h3> Memebers </h3>
     <%= render '/cohorts/cohort_user_list' %>
   </div>
-  <div class='md-col-6'>
-    
+  <div class='col-md-6'>
+    <p> Feed Goes Here </p>
   </div>
-  <div class='md-col-3'>
-    
+  <div class='col-md-3'>
+    <h3> Events </h3>
+    <%= render '/cohorts/cohort_events_widget' %>
   </div>
 </div> 
-
 <%= link_to 'Edit', edit_cohort_path(@cohort) %> |
 <%= link_to 'Back', cohorts_path %>
+</div>
+
