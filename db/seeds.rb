@@ -32,6 +32,8 @@ jo = User.create!(email: "jose@ry.com", password: 'password')
 zack = User.create!(email:'zack@ry.com', password: 'password')
 trabka = User.create!(email:'trabka@ry.com', password: 'password')
 andrea = User.create!(email:'andrea@ry.com', password: 'password')
+
+libertatem.users << [zack, trabka, andrea]
 puts 'End Build Users'
 ################################## End Users #######################################
 
@@ -54,9 +56,9 @@ puts "End Build Locations"
 
 ################################## Events #######################################
 puts "Build Events"
-Event.create!(title: "Dinner @ Cruz", date: Date.today + 10.days, start_time: Time.now, description: "Details for Dinner @ Cruz", location: london)
-Event.create!(title: "Lunch @ Havana", date: Date.today + 15.days, start_time: Time.now, description: "Details for Lunch @ Havana", location: london)
-Event.create!(title: "Dinner with Locals ", date: Date.today + 20.days, start_time: Time.now, description: "Details for Dinner with Locals", location: london)
+Event.create!(title: "Dinner @ Cruz", date: Date.today + 10.days, start_time: Time.now, description: "Details for Dinner @ Cruz", location: london, cohort: libertatem)
+Event.create!(title: "Lunch @ Havana", date: Date.today + 15.days, start_time: Time.now, description: "Details for Lunch @ Havana", location: london, cohort: libertatem)
+Event.create!(title: "Dinner with Locals ", date: Date.today + 20.days, start_time: Time.now, description: "Details for Dinner with Locals", location: london, cohort: meraki)
 puts "End Build Events"
 ################################## End Events #######################################
 
