@@ -14,24 +14,22 @@
 
 <p id="notice"><%= notice %></p>
 <div class='container'>
-<div class='row' style="text-align: right">
-  <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning' %>
-</div>
-<div class='row'>
-  <div class='col-md-3'>
-    <h3> Memebers </h3>
-    <%= render '/cohorts/cohort_user_list' %>
-  </div>
-  <div class='col-md-6'>
-    <%= render 'posts/form'%>
-    <%= render 'posts/feed' %>
-  </div>
-  <div class='col-md-3'>
-    <h3> Events </h3>
-    <%= render '/cohorts/cohort_events_widget' %>
-  </div>
-</div> 
-<%= link_to 'Edit', edit_cohort_path(@cohort) %> |
-<%= link_to 'Back', cohorts_path %>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h3> Memebers </h3>
+      <%= render '/cohorts/cohort_user_list' %>
+    </div>
+    <div class='col-md-6'>
+      <%= render 'posts/form'%>
+      <%= render 'posts/feed' %>
+    </div>
+    <div class='col-md-3'>
+      <h3> Events </h3>
+      <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning btn-block' %>
+      <%= render '/cohorts/cohort_events_widget' %>
+    </div>
+  </div> 
+  <%= link_to 'Edit', edit_cohort_path(@cohort) %> |
+  <%= link_to 'Back', cohorts_path %>
 </div>
 

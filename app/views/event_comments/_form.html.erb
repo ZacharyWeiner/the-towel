@@ -16,8 +16,7 @@
   <%= form.hidden_field :cohort_id, :value => @event.cohort.id%>
 
   <div class="form-group" style='width:100%'>
-    <%= form.label :comment %>
-    <%= form.text_area :comment, id: :event_comment_comment, class: 'form-control' %>
+    <%= form.text_area :comment, id: :event_comment_comment, class: 'form-control', placeholder: 'What do you think about this?' %>
   </div>
 
   <div class="actions">

@@ -1,6 +1,8 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-3"><%= @user.email %> Profile Page </h1>
-    <p class="lead">  </p>
+    <% cohort = @user.cohorts.where.not(id: 1).first %>
+    <p class="lead"> 
+    <%= link_to "#{cohort.name}", cohort_path(cohort), class: 'btn btn-primary' %> </p>
   </div>
 </div>

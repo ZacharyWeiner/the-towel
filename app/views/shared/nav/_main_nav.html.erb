@@ -9,20 +9,29 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form></li>
-     <li class="nav-item active">
+     <li class="nav-item">
         <%= link_to 'Cohorts', '/', class: 'nav-link' %>
       </li>
       <% if current_user %>
       <li class="dropdown">
-          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Stuff <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            
-          </ul>
-        </li>
-        <%end%>
-        <li class="nav-item">
-        
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Stuff <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li class='nav-item'>
+            <%= link_to 'My Events', new_user_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <% if current_user %>
+              <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'nav-link' %>
+            <% end %>
+          </li>
+        </ul>
       </li>
+      <%end%>
+      <% if current_user.nil? %>
+        <li class='nav-item'>
+          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+        </li>
+        <% end %>
     </ul>
     
   </div>
