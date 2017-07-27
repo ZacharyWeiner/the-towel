@@ -1,54 +1,39 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <h1 class="display-3"><%= @event.title %></h1>
+    <h3 class='dispaly-3'><%= @event.location.name %></h3>
+    <p class="lead"><%= @event.date.to_time.strftime('%b %A %Y') %> </p>
+    <p class="lead"><%= @event.start_time.strftime('%I %P') %> - <%= @event.end_time.strftime('%I %P') %></p>
+    <p class='lead'><%= @event.description %></p>
+  </div>
+</div>
 <p id="notice"><%= notice %></p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-2'> 
+      <div class="row">
+        <h4 class='text-left'> $<%= @event.cost %> </h4>
+      </div>
+      <div class='row text-left'>
+        <strong>Capacity:</strong>
+        <%= @event.capacity %>
+      </div>
+      <div class='row'>
+        <strong>Meeting point:</strong>
+        <%= @event.meeting_point %>
+      </div>
+    </div>
+    <!-- Details and Comments --> 
+    <div class='col-md-8 text-center'> 
+    </div>
+    <!-- End Details and Comments -->
+    <!-- RSVPs  --> 
+    <div class='col-md-2'> RSVPs </div>
+    <!-- End RSVPs -->
+  </div>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @event.end_time %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-
-<p>
-  <strong>Cost:</strong>
-  <%= @event.cost %>
-</p>
-
-<p>
-  <strong>Capacity:</strong>
-  <%= @event.capacity %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Meeting point:</strong>
-  <%= @event.meeting_point %>
-</p>
-
-<p>
-  <strong>Event type:</strong>
-  <%= @event.event_type %>
-</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
