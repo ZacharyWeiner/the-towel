@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :lodgings
   resources :transits
   resources :companies
-  resources :events
+  resources :events do 
+    resources :event_comments
+  end 
   resources :locations
   resources :cohorts do 
     get 'add/:id', to: 'cohorts#add_user', as: 'add_user'
