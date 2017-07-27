@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :events do 
     resources :event_comments
+    resources :event_rsvps
   end 
   resources :locations
   resources :cohorts do 
