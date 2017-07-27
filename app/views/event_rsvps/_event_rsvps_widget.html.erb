@@ -1,0 +1,7 @@
+<div class='container'>
+  <% @event.event_rsvps.each do |rsvp |%>
+    <div class='row'> 
+      <%= image_tag rsvp.user.gravitar_url, style: 'max-height:20px' %><%= link_to "#{rsvp.user.email}", show_user_path(rsvp.user), class: 'horizontal-center' %> 
+    </div>
+  <% end %>
+</div>
