@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
-
-<p>
-  <strong>Location type:</strong>
-  <%= @location.location_type %>
-</p>
-
-<p>
-  <strong>Parent:</strong>
-  <%= @location.parent_id %>
-</p>
-
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <h1 class="display-3"><%= @location.name %></h1>
+    <% unless @location.parent.nil? %>
+      <p class="lead">
+         <%= @location.parent.name %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<div class='container text-center'>
+  <div class='row'>
+    <div class='col-md-3'></div>
+    <div class='col-md-6'>
+      <% unless @location.location_detail.nil? %>
+        <%= @location.location_detail.description%>
+      <% end %>
+    </div>
+    <div class='col-md-3'></div> 
+  </div>
+</div> 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

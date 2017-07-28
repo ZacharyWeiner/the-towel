@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727153757) do
+ActiveRecord::Schema.define(version: 20170728152231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,15 @@ ActiveRecord::Schema.define(version: 20170727153757) do
     t.text "notes"
     t.index ["event_id"], name: "index_events_users_on_event_id"
     t.index ["users_id"], name: "index_events_users_on_users_id"
+  end
+
+  create_table "location_details", force: :cascade do |t|
+    t.bigint "location_id"
+    t.text "image"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_details_on_location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -203,6 +212,7 @@ ActiveRecord::Schema.define(version: 20170727153757) do
   add_foreign_key "events", "locations"
   add_foreign_key "events_users", "events"
   add_foreign_key "events_users", "users", column: "users_id"
+  add_foreign_key "location_details", "locations"
   add_foreign_key "lodgings", "locations"
   add_foreign_key "posts", "actions", column: "actions_id"
   add_foreign_key "posts", "cohorts"

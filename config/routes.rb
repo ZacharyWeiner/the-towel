@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :location_details
   resources :posts
   resources :roles
   resources :lodgings
