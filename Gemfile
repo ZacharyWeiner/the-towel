@@ -48,6 +48,7 @@ gem "auto_html"
 
 #Storing Sensitive Keys 
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'acts-as-taggable-on', '~> 4.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
