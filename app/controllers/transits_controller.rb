@@ -1,10 +1,15 @@
 class TransitsController < ApplicationController
   before_action :set_transit, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_cohort, only: [:index, :show, :create]
   # GET /transits
   # GET /transits.json
   def index
-    @transits = Transit.all
+    if params[:cohort_id]
+      @cohort = Cohort.find(params[:cohort_id])
+      @transits = @cohort.transits
+    else
+      @transits = Transit.all
+    end
   end
 
   # GET /transits/1
@@ -65,6 +70,10 @@ class TransitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_transit
       @transit = Transit.find(params[:id])
+    end
+
+    def set_cohort
+      @cohort = Cohort.find(params[:cohort_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

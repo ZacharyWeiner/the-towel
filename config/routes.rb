@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'remove/:id', to: 'cohorts#remove_user', as: 'remove_user'
     get 'events/new', to: 'events#new', as: 'new_event'
     get 'events', to: 'events#index', as: 'list_events'
+    resources :transits
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'

@@ -51,16 +51,22 @@ Post.create!(user: zack, cohort: nation, content: "Ima citizen!")
 ################################## Locations #######################################
 puts 'Build Locations'
 asia = Location.create!(name:"Asia", location_type: 'region')
+malaysia = Location.create!(name: 'Malaysia', location_type: 'country', parent: asia)
+kl = Location.create!(name: 'Kuala Lumpur', location_type:'city', parent: malaysia)
 thailand = Location.create!(name:"Thailand", location_type: 'country', parent: asia)
 bangkok = Location.create!(name:"Bangkok", location_type: 'city', parent: thailand)
 changmai = Location.create!(name:"Chang Mai", location_type: 'city', parent: thailand)
 kohphanagan = Location.create!(name:"Koh Phangan", location_type: 'city', parent: thailand)
+cambodia = Location.create!(name: 'Cambodia', location_type: 'country', parent: asia)
+phnompenh = Location.create!(name: 'Phnom Penh', location_type:'city', parent: cambodia)
 
 europe = Location.create!(name:"Europe", location_type: 'region')
 england = Location.create!(name:"England", location_type: 'country', parent: europe)
 london = Location.create!(name:"London", location_type: 'city', parent: england)
 france = Location.create!(name:"France", location_type: 'country', parent: europe)
 paris = Location.create!(name:"Paris", location_type: 'city', parent: france)
+croatia = Location.create(name: 'Croatia', location_type: 'country', parent: europe)
+split = Location.create!(name: 'Split', location_type: 'city', parent: croatia)
 
 puts "End Build Locations"
 ################################## End Locations #######################################
@@ -89,3 +95,16 @@ london_4Seasons = Lodging.create!(name: "Four Seasons", phone: '1-888-888-8888',
 airbnb_paris = Lodging.create!(name: "Air BnB", phone: '1-888-888-8888', website: 'www.airbnb.com/asdsa', address:'987 paris street', location:paris)
 puts 'End Build Lodging'
 ################################## End Lodging  #####################################
+
+################################## Transits  #######################################
+
+kl_to_thailand = Transit.create(date: Date.today + 30.days, title: 'KL to Chang Mai', departure_location_id: kl.id, arrival_location_id: changmai.id)
+thailand_to_cambodia = Transit.create(date: Date.today + 60.days, title: 'Thailand to Cambodia', departure_location: changmai, arrival_location: phnompenh)
+cambodia_to_croatia = Transit.create(date: Date.today + 90.days, title: 'Cambodia To Split', departure_location: phnompenh, arrival_location: split)
+libertatem.transits << thailand_to_cambodia
+libertatem.transits << kl_to_thailand
+libertatem.transits << cambodia_to_croatia
+
+
+
+
