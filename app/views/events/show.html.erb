@@ -3,14 +3,22 @@
     <h1 class="display-3"><%= @event.title %></h1>
     <h3 class='dispaly-3'><%= @event.location.name %></h3>
     <p class="lead"><%= @event.date.to_time.strftime('%b %A %Y') %> </p>
-    <p class="lead"><%= @event.start_time.strftime('%I %P') %> - <%= @event.end_time.strftime('%I %P') %></p>
+    <p class="lead">
+        <% unless @event.start_time.nil? %>
+          <%= @event.start_time.strftime('%I %P') %>
+        <% end %>
+        -
+        <% unless  @event.end_time.nil?  %>
+          <%= @event.end_time.strftime('%I %P') %>
+        <% end %>
+    </p>
     <p class='lead'><%= @event.description %></p>
   </div>
 </div>
 <p id="notice"><%= notice %></p>
 <div class='container'>
   <div class='row'>
-    <div class='col-md-3'> 
+    <div class='col-md-3'>
       <div class="row">
         <h4 class='text-left'> $<%= @event.cost %> </h4>
       </div>
@@ -23,15 +31,15 @@
         <%= @event.meeting_point %>
       </div>
     </div>
-    <!-- Details and Comments --> 
-    <div class='col-md-6 text-center'> 
+    <!-- Details and Comments -->
+    <div class='col-md-6 text-center'>
       <div class='row'>
         <%= render 'event_comments/form'%>
         <%= render 'event_comments/event_comments_widget'%>
       </div>
     </div>
     <!-- End Details and Comments -->
-    <!-- RSVPs  --> 
+    <!-- RSVPs  -->
     <div class='col-md-3'>
       <% if current_user.event_rsvps.where(event_id: @event.id).count == 0%>
         <%= button_to "RSVP", event_event_rsvps_path(@event), class:"btn btn-success", style:"", method: :post, remote: true, params: {:event_rsvp => {user_id: current_user.id, event_id: @event.id}} %>

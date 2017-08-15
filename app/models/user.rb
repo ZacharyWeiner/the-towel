@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :activities 
+  has_many :activities
   has_and_belongs_to_many :cohorts
   has_and_belongs_to_many :roles
   has_many :posts
@@ -17,5 +17,14 @@ class User < ApplicationRecord
   def gravitar_url
     user_hash = Digest::MD5.hexdigest(self.email)
     'http://gravatar.com/avatar/' + user_hash
-  end 
+  end
+
+  def is_in_role(role_name)
+    roles = self.roles.where(title: role_name)
+    if roles.count > 0
+      return true
+    else
+      return false
+    end
+  end
 end

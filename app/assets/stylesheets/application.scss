@@ -1,4 +1,5 @@
 @import 'bootstrap';
+@import 'cohorts';
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
@@ -175,4 +176,8 @@ body {
 
 .post-container > p >  img{
   width:100%;
+}
+
+.background-gray{
+  background-color: gray;
 }

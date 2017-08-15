@@ -10,6 +10,7 @@ class CohortsController < ApplicationController
   # GET /cohorts/1
   # GET /cohorts/1.json
   def show
+    authenticate_user!
     @post = Post.new
     @posts = Post.where(cohort: @cohort)
   end
@@ -65,17 +66,17 @@ class CohortsController < ApplicationController
 
   def add_user
     @cohort = Cohort.find(params[:cohort_id])
-    if params[:id] && @cohort.users.include?(params[:id]) == false 
-      @cohort.users << User.find(params[:id ])  
-    end 
+    if params[:id] && @cohort.users.include?(params[:id]) == false
+      @cohort.users << User.find(params[:id ])
+    end
     redirect_to edit_cohort_path(@cohort)
   end
 
   def remove_user
     @cohort = Cohort.find(params[:cohort_id])
-    if params[:id] && @cohort.users.include?(User.find(params[:id])) == true 
-      @cohort.users.destroy(User.find(params[:id ]))  
-    end 
+    if params[:id] && @cohort.users.include?(User.find(params[:id])) == true
+      @cohort.users.destroy(User.find(params[:id ]))
+    end
     redirect_to edit_cohort_path(@cohort)
   end
 

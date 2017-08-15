@@ -1,4 +1,4 @@
-<div id='outlier'> 
+<div id='outlier'>
 <div class="jumbotron jumbotron-fluid" style='background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("<%= @cohort.banner_image.url %>")'>
   <div class="container" style='color:white'>
     <div class='row'>
@@ -11,6 +11,20 @@
   </div>
 </div>
 </div>
+<ul class="nav nav-pills nav-justified cohort-links">
+  <li class="nav-item">
+    <a class="nav-link " href="#">Itinerary</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Housing</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Tracks</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Side Trips</a>
+  </li>
+</ul>
 
 <p id="notice"><%= notice %></p>
 <div class='container'>
@@ -28,7 +42,7 @@
       <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning btn-block' %>
       <%= render '/cohorts/cohort_events_widget' %>
     </div>
-  </div> 
+  </div>
   <%= link_to 'Edit', edit_cohort_path(@cohort) %> |
   <%= link_to 'Back', cohorts_path %>
 </div>

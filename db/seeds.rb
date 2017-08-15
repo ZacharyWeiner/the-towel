@@ -10,7 +10,7 @@ puts 'Build Roles'
 site_admin = Role.create(title: 'site_admin')
 cohort_admin = Role.create(title: 'cohort_admin')
 city_admin = Role.create(title: 'city_admin')
-client = Role.create(title: 'client')
+client = Role.create(title: 'cohort_member')
 puts 'End Build Roles'
 ################################## End Roles  #######################################
 
@@ -28,11 +28,15 @@ puts 'Build Users'
 paulina = User.create!(email: "paulina@ry.com", password: 'password')
 westy = User.create!(email: "westy@ry.com", password: 'password')
 alexandra = User.create!(email: "alexandra@ry.com", password: 'password')
-coti = User.create!(email: "coti@ry.com", password: 'password') 
+coti = User.create!(email: "coti@ry.com", password: 'password')
 jo = User.create!(email: "jose@ry.com", password: 'password')
 zack = User.create!(email:'zack@ry.com', password: 'password')
 trabka = User.create!(email:'trabka@ry.com', password: 'password')
 andrea = User.create!(email:'andrea@ry.com', password: 'password')
+
+zack.roles << client
+trabka.roles << client
+andrea.roles << client
 
 libertatem.users << [zack, trabka, andrea]
 puts 'End Build Users'

@@ -5,22 +5,22 @@ Rails.application.routes.draw do
   resources :lodgings
   resources :transits
   resources :companies
-  resources :events do 
+  resources :events do
     resources :event_comments
     resources :event_rsvps
-  end 
+  end
   resources :locations
-  resources :cohorts do 
+  resources :cohorts do
     get 'add/:id', to: 'cohorts#add_user', as: 'add_user'
     get 'remove/:id', to: 'cohorts#remove_user', as: 'remove_user'
     get 'events/new', to: 'events#new', as: 'new_event'
     get 'events', to: 'events#index', as: 'list_events'
-  end 
+  end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   get 'users/:id', to: 'users#show', as: 'show_user'
   get 'admin/cohorts'
   get 'admin/cohort/:cohort_id/managers', to: 'admin#cohort_managers', as: 'cohort_managers'
