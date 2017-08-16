@@ -36,18 +36,34 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :company_id %>
-    <%= form.text_field :company_id, id: :transit_company_id, class: 'form-control' %>
-  </div>
+
+        <% if @transit.company.nil? %>
+          <% company = 0 %>
+        <% else %>
+          <% company = @transit.company.id %>
+        <% end%>
+        <%= form.label :company %>
+        <%= form.select 'company_id', options_for_select(
+          Company.where(company_type: ['airline', 'bus']).map {|c| [c.name, c.id]},
+        company), {},
+        {:multiple => false, class: 'form-control'}%>
+      </div>
 
   <div class="form-group">
     <%= form.label :route_number %>
     <%= form.text_field :route_number, id: :transit_route_number, class: 'form-control' %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :departure_location_id %>
-    <%= form.text_field :departure_location_id, id: :transit_departure_location_id, class: 'form-control' %>
+   <div class="form-group">
+    <% if @transit.departure_location.nil? %>
+      <% city = 0 %>
+    <% else %>
+      <% city = @transit.departure_location.id %>
+    <% end%>
+    <%= form.label :departure_city %>
+    <%= form.select 'departure_location_id', options_for_select(
+      Location.where(location_type: 'city').map {|c| [c.name, c.id]},
+    city), {},
+    {:multiple => false, class: 'form-control'}%>
   </div>
 
   <div class="form-group">
@@ -56,14 +72,26 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :arrival_location_id %>
-    <%= form.text_field :arrival_location_id, id: :transit_arrival_location_id, class: 'form-control' %>
+    <% if @transit.arrival_location.nil? %>
+      <% city = 0 %>
+    <% else %>
+      <% city = @transit.arrival_location.id %>
+    <% end%>
+    <%= form.label :arrival_city %>
+    <%= form.select 'arrival_location_id', options_for_select(
+      Location.where(location_type: 'city').map {|c| [c.name, c.id]},
+    city), {},
+    {:multiple => false, class: 'form-control'}%>
   </div>
 
   <div class="form-group">
     <%= form.label :arrival_time %>
     <%= form.time_select :arrival_time, id: :transit_arrival_time, class: 'form-control' %>
   </div>
+
+  <% if params[:side_trip_id] %>
+    <%= form.hidden_field :side_trip_id, :value => @side_trip.id%>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

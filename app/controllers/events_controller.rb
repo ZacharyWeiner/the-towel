@@ -16,11 +16,11 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    if params[:cohort_id] 
+    if params[:cohort_id]
       @cohort = Cohort.find(params[:cohort_id])
     else
-      @cohort = Cohort.first 
-    end 
+      @cohort = Cohort.first
+    end
   end
 
   # GET /events/1/edit
@@ -31,7 +31,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    byebug
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

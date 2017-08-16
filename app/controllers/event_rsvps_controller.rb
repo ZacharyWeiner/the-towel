@@ -27,7 +27,6 @@ class EventRsvpsController < ApplicationController
 
     @event_rsvp = EventRsvp.new(event_rsvp_params)
     @event = Event.find(params[:event_id])
-    byebug
     respond_to do |format|
       if @event_rsvp.save
         format.html { redirect_to event_path(@event), notice: 'Event rsvp was successfully created.' }

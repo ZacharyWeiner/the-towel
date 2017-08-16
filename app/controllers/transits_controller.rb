@@ -1,12 +1,14 @@
 class TransitsController < ApplicationController
   before_action :set_transit, only: [:show, :edit, :update, :destroy]
-  before_action :set_cohort, only: [:index, :show, :create]
   # GET /transits
   # GET /transits.json
   def index
     if params[:cohort_id]
-      @cohort = Cohort.find(params[:cohort_id])
+      set_cohort
       @transits = @cohort.transits
+    elsif params[:side_trip_id]
+      set_side_trip
+      @transits = @side_trip.transits
     else
       @transits = Transit.all
     end
@@ -15,6 +17,9 @@ class TransitsController < ApplicationController
   # GET /transits/1
   # GET /transits/1.json
   def show
+    if params[:cohort_id]
+      set_cohort
+    end
   end
 
   # GET /transits/new
@@ -24,15 +29,21 @@ class TransitsController < ApplicationController
 
   # GET /transits/1/edit
   def edit
+    set_side_trip
   end
 
   # POST /transits
   # POST /transits.json
   def create
     @transit = Transit.new(transit_params)
-
     respond_to do |format|
       if @transit.save
+        if params[:transit][:side_trip_id]
+          @side_trip.transits << @transit
+        end
+        if params[:cohort_id]
+          @cohorts.transits << @transit
+        end
         format.html { redirect_to @transit, notice: 'Transit was successfully created.' }
         format.json { render :show, status: :created, location: @transit }
       else
@@ -47,6 +58,10 @@ class TransitsController < ApplicationController
   def update
     respond_to do |format|
       if @transit.update(transit_params)
+        apply_side_trip
+        if params[:cohort_id]
+          @cohorts.transits << @transit
+        end
         format.html { redirect_to @transit, notice: 'Transit was successfully updated.' }
         format.json { render :show, status: :ok, location: @transit }
       else
@@ -74,6 +89,21 @@ class TransitsController < ApplicationController
 
     def set_cohort
       @cohort = Cohort.find(params[:cohort_id])
+    end
+
+    def set_side_trip
+      if params[:transit][:side_trip_id]
+         @side_trip = SideTrip.find(params[:transit][:side_trip_id])
+      elsif params[:side_trip_id]
+         @side_trip = SideTrip.find(params[:side_trip_id])
+      end
+    end
+
+    def apply_side_trip
+      set_side_trip
+      if @side_trip
+        @side_trip.transits << @transit
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

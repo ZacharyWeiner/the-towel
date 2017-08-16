@@ -1,0 +1,13 @@
+ <div class="form-group">
+
+  <% if @event.location.nil? %>
+  <% city = 0 %>
+  <% else %>
+  <% city = @event.location.id %>
+  <% end%>
+  <%= form.label :city %>
+  <%= form.select 'location_id', options_for_select(
+    Location.where(location_type: 'city').map {|c| [c.name, c.id]},
+    city), {},
+    {:multiple => false, class: 'form-control'}%>
+  </div>
