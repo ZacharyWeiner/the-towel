@@ -1,29 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @side_trip.title %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @side_trip.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @side_trip.end_date %>
-</p>
-
-<p>
-  <strong>Is public:</strong>
-  <%= @side_trip.is_public %>
-</p>
-
-<p>
-  <strong>Creator:</strong>
-  <%= @side_trip.creator_id %>
-</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <h1 class="display-3"><%= @side_trip.title %></h1>
+    <p class="lead">
+      <%= @side_trip.start_date.to_time.strftime('%A %b %Y') %>
+      -
+      <%= @side_trip.end_date.to_time.strftime('%A %b %Y') %>
+      </p>
+    <p class='lead'> Created By: <%= @side_trip.creator.email %></p>
+  </div>
+</div>
+<div class='container'>
+<div class="row">
+  <%= render '/side_trips/_partials/join_button' %>
+</div>
+<div class='row'>
+  <div class='col-md-3'>
+    <%= render '/side_trips/_partials/side_trip_users_list' %>
+  </div>
+  <div class='col-md-6 text-center'>
+    <%= @side_trip.description %>
+    <%= render 'posts/form'%>
+    <%= render 'posts/feed' %>
+  </div>
+  <div class='col-md-3'>
+    Add Activities Button <br/>
+    Activites List
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_side_trip_path(@side_trip) %> |
 <%= link_to 'Back', side_trips_path %>
+</div>
+
+
+
+

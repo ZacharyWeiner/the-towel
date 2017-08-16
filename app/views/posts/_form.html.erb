@@ -16,7 +16,13 @@
   </div>
 
   <div class="field">
-    <%= form.hidden_field :cohort_id, :value => @cohort.id %>
+    <% if @cohort %>
+      <%= form.hidden_field :cohort_id, :value => @cohort.id %>
+    <% elsif @event %>
+      <%= form.hidden_field :event_id, :value => params[:id] %>
+    <% elsif @side_trip %>
+      <%= form.hidden_field :side_trip_id, :value => params[:id] %>
+    <% end %>
   </div>
 
   <div class="form-group">
@@ -24,9 +30,9 @@
     <%= form.submit class: 'btn btn-primary btn-block' %>
   </div>
 
-  
+
 
   <div class="actions">
-    
+
   </div>
 <% end %>

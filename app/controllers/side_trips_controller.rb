@@ -1,15 +1,21 @@
 class SideTripsController < ApplicationController
-  before_action :set_side_trip, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_side_trip, only: [:show, :edit, :update, :destroy, :add_user, :remove_user]
+  before_action :authenticate_user!
   # GET /side_trips
   # GET /side_trips.json
   def index
-    @side_trips = SideTrip.all
+    if params[:cohort_id]
+      @side_trips = SideTrip.where(cohort_id: params[:cohort_id])
+    else
+      @side_trips = SideTrip.all
+    end
   end
 
   # GET /side_trips/1
   # GET /side_trips/1.json
   def show
+    @post = Post.new
+    @posts = @side_trip.posts
   end
 
   # GET /side_trips/new
@@ -25,7 +31,8 @@ class SideTripsController < ApplicationController
   # POST /side_trips.json
   def create
     @side_trip = SideTrip.new(side_trip_params)
-
+    @side_trip.creator = current_user
+    set_side_trip_cohort
     respond_to do |format|
       if @side_trip.save
         format.html { redirect_to @side_trip, notice: 'Side trip was successfully created.' }
@@ -41,6 +48,7 @@ class SideTripsController < ApplicationController
   # PATCH/PUT /side_trips/1.json
   def update
     respond_to do |format|
+      set_side_trip_cohort
       if @side_trip.update(side_trip_params)
         format.html { redirect_to @side_trip, notice: 'Side trip was successfully updated.' }
         format.json { render :show, status: :ok, location: @side_trip }
@@ -61,14 +69,46 @@ class SideTripsController < ApplicationController
     end
   end
 
+  def add_user
+    user = User.find(params[:id])
+    unless @side_trip.users.include?(user)
+      @side_trip.users << user
+    end
+    redirect_to side_trip_path(@side_trip)
+  end
+
+  def remove_user
+    user = User.find(params[:id])
+    if @side_trip.users.include?(user)
+      @side_trip.users.destroy(user)
+    end
+    redirect_to side_trip_path(@side_trip)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_side_trip
-      @side_trip = SideTrip.find(params[:id])
+      if params[:side_trip_id]
+        @side_trip = SideTrip.find(params[:side_trip_id])
+      else
+        @side_trip = SideTrip.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def side_trip_params
-      params.require(:side_trip).permit(:title, :start_date, :end_date, :is_public, :creator_id)
+      params.require(:side_trip).permit(:title, :start_date, :end_date, :is_public, :creator_id, :cohort_id, :description)
+    end
+
+    def set_side_trip_cohort
+      if params[:cohort_id]
+        @side_trip.cohort_id = params[:cohort_id]
+      else
+        @side_trip.cohort_id = current_user.cohorts.first.id
+        byebug
+        if @side_trip.cohort_id.nil?
+          @side_trip.cohort_id = 1
+        end
+      end
     end
 end

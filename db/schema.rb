@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816172611) do
+ActiveRecord::Schema.define(version: 20170816190428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,8 +168,12 @@ ActiveRecord::Schema.define(version: 20170816172611) do
     t.bigint "actions_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_id"
+    t.bigint "side_trip_id"
     t.index ["actions_id"], name: "index_posts_on_actions_id"
     t.index ["cohort_id"], name: "index_posts_on_cohort_id"
+    t.index ["event_id"], name: "index_posts_on_event_id"
+    t.index ["side_trip_id"], name: "index_posts_on_side_trip_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -196,6 +200,7 @@ ActiveRecord::Schema.define(version: 20170816172611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "cohort_id"
+    t.text "description"
     t.index ["cohort_id"], name: "index_side_trips_on_cohort_id"
   end
 
@@ -296,6 +301,8 @@ ActiveRecord::Schema.define(version: 20170816172611) do
   add_foreign_key "lodgings_side_trips", "side_trips"
   add_foreign_key "posts", "actions", column: "actions_id"
   add_foreign_key "posts", "cohorts"
+  add_foreign_key "posts", "events"
+  add_foreign_key "posts", "side_trips"
   add_foreign_key "posts", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"

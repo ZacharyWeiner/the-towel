@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  has_and_belongs_to_many :cohorts
   def show
   end
 

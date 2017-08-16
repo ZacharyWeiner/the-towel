@@ -1,0 +1,5 @@
+<% if @side_trip.users.include?(current_user) %>
+  <%= link_to "Leave Trip", side_trip_remove_user_path(@side_trip, current_user), class: 'btn btn-warning'%>
+<% else %>
+  <%= link_to "Join Trip", side_trip_add_user_path(@side_trip, current_user), class: 'btn btn-primary'%>
+<% end %>

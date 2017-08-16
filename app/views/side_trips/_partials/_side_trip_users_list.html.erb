@@ -1,0 +1,9 @@
+<div class='row'>
+<ul>
+  <% @side_trip.users.each do |user | %>
+    <li class='list-group-item list-group-item-action'>
+      <%= user.email %>
+    </li>
+  <% end %>
+  </ul>
+</div>
