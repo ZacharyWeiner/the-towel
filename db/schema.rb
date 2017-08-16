@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815171746) do
+ActiveRecord::Schema.define(version: 20170816170710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,13 @@ ActiveRecord::Schema.define(version: 20170815171746) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "locations_side_trips", id: false, force: :cascade do |t|
+    t.bigint "location_id"
+    t.bigint "side_trip_id"
+    t.index ["location_id"], name: "index_locations_side_trips_on_location_id"
+    t.index ["side_trip_id"], name: "index_locations_side_trips_on_side_trip_id"
+  end
+
   create_table "lodgings", force: :cascade do |t|
     t.string "name"
     t.date "checkin_date"
@@ -145,6 +152,13 @@ ActiveRecord::Schema.define(version: 20170815171746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_lodgings_on_location_id"
+  end
+
+  create_table "lodgings_side_trips", id: false, force: :cascade do |t|
+    t.bigint "lodging_id"
+    t.bigint "side_trip_id"
+    t.index ["lodging_id"], name: "index_lodgings_side_trips_on_lodging_id"
+    t.index ["side_trip_id"], name: "index_lodgings_side_trips_on_side_trip_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -171,6 +185,30 @@ ActiveRecord::Schema.define(version: 20170815171746) do
     t.bigint "role_id"
     t.index ["role_id"], name: "index_roles_users_on_role_id"
     t.index ["user_id"], name: "index_roles_users_on_user_id"
+  end
+
+  create_table "side_trips", force: :cascade do |t|
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.boolean "is_public"
+    t.bigint "creator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "side_trips_transits", id: false, force: :cascade do |t|
+    t.bigint "transit_id"
+    t.bigint "side_trip_id"
+    t.index ["side_trip_id"], name: "index_side_trips_transits_on_side_trip_id"
+    t.index ["transit_id"], name: "index_side_trips_transits_on_transit_id"
+  end
+
+  create_table "side_trips_users", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "side_trip_id"
+    t.index ["side_trip_id"], name: "index_side_trips_users_on_side_trip_id"
+    t.index ["user_id"], name: "index_side_trips_users_on_user_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -249,11 +287,19 @@ ActiveRecord::Schema.define(version: 20170815171746) do
   add_foreign_key "events_users", "events"
   add_foreign_key "events_users", "users", column: "users_id"
   add_foreign_key "location_details", "locations"
+  add_foreign_key "locations_side_trips", "locations"
+  add_foreign_key "locations_side_trips", "side_trips"
   add_foreign_key "lodgings", "locations"
+  add_foreign_key "lodgings_side_trips", "lodgings"
+  add_foreign_key "lodgings_side_trips", "side_trips"
   add_foreign_key "posts", "actions", column: "actions_id"
   add_foreign_key "posts", "cohorts"
   add_foreign_key "posts", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
+  add_foreign_key "side_trips_transits", "side_trips"
+  add_foreign_key "side_trips_transits", "transits"
+  add_foreign_key "side_trips_users", "side_trips"
+  add_foreign_key "side_trips_users", "users"
   add_foreign_key "transits", "companies"
 end

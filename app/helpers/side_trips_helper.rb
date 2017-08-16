@@ -1,0 +1,2 @@
+module SideTripsHelper
+end

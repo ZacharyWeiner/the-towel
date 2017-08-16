@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :activities
   has_and_belongs_to_many :cohorts
   has_and_belongs_to_many :roles
+  has_and_belongs_to_many :side_trips
   has_many :posts
   has_many :event_rsvps
   has_many :events, through: :event_rsvps

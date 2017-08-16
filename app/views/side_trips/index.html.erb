@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Side Trips</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Is public</th>
+      <th>Creator</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @side_trips.each do |side_trip| %>
+      <tr>
+        <td><%= side_trip.title %></td>
+        <td><%= side_trip.start_date %></td>
+        <td><%= side_trip.end_date %></td>
+        <td><%= side_trip.is_public %></td>
+        <td><%= side_trip.creator_id %></td>
+        <td><%= link_to 'Show', side_trip %></td>
+        <td><%= link_to 'Edit', edit_side_trip_path(side_trip) %></td>
+        <td><%= link_to 'Destroy', side_trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Side Trip', new_side_trip_path %>

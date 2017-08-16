@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @side_trip.title %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @side_trip.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @side_trip.end_date %>
+</p>
+
+<p>
+  <strong>Is public:</strong>
+  <%= @side_trip.is_public %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @side_trip.creator_id %>
+</p>
+
+<%= link_to 'Edit', edit_side_trip_path(@side_trip) %> |
+<%= link_to 'Back', side_trips_path %>

@@ -1,0 +1,42 @@
+<%= form_with(model: side_trip, local: true) do |form| %>
+  <% if side_trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(side_trip.errors.count, "error") %> prohibited this side_trip from being saved:</h2>
+
+      <ul>
+      <% side_trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :side_trip_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, id: :side_trip_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, id: :side_trip_end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_public %>
+    <%= form.check_box :is_public, id: :side_trip_is_public %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creator_id %>
+    <%= form.text_field :creator_id, id: :side_trip_creator_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
