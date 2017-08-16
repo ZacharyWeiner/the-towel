@@ -28,9 +28,9 @@
         <td><%= transit.travel_type %></td>
         <td><%= transit.company %></td>
         <td><%= transit.route_number %></td>
-        <td><%= transit.departure_location %></td>
+        <td><%= transit.departure_location.name %></td>
         <td><%= transit.departure_map %></td>
-        <td><%= transit.arrival_location %></td>
+        <td><%= transit.arrival_location.name %></td>
         <td><%= transit.arrival_time %></td>
         <td><%= link_to 'Show', transit %></td>
         <td><%= link_to 'Edit', edit_transit_path(transit) %></td>

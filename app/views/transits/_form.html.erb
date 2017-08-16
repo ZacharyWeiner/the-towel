@@ -1,3 +1,7 @@
+<div class='row'>
+  <div class='col-md-3'></div>
+  <div class='col-md-6'>
+
 <%= form_with(model: transit, local: true) do |form| %>
   <% if transit.errors.any? %>
     <div id="error_explanation">
@@ -11,57 +15,62 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :date %>
-    <%= form.date_select :date, id: :transit_date %>
+    <%= form.date_select :date, id: :transit_date, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :departure_time %>
-    <%= form.time_select :departure_time, id: :transit_departure_time %>
+    <%= form.time_select :departure_time, id: :transit_departure_time, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :transit_title %>
+    <%= form.text_field :title, id: :transit_title, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :travel_type %>
-    <%= form.text_field :travel_type, id: :transit_travel_type %>
+    <%= form.text_field :travel_type, id: :transit_travel_type, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :company_id %>
-    <%= form.text_field :company_id, id: :transit_company_id %>
+    <%= form.text_field :company_id, id: :transit_company_id, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :route_number %>
-    <%= form.text_field :route_number, id: :transit_route_number %>
+    <%= form.text_field :route_number, id: :transit_route_number, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :departure_location_id %>
-    <%= form.text_field :departure_location_id, id: :transit_departure_location_id %>
+    <%= form.text_field :departure_location_id, id: :transit_departure_location_id, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :departure_map %>
-    <%= form.text_area :departure_map, id: :transit_departure_map %>
+    <%= form.text_area :departure_map, id: :transit_departure_map, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :arrival_location_id %>
-    <%= form.text_field :arrival_location_id, id: :transit_arrival_location_id %>
+    <%= form.text_field :arrival_location_id, id: :transit_arrival_location_id, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :arrival_time %>
-    <%= form.time_select :arrival_time, id: :transit_arrival_time %>
+    <%= form.time_select :arrival_time, id: :transit_arrival_time, class: 'form-control' %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+  </div>
+  <div class='col-md-3'></div>
+</div>

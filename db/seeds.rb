@@ -67,6 +67,10 @@ france = Location.create!(name:"France", location_type: 'country', parent: europ
 paris = Location.create!(name:"Paris", location_type: 'city', parent: france)
 croatia = Location.create(name: 'Croatia', location_type: 'country', parent: europe)
 split = Location.create!(name: 'Split', location_type: 'city', parent: croatia)
+czech = Location.create!(name: 'Czech Republik', location_type: 'country', parent: europe)
+prague = Location.create!(name: 'Prague', location_type: 'city', parent: czech)
+portugal = Location.create!(name: 'Portugal', location_type: 'country', parent: europe)
+lisbon = Location.create!(name: 'Lisbon', location_type: 'city', parent: portugal)
 
 puts "End Build Locations"
 ################################## End Locations #######################################
@@ -101,9 +105,14 @@ puts 'End Build Lodging'
 kl_to_thailand = Transit.create(date: Date.today + 30.days, title: 'KL to Chang Mai', departure_location_id: kl.id, arrival_location_id: changmai.id)
 thailand_to_cambodia = Transit.create(date: Date.today + 60.days, title: 'Thailand to Cambodia', departure_location: changmai, arrival_location: phnompenh)
 cambodia_to_croatia = Transit.create(date: Date.today + 90.days, title: 'Cambodia To Split', departure_location: phnompenh, arrival_location: split)
+croatia_to_czech = Transit.create(date: Date.today + 120.days, title: 'Split To Prague', departure_location: split, arrival_location: prague)
+czech_to_lisbon = Transit.create(date: Date.today + 150.days, title: 'Prague TO Lisbon', departure_location: split, arrival_location: lisbon)
+
 libertatem.transits << thailand_to_cambodia
 libertatem.transits << kl_to_thailand
 libertatem.transits << cambodia_to_croatia
+libertatem.transits << croatia_to_czech
+libertatem.transits << czech_to_lisbon
 
 
 
