@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816170710) do
+ActiveRecord::Schema.define(version: 20170816172611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(version: 20170816170710) do
     t.bigint "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cohort_id"
+    t.index ["cohort_id"], name: "index_side_trips_on_cohort_id"
   end
 
   create_table "side_trips_transits", id: false, force: :cascade do |t|
@@ -297,6 +299,7 @@ ActiveRecord::Schema.define(version: 20170816170710) do
   add_foreign_key "posts", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
+  add_foreign_key "side_trips", "cohorts"
   add_foreign_key "side_trips_transits", "side_trips"
   add_foreign_key "side_trips_transits", "transits"
   add_foreign_key "side_trips_users", "side_trips"

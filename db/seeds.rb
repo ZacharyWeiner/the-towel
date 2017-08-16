@@ -53,6 +53,7 @@ puts 'Build Locations'
 asia = Location.create!(name:"Asia", location_type: 'region')
 malaysia = Location.create!(name: 'Malaysia', location_type: 'country', parent: asia)
 kl = Location.create!(name: 'Kuala Lumpur', location_type:'city', parent: malaysia)
+sandakan = Location.create!(name: 'Sandakan', location_type:'city', parent: malaysia)
 thailand = Location.create!(name:"Thailand", location_type: 'country', parent: asia)
 bangkok = Location.create!(name:"Bangkok", location_type: 'city', parent: thailand)
 changmai = Location.create!(name:"Chang Mai", location_type: 'city', parent: thailand)
@@ -97,11 +98,12 @@ puts 'End Build Lodging'
 bangkok_hilton = Lodging.create!(name: "Hilton", phone: '1-888-888-8888', website: 'www.hilton.com/bangkok', address:'123 bangkok street', location:bangkok)
 london_4Seasons = Lodging.create!(name: "Four Seasons", phone: '1-888-888-8888', website: 'www.fourseasons.com/london', address:'123 london street', location:london)
 airbnb_paris = Lodging.create!(name: "Air BnB", phone: '1-888-888-8888', website: 'www.airbnb.com/asdsa', address:'987 paris street', location:paris)
+borneo_travel_company_lodging = Lodging.create!(name: "Borneo Adventure Bungalows", phone: '1-888-888-8888', website: 'www.borneo.com/asdsa', address:'987 sandakan street', location:sandakan)
 puts 'End Build Lodging'
 ################################## End Lodging  #####################################
 
 ################################## Transits  #######################################
-
+puts 'Build Transits'
 kl_to_thailand = Transit.create(date: Date.today + 30.days, title: 'KL to Chang Mai', departure_location_id: kl.id, arrival_location_id: changmai.id)
 thailand_to_cambodia = Transit.create(date: Date.today + 60.days, title: 'Thailand to Cambodia', departure_location: changmai, arrival_location: phnompenh)
 cambodia_to_croatia = Transit.create(date: Date.today + 90.days, title: 'Cambodia To Split', departure_location: phnompenh, arrival_location: split)
@@ -114,6 +116,21 @@ libertatem.transits << cambodia_to_croatia
 libertatem.transits << croatia_to_czech
 libertatem.transits << czech_to_lisbon
 
+
+puts 'End Build Transits'
+################################## End Transits  #######################################
+
+################################## Side Trips  #######################################
+puts 'Build SideTrips'
+borneo = SideTrip.create!(title: "Libertatem To Borneo", start_date: Date.today + 37.days, end_date: Date.today + 44.days, is_public: true, creator_id: zack.id)
+borneo.users << [trabka, andrea]
+borneo.locations << sandakan
+borneo_side_trip_departure = Transit.create(date: Date.today + 37.days, title: 'KL to Borneo', departure_location: kl, arrival_location: sandakan)
+borneo.transits << borneo_side_trip_departure
+borneo_side_trip_departure = Transit.create(date: Date.today + 44.days, title: 'Return to KL', departure_location: sandakan, arrival_location: kl)
+borneo.transits << borneo_side_trip_departure
+borneo.lodgings << borneo_travel_company_lodging
+puts 'End Build SideTrips'
 
 
 
