@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= side_trip.start_date.to_time.strftime('%A %b %Y') %><br/>
+      -<br/>
+      <%= side_trip.end_date.to_time.strftime('%A %b %Y') %>
+    </div>
+    <div class='col-md-9'>
+       <h6 class=""><%= side_trip.title %></h6><br/>
+       <%= side_trip.description %>
+    </div>
+  </div>
+</div>
+
+
+
+

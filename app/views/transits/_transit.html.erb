@@ -1,0 +1,19 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= transit.date.to_time.strftime('%A %b %Y') %><br/>
+      <%= transit.departure_time %>
+    </div>
+    <div class='col-md-6'>
+      <%= transit.title %><br/>
+      <% unless transit.company.nil? %>
+        <%= transit.company.name %>
+      <% end %>
+    </div>
+    <div class='col-md-3'>
+      Leaving: <%= transit.departure_location.name %><br/>
+      Arriving: <%= transit.arrival_location.name %>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,23 @@
+<%= @cohort.name%>
+<ul>
+<% @itinerary_items.each  do |ii| %>
+  <li class='list-group-item list-group-item-action'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= ii.date.to_time.strftime('%a %b %e %Y') %>
+      <% unless ii.time.nil? %>
+         <%= ii.time.to_short %>
+      <% end %>
+    </div>
+    <div class='col-md-6'>
+      <h6> <%= ii.title %> || <%= ii.location %> </h6>
+      <h6> <%= ii.description %> </h6>
+    </div>
+    <div class='col-md-3'>
+      <%= link_to "View Details", ii.link, class: 'btn btn-primary' %>
+    </div>
+  </div>
+  </li>
+<% end %>
+<ul>
+
