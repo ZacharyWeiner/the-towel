@@ -17,6 +17,7 @@ class Transit < ApplicationRecord
     ItineraryItem.new(date: self.date,
                       location: self.departure_location.name,
                       title: self.title,
-                      link: Rails.application.routes.url_helpers.transit_path(self.id))
+                      link: Rails.application.routes.url_helpers.transit_path(self.id),
+                      timezone: "#{self.departure_location.name}/#{self.departure_location.parent.parent.name}")
   end
 end

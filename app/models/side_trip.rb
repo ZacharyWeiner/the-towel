@@ -22,6 +22,10 @@ class SideTrip < ApplicationRecord
                       location: locations,
                       title: self.title,
                       description: self.description,
-                      link: Rails.application.routes.url_helpers.side_trip_path(self.id))
+                      link: Rails.application.routes.url_helpers.side_trip_path(self.id),
+                      timezone: "#{self.locations.first.name}/#{self.locations.first.parent.parent.name}")
   end
 end
+
+
+SideTrip.left_outer_joins(:locations).where(locations: {id: nil})
