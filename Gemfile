@@ -46,6 +46,7 @@ gem 'jquery-turbolinks'
 
 gem 'auto_html', '~>1.6.4'
 
+
 #Storing Sensitive Keys
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'acts-as-taggable-on', '~> 4.0'

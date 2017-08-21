@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :event_rsvps
   has_many :events, through: :event_rsvps
+  has_many :photos
 
   acts_as_taggable # Alias for acts_as_taggable_on :tags
   acts_as_taggable_on :skills, :interests

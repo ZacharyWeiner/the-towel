@@ -6,7 +6,7 @@ class SideTrip < ApplicationRecord
   has_and_belongs_to_many :transits
   has_and_belongs_to_many :lodgings
   has_many :posts
-
+  has_many :photos
   def self.create_itinerary_items(collection)
     response = []
     collection.each do |side_trip|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821144814) do
+ActiveRecord::Schema.define(version: 20170821162124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,27 @@ ActiveRecord::Schema.define(version: 20170821144814) do
     t.bigint "side_trip_id"
     t.index ["lodging_id"], name: "index_lodgings_side_trips_on_lodging_id"
     t.index ["side_trip_id"], name: "index_lodgings_side_trips_on_side_trip_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.bigint "cohort_id"
+    t.bigint "event_id"
+    t.bigint "location_id"
+    t.bigint "post_id"
+    t.text "picture"
+    t.string "caption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "side_trip_id"
+    t.bigint "lodging_id"
+    t.bigint "user_id"
+    t.index ["cohort_id"], name: "index_photos_on_cohort_id"
+    t.index ["event_id"], name: "index_photos_on_event_id"
+    t.index ["location_id"], name: "index_photos_on_location_id"
+    t.index ["lodging_id"], name: "index_photos_on_lodging_id"
+    t.index ["post_id"], name: "index_photos_on_post_id"
+    t.index ["side_trip_id"], name: "index_photos_on_side_trip_id"
+    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -320,6 +341,13 @@ ActiveRecord::Schema.define(version: 20170821144814) do
   add_foreign_key "lodgings", "locations"
   add_foreign_key "lodgings_side_trips", "lodgings"
   add_foreign_key "lodgings_side_trips", "side_trips"
+  add_foreign_key "photos", "cohorts"
+  add_foreign_key "photos", "events"
+  add_foreign_key "photos", "locations"
+  add_foreign_key "photos", "lodgings"
+  add_foreign_key "photos", "posts"
+  add_foreign_key "photos", "side_trips"
+  add_foreign_key "photos", "users"
   add_foreign_key "posts", "actions", column: "actions_id"
   add_foreign_key "posts", "cohorts"
   add_foreign_key "posts", "events"

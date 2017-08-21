@@ -6,4 +6,5 @@ class Cohort < ApplicationRecord
   has_many :events
   has_many :posts
   has_many :side_trips
+  has_many :photos
 end

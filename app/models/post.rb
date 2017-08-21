@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   belongs_to :actions, optional: true
   belongs_to :event, optional: true
   belongs_to :side_trip, optional: true
+  has_many :photos
 
   auto_html_for :content do
     html_escape

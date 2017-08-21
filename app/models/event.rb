@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   belongs_to :cohort, optional: true
   has_many :event_comments
   has_many :event_rsvps
+  has_many :photos
 
   def self.create_itinerary_items(collection)
     response = []
