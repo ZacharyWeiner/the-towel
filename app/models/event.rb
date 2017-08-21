@@ -21,6 +21,6 @@ class Event < ApplicationRecord
                       title: self.title,
                       description: self.description,
                       link: Rails.application.routes.url_helpers.event_path(self.id),
-                      timezone: "#{self.location.name}/#{self.location.parent.parent.name}"))
+                      timezone: "#{self.location.name}/#{self.location.parent.parent.name}")
   end
 end
