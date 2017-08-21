@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cohort: one
+  event: one
+  city: one
+  post: one
+  picture: MyText
+  caption: MyString
+
+two:
+  cohort: two
+  event: two
+  city: two
+  post: two
+  picture: MyText
+  caption: MyString

@@ -1,0 +1,17 @@
+
+<div class='container'>
+
+</div>
+
+  <%= image_tag @photo.picture, style: 'width:100%; max-height:400px; object-fit: scale-down;' %>
+
+
+<p>
+  <strong>Caption:</strong>
+  <%= @photo.caption %>
+</p>
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>
+
+

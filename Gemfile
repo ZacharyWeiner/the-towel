@@ -30,23 +30,23 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-#For users 
+#For users
 gem 'devise'
 
-#For Image Upload 
+#For Image Upload
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
 
-#design 
+#design
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem 'jquery-turbolinks'
 
-gem "auto_html"
+gem 'auto_html', '~>1.6.4'
 
-#Storing Sensitive Keys 
+#Storing Sensitive Keys
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'acts-as-taggable-on', '~> 4.0'
 

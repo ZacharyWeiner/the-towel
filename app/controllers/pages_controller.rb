@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
 
-    if current_user && current_user.is_in_role(@@COHORT_MEMBER)
+    if current_user && current_user.is_in_role(Role.cohort_member)
       redirect_to cohort_path(current_user.cohorts.first)
     end
   end
