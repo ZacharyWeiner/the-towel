@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :cohorts
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :side_trips
+  has_and_belongs_to_many :tracks
   has_many :posts
   has_many :event_rsvps
   has_many :events, through: :event_rsvps
@@ -20,6 +21,10 @@ class User < ApplicationRecord
     'http://gravatar.com/avatar/' + user_hash
   end
 
+  def current_cohort
+    self.cohorts.where.not(id: 1).first
+  end
+
   def is_in_role(role_name)
     roles = self.roles.where(title: role_name)
     if roles.count > 0
@@ -27,5 +32,13 @@ class User < ApplicationRecord
     else
       return false
     end
+  end
+
+  def current_city
+
+  end
+
+  def current_cohort_city
+    transits = self.current_cohort.transits.where("date <= ?", Date.today).order("date DESC").limit(1)
   end
 end

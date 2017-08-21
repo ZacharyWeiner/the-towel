@@ -4,7 +4,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:track_id]
+      @track = Track.find(params[:track_id])
+      @events = Event.where(track_id: params[:track_id]).where(event_type: 'track')
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1

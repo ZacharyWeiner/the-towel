@@ -33,12 +33,26 @@ jo = User.create!(email: "jose@ry.com", password: 'password')
 zack = User.create!(email:'zack@ry.com', password: 'password')
 trabka = User.create!(email:'trabka@ry.com', password: 'password')
 andrea = User.create!(email:'andrea@ry.com', password: 'password')
+geordan = User.create!(email:'geordan@ry.com', password: 'password')
+gemma = User.create!(email:'gemma@ry.com', password: 'password')
+chech = User.create!(email:'chech@ry.com', password: 'password')
+alison = User.create!(email:'alison@ry.com', password: 'password')
+
+westy.roles << cohort_admin
+alexandra.roles << cohort_admin
+jo.roles << city_admin
+coti.roles << city_admin
+paulina.roles << site_admin
 
 zack.roles << client
 trabka.roles << client
 andrea.roles << client
+geordan.roles << client
+gemma.roles << client
+chech.roles << client
+alison.roles << client
 
-libertatem.users << [zack, trabka, andrea]
+libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison]
 puts 'End Build Users'
 ################################## End Users #######################################
 
@@ -132,5 +146,36 @@ borneo.transits << borneo_side_trip_departure
 borneo.lodgings << borneo_travel_company_lodging
 puts 'End Build SideTrips'
 
+################################## Tracks #######################################
+puts 'Build Tracks'
+puts 'Track 1'
+undiscovered_kl_track = Track.create!(name: "Undiscovered KL", description: 'Find out all about the undiscovered KL', cohort: libertatem, location: kl)
+undiscovered_kl_track.users << [andrea, trabka]
+undiscovered_kl_track_event_1 = Event.create!(title: "Hidden Gem Discovery", date: Date.today + 11.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Gems in KL", location: kl, cohort: libertatem, event_type: 'track')
+undiscovered_kl_track_event_1.users << undiscovered_kl_track.users
+undiscovered_kl_track.events << undiscovered_kl_track_event_1
+puts 'End Track 1'
 
+puts 'Track 2'
+kl_foodies_track = Track.create!(name: "KL Foodies", description: 'Learn All About the Food Scene In KL', cohort: libertatem, location: kl)
+kl_foodies_track.users << [zack, geordan]
+kl_foodies_track_event_1 = Event.create!(title: "Illegal Chineese", date: Date.today + 14.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Food Gems in KL", location: kl, cohort: libertatem, event_type: 'track')
+kl_foodies_track_event_1.users << kl_foodies_track.users
+kl_foodies_track.events << kl_foodies_track_event_1
+puts 'End Track 2'
 
+puts 'Track 3'
+kl_temples_track = Track.create!(name: "KL Temples", description: 'Tour All The Amazing Temples in KL', cohort: libertatem, location: kl)
+kl_temples_track.users = [gemma, chech]
+kl_temples_track_event_1 = Event.create!(title: "Temple Walking Tour", date: Date.today + 17.days, start_time: Time.now, description: "Over the course of a few hours, you will walk through some cool neighborhoods and see the inside of some awesome temples", location: kl, cohort: libertatem, event_type: 'track')
+kl_temples_track_event_1.users << kl_temples_track.users
+kl_temples_track.events << kl_temples_track_event_1
+puts 'End Track 3'
+
+thailand_mushrooms_track = Track.create!(name: "Thailand Mushrooms", description: 'Find out all about the history of Musrooms in Thailand', cohort: libertatem, location: changmai)
+thailand_temples_track = Track.create!(name: "Thailand Temples", description: 'Tour All The Amazing Temples in ChangMai', cohort: libertatem, location: changmai)
+thailand_history_track = Track.create!(name: "History of Thai", description: 'Undiscovered wars to lost archives, learn all about the history of Thailand', cohort: libertatem, location: changmai)
+
+puts 'End Build Tracks'
+
+################################## End Tracks #######################################

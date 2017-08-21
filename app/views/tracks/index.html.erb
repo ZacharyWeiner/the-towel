@@ -1,0 +1,28 @@
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1 class="display-3">Tracks</h1>
+    <p><%= @tracks.first.cohort.name %></p>
+  </div>
+</div>
+
+<ul>
+<% @tracks.each  do |track| %>
+  <li class='list-group-item list-group-item-action'>
+  <div class='row'>
+    <div class='col-md-3'>
+     <%= track.name %>
+    </div>
+    <div class='col-md-6'>
+      <h6> <%= track.description %> </h6>
+    </div>
+    <div class='col-md-3'>
+      <%= link_to "View Details", track_path(track), class: 'btn btn-primary' %>
+    </div>
+  </div>
+  </li>
+<% end %>
+<ul>
+
+
+
+<%= link_to 'New Track', new_track_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816190428) do
+ActiveRecord::Schema.define(version: 20170821144814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170816190428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "cohort_id"
+    t.bigint "track_id"
     t.index ["cohort_id"], name: "index_events_on_cohort_id"
     t.index ["location_id"], name: "index_events_on_location_id"
   end
@@ -245,6 +246,26 @@ ActiveRecord::Schema.define(version: 20170816190428) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "tracks", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "events_id"
+    t.bigint "location_id"
+    t.bigint "cohort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cohort_id"], name: "index_tracks_on_cohort_id"
+    t.index ["events_id"], name: "index_tracks_on_events_id"
+    t.index ["location_id"], name: "index_tracks_on_location_id"
+  end
+
+  create_table "tracks_users", id: false, force: :cascade do |t|
+    t.bigint "track_id"
+    t.bigint "user_id"
+    t.index ["track_id"], name: "index_tracks_users_on_track_id"
+    t.index ["user_id"], name: "index_tracks_users_on_user_id"
+  end
+
   create_table "transits", force: :cascade do |t|
     t.date "date"
     t.time "departure_time"
@@ -311,5 +332,10 @@ ActiveRecord::Schema.define(version: 20170816190428) do
   add_foreign_key "side_trips_transits", "transits"
   add_foreign_key "side_trips_users", "side_trips"
   add_foreign_key "side_trips_users", "users"
+  add_foreign_key "tracks", "cohorts"
+  add_foreign_key "tracks", "events", column: "events_id"
+  add_foreign_key "tracks", "locations"
+  add_foreign_key "tracks_users", "tracks"
+  add_foreign_key "tracks_users", "users"
   add_foreign_key "transits", "companies"
 end

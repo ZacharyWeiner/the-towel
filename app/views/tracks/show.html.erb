@@ -1,0 +1,46 @@
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1 class="display-3"><%= @track.name %></h1>
+    <p><%= @track.cohort.name %></p>
+    <p><%= @track.location.name %></p>
+  </div>
+</div>
+<div class='container text-center'>
+  <h4> <%= @track.description %> </h4>
+</div>
+
+
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= render 'shared/user/lists/track_user_list' %>
+    </div>
+    <div class='col-md-9'>
+      <ul>
+        <% @track.events.each  do |event| %>
+          <li class='list-group-item list-group-item-action'>
+          <div class='row'>
+            <div class='col-md-2'>
+              <%= event.date.to_time.strftime('%a %b %e %Y') %>
+              <% unless event.start_time.nil? %>
+                 <%= event.start_time.to_s(:time) %>
+              <% end %>
+            </div>
+            <div class='col-md-2'>
+             <%= event.title %>
+            </div>
+            <div class='col-md-5'>
+              <h6> <%= event.description %> </h6>
+            </div>
+            <div class='col-md-3'>
+              <%= link_to "View Details", event_path(event), class: 'btn btn-primary' %>
+            </div>
+          </div>
+          </li>
+        <% end %>
+        <ul>
+
+    </div>
+  </div>
+
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>

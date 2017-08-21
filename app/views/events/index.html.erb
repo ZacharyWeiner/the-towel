@@ -1,45 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Cost</th>
-      <th>Capacity</th>
-      <th>Location</th>
-      <th>Meeting point</th>
-      <th>Event type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.date %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.cost %></td>
-        <td><%= event.capacity %></td>
-        <td><%= event.location %></td>
-        <td><%= event.meeting_point %></td>
-        <td><%= event.event_type %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="jumbotron">
+  <div class="container text-center">
+    <% if params[:track_id] %>
+       <h1 class="display-3"><%= @track.name %> Events </h1>
+       <p></p>
+    <% else %>
+      <h1 class="display-3">Events</h1>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
-<br>
+<ul>
+<% @events.each  do |event| %>
+  <li class='list-group-item list-group-item-action'>
+  <div class='row'>
+    <div class='col-md-2'>
+      <%= event.date.to_time.strftime('%a %b %e %Y') %>
+      <% unless event.start_time.nil? %>
+         <%= event.start_time.to_s(:time) %>
+      <% end %>
+    </div>
+    <div class='col-md-2'>
+     <%= event.title %>
+    </div>
+    <div class='col-md-6'>
+      <h6> <%= event.description %> </h6>
+    </div>
+    <div class='col-md-2'>
+      <%= link_to "View Details", event_path(event), class: 'btn btn-primary' %>
+    </div>
+  </div>
+  </li>
+<% end %>
+<ul>
+
 
 <%= link_to 'New Event', new_event_path %>
