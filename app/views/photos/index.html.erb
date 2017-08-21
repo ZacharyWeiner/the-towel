@@ -11,7 +11,10 @@
   </div>
 
 <div class="container">
-  <%= link_to 'Add A Picture', new_photo_path, class: 'text-right' %>
+  <div class="row" style="padding-bottom: 10px">
+    <%= link_to 'Add A Picture', new_photo_path, class: 'btn btn-primary' %>
+  </div>
+
   <div class='row'>
     <% @photos.each do |photo| %>
       <div class='col-md-3'>

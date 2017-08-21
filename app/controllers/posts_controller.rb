@@ -25,7 +25,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
     respond_to do |format|
       if @post.save
         if params[:post][:photo]
@@ -33,8 +32,19 @@ class PostsController < ApplicationController
           @photo.save
           @post.photos << @photo
         end
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        if params[:post][:cohort_id]
+        @cohort = Cohort.find(params[:post][:cohort_id])
+        format.html { redirect_to @cohort, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
+      elsif params[:post][:side_trip_id]
+        @side_trip = SideTrip.find(params[:post][:side_trip_id])
+        format.html { redirect_to @side_trip, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
+      else
+         format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
+      end
+
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -75,5 +85,9 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:user_id, :cohort_id, :content, :actions_id, :event_id, :side_trip_id, :photos_attributes => [:event_id, :caption, :picture])
+    end
+
+    def handle_redirect
+
     end
 end

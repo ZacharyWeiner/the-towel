@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: "registrations" }
   get 'users/:id', to: 'users#show', as: 'show_user'
+  get 'users/:user_id/photos', to: 'photos#index', as: 'user_photos'
   get 'admin/cohorts'
   get 'admin/cohort/:cohort_id/managers', to: 'admin#cohort_managers', as: 'cohort_managers'
   get 'admin/cohort/:cohort_id/cohort_managers/add/:user_id', to: 'admin#add_cohort_manager', as: 'add_cohort_manager'

@@ -15,7 +15,7 @@ class SideTripsController < ApplicationController
   # GET /side_trips/1.json
   def show
     @post = Post.new
-    @posts = @side_trip.posts
+    @posts = @side_trip.posts.order(created_at: :desc)
   end
 
   # GET /side_trips/new

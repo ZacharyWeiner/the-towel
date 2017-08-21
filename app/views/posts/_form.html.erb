@@ -26,26 +26,25 @@
   </div>
 
   <div class="form-group">
-    <%= form.text_area :content, id: :post_content, placeholder: 'add post', class: 'form-control' %>
-      <%= form.fields_for :photo do |photo_form| %>
-         <div class="field">
-         <label class='btn btn-primary btn-block'>
-          Select Picture
-          <%= photo_form.file_field :picture, id: :picture, style: 'display:none;' %>
-          <%= photo_form.hidden_field :picture_cache %>
-        </label>
+    <div class='row'>
+      <div class='col-md-11'>
+        <%= form.text_area :content, id: :post_content, placeholder: 'add post', class: 'form-control' %>
+      </div>
+      <div class='col-md-1'>
+        <%= form.fields_for :photo do |photo_form| %>
+          <div class="field">
+            <label class='fa fa-camera fa-2x' style='vertical-align: middle;'>
+              <%= photo_form.file_field :picture, id: :picture, style: 'display:none;' %>
+            </label>
+          </div>
+          <% if params[:event_id]%>
+            <%= form.hidden_field :event_id, :value => params[:event_id] %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <% if params[:event_id]%>
-    <%= form.hidden_field :event_id, :value => params[:event_id] %>
-  <% end %>
-      <% end %>
-
-    <%= form.submit class: 'btn btn-primary btn-block' %>
-  </div>
-
-
-
   <div class="actions">
-
+    <%= form.submit class: 'btn btn-primary btn-block' %>
   </div>
 <% end %>

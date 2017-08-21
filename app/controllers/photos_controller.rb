@@ -4,12 +4,14 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    if params[:cohort_id]
-      @photos = Cohort.find(params[:cohort_id]).photos
+    if params[:user_id]
+      @photos = User.find(params[:user_id]).photos.order(created_at: :desc)
+    elsif params[:cohort_id]
+      @photos = Cohort.find(params[:cohort_id]).photos.order(created_at: :desc)
     elsif params[:event_id]
-      @photos = Event.find(params[:event_id]).photos
+      @photos = Event.find(params[:event_id]).photos.order(created_at: :desc)
     else
-      @photos = Photo.all
+      @photos = Photo.all.order(created_at: :desc)
     end
   end
 
