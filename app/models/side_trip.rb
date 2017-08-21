@@ -28,4 +28,4 @@ class SideTrip < ApplicationRecord
 end
 
 
-SideTrip.left_outer_joins(:locations).where(locations: {id: nil})
+

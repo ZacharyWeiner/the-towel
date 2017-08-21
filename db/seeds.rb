@@ -122,7 +122,7 @@ puts 'End Build Transits'
 
 ################################## Side Trips  #######################################
 puts 'Build SideTrips'
-borneo = SideTrip.create!(title: "Libertatem To Borneo", start_date: Date.today + 37.days, end_date: Date.today + 44.days, is_public: true, creator_id: zack.id)
+borneo = SideTrip.create!(cohort: libertatem, title: "Libertatem To Borneo", start_date: Date.today + 37.days, end_date: Date.today + 44.days, is_public: true, creator_id: zack.id)
 borneo.users << [trabka, andrea]
 borneo.locations << sandakan
 borneo_side_trip_departure = Transit.create(date: Date.today + 37.days, title: 'KL to Borneo', departure_location: kl, arrival_location: sandakan)

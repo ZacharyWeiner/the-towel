@@ -1,4 +1,3 @@
-<%= @cohort.name%>
 <ul>
 <% @itinerary_items.each  do |ii| %>
   <li class='list-group-item list-group-item-action'>
@@ -15,6 +14,7 @@
     </div>
     <div class='col-md-3'>
       <%= link_to "View Details", ii.link, class: 'btn btn-primary' %>
+      <br/><br/>
       <%= render 'shared/itinerary_item_add_to_cal', ii: ii %>
     </div>
   </div>
