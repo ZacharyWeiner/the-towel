@@ -4,7 +4,13 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    if params[:cohort_id]
+      @photos = Cohort.find(params[:cohort_id]).photos
+    elsif params[:event_id]
+      @photos = Event.find(params[:event_id]).photos
+    else
+      @photos = Photo.all
+    end
   end
 
   # GET /photos/1
@@ -26,6 +32,10 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.user = current_user
+    @photo.cohort = current_user.current_cohort
+    if params[:event_id]
+      @photo.event_id = params[:event_id]
+    end
     respond_to do |format|
       if @photo.save
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }

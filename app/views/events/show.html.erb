@@ -30,6 +30,10 @@
         <strong>Meeting point:</strong>
         <%= @event.meeting_point %>
       </div>
+      <div>
+        <%= link_to "Add Images", new_event_photo_path(@event), class: 'btn btn-primary'%>
+        <%= render 'shared/events/event_image_thumbs' %>
+      </div>
     </div>
     <!-- Details and Comments -->
     <div class='col-md-6 text-center'>

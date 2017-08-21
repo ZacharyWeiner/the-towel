@@ -36,6 +36,7 @@ gem 'devise'
 #For Image Upload
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
 
 #design
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'

@@ -23,6 +23,10 @@
     <%= form.text_area :caption, id: :photo_caption, class: 'form-control' %>
   </div>
 
+  <% if params[:event_id]%>
+    <%= form.hidden_field :event_id, :value => params[:event_id] %>
+  <% end %>
+
   <div class="actions">
     <%= form.submit "Save Picture" %>
   </div>

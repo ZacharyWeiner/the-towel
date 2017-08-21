@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :event_comments
     resources :event_rsvps
+    resources :photos
   end
   resources :locations
   resources :cohorts do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
     get 'events', to: 'events#index', as: 'list_events'
     resources :side_trips
     resources :transits
+    get 'photos', to: 'photos#index', as: 'list_photos'
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'

@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   belongs_to :event, optional: true
   belongs_to :side_trip, optional: true
   has_many :photos
+  accepts_nested_attributes_for :photos
 
   auto_html_for :content do
     html_escape

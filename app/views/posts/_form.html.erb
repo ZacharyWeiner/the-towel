@@ -27,6 +27,19 @@
 
   <div class="form-group">
     <%= form.text_area :content, id: :post_content, placeholder: 'add post', class: 'form-control' %>
+      <%= form.fields_for :photo do |photo_form| %>
+         <div class="field">
+         <label class='btn btn-primary btn-block'>
+          Select Picture
+          <%= photo_form.file_field :picture, id: :picture, style: 'display:none;' %>
+          <%= photo_form.hidden_field :picture_cache %>
+        </label>
+  </div>
+  <% if params[:event_id]%>
+    <%= form.hidden_field :event_id, :value => params[:event_id] %>
+  <% end %>
+      <% end %>
+
     <%= form.submit class: 'btn btn-primary btn-block' %>
   </div>
 

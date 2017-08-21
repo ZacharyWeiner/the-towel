@@ -12,7 +12,7 @@ class CohortsController < ApplicationController
   def show
     authenticate_user!
     @post = Post.new
-    @posts = Post.where(cohort: @cohort)
+    @posts = Post.where(cohort: @cohort).order(created_at: :desc)
   end
 
   # GET /cohorts/new

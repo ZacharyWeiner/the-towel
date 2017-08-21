@@ -25,8 +25,14 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+
     respond_to do |format|
       if @post.save
+        if params[:post][:photo]
+          @photo = Photo.create(picture: params[:post][:photo][:picture], user: current_user, cohort: current_user.current_cohort)
+          @photo.save
+          @post.photos << @photo
+        end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -68,6 +74,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :cohort_id, :content, :actions_id, :event_id, :side_trip_id)
+      params.require(:post).permit(:user_id, :cohort_id, :content, :actions_id, :event_id, :side_trip_id, :photos_attributes => [:event_id, :caption, :picture])
     end
 end
