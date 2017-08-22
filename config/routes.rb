@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  mount ActionCable.server => '/cable'
   resources :tags
   resources :tag_types
   resources :housings do
@@ -49,6 +49,13 @@ Rails.application.routes.draw do
   get 'admin/cohort/:cohort_id/managers', to: 'admin#cohort_managers', as: 'cohort_managers'
   get 'admin/cohort/:cohort_id/cohort_managers/add/:user_id', to: 'admin#add_cohort_manager', as: 'add_cohort_manager'
   get 'admin/cohort/:cohort_id/cohort_managers/remove/:user_id', to: 'admin#remove_cohort_manager', as: 'remove_cohort_manager'
+
+
+  resources :chat_rooms, only: [:new, :create, :show, :index]
+
+
+
+
   root to:'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822171738) do
+ActiveRecord::Schema.define(version: 20170822185516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20170822171738) do
     t.integer "cohort_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chat_rooms_on_user_id"
   end
 
   create_table "cohorts", force: :cascade do |t|
@@ -214,6 +222,16 @@ ActiveRecord::Schema.define(version: 20170822171738) do
     t.bigint "side_trip_id"
     t.index ["lodging_id"], name: "index_lodgings_side_trips_on_lodging_id"
     t.index ["side_trip_id"], name: "index_lodgings_side_trips_on_side_trip_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "chat_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -410,6 +428,7 @@ ActiveRecord::Schema.define(version: 20170822171738) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chat_rooms", "users"
   add_foreign_key "cohorts_transits", "cohorts"
   add_foreign_key "cohorts_transits", "transits"
   add_foreign_key "cohorts_users", "cohorts"
@@ -438,6 +457,8 @@ ActiveRecord::Schema.define(version: 20170822171738) do
   add_foreign_key "lodgings", "locations"
   add_foreign_key "lodgings_side_trips", "lodgings"
   add_foreign_key "lodgings_side_trips", "side_trips"
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "photos", "cohorts"
   add_foreign_key "photos", "events"
   add_foreign_key "photos", "locations"

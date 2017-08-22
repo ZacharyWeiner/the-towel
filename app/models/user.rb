@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :event_rsvps
   has_many :events, through: :event_rsvps
   has_many :photos
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
 
   def gravitar_url
@@ -32,6 +34,10 @@ class User < ApplicationRecord
     else
       return false
     end
+  end
+
+  def name
+    email.split('@')[0]
   end
 
   def current_city

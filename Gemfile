@@ -51,6 +51,9 @@ gem 'auto_html', '~>1.6.4'
 #Storing Sensitive Keys
 gem 'dotenv-rails', groups: [:development, :test]
 
+#Chat & Messages
+gem 'redis', '~> 3.2'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
