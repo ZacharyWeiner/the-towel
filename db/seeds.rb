@@ -62,6 +62,60 @@ Post.create!(user: andrea, cohort: libertatem, content: "Andreas Trip Is Awesome
 Post.create!(user: zack, cohort: nation, content: "Ima citizen!")
 ################################## End Posts  #####################################
 
+##################################  Tag Types  #####################################
+puts 'Build Tags'
+tag_type_housing = TagType.create!(name: 'Housing')
+tag_type_location = TagType.create!(name: 'Location')
+tag_type_event = TagType.create!(name: 'Event')
+tag_type_side_trip = TagType.create!(name: 'Side Trip')
+tag_type_photo = TagType.create!(name: 'Photo')
+tag_type_skill = TagType.create!(name: 'Skill')
+tag_type_interest = TagType.create!(name: 'Interest')
+################################## End Tag Types  #####################################
+
+##################################  Tags  #####################################
+natural_light = Tag.create!(name: 'Natural Light', tag_type: tag_type_housing)
+good_wifi = Tag.create!(name: 'Strong Wifi', tag_type: tag_type_housing)
+modern = Tag.create!(name: 'Modern', tag_type: tag_type_housing)
+city_center = Tag.create!(name: 'Close to City Center', tag_type: tag_type_housing)
+close_to_workspace = Tag.create!(name: 'Close to Workspace', tag_type: tag_type_housing)
+
+location_moutains = Tag.create!(name: 'Moutains', tag_type: tag_type_location)
+location_beach = Tag.create!(name: 'Beach', tag_type: tag_type_location)
+location_desert = Tag.create!(name: 'Desert', tag_type: tag_type_location)
+location_cloud_forrest = Tag.create!(name: 'Cloud Forrest', tag_type: tag_type_location)
+
+event_outdoors = Tag.create!(name: 'Outdoors', tag_type: tag_type_event)
+event_sports = Tag.create!(name: 'Sports', tag_type: tag_type_event)
+event_cultural = Tag.create!(name: 'Cultrual', tag_type: tag_type_event)
+event_food = Tag.create!(name: 'Food', tag_type: tag_type_event)
+event_birthday = Tag.create!(name: 'Cultrual', tag_type: tag_type_event)
+event_other = Tag.create!(name: 'Other', tag_type: tag_type_event)
+
+side_trip_adventure = Tag.create!(name: 'Adventure', tag_type: tag_type_side_trip)
+side_trip_historical = Tag.create!(name: 'Historical', tag_type: tag_type_side_trip)
+side_trip_nature = Tag.create!(name: 'Nature', tag_type: tag_type_side_trip)
+
+skills_web = Tag.create!(name: 'Web Development', tag_type: tag_type_skill)
+skills_mobile = Tag.create!(name: 'Mobile Development', tag_type: tag_type_skill)
+skills_it = Tag.create!(name: 'General IT', tag_type: tag_type_skill)
+skills_marketing = Tag.create!(name: 'Marketing', tag_type: tag_type_skill)
+skills_photography = Tag.create!(name: 'Photography', tag_type: tag_type_skill)
+skills_videography = Tag.create!(name: 'Videography', tag_type: tag_type_skill)
+skills_real_estate = Tag.create!(name: 'Real Estate', tag_type: tag_type_skill)
+skills_management = Tag.create!(name: 'Managment', tag_type: tag_type_skill)
+
+interest_art = Tag.create!(name: 'Art', tag_type: tag_type_interest)
+interest_night_life = Tag.create!(name: 'Night Life', tag_type: tag_type_interest)
+interest_museaums = Tag.create!(name: 'Museaums', tag_type: tag_type_interest)
+interest_parks = Tag.create!(name: 'Parks', tag_type: tag_type_interest)
+interest_live_music = Tag.create!(name: 'Live Music', tag_type: tag_type_interest)
+interest_street_markets = Tag.create!(name: 'Street Markets', tag_type: tag_type_interest)
+interest_scuba = Tag.create!(name: 'Scuba', tag_type: tag_type_interest)
+interest_snowboarding = Tag.create!(name: 'Snowboarding', tag_type: tag_type_interest)
+puts 'End Build Tags'
+################################## End Tag  #####################################
+
 ################################## Locations #######################################
 puts 'Build Locations'
 asia = Location.create!(name:"Asia", location_type: 'region')

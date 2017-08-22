@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822155857) do
+ActiveRecord::Schema.define(version: 20170822171738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,15 @@ ActiveRecord::Schema.define(version: 20170822155857) do
     t.index ["location_id"], name: "index_events_on_location_id"
   end
 
+  create_table "events_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "tags_id"
+    t.bigint "events_id"
+    t.index ["events_id"], name: "index_events_tags_on_events_id"
+    t.index ["tags_id"], name: "index_events_tags_on_tags_id"
+  end
+
   create_table "events_users", id: false, force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "user_id", null: false
@@ -131,6 +140,15 @@ ActiveRecord::Schema.define(version: 20170822155857) do
     t.string "unit"
     t.string "full_address"
     t.index ["location_id"], name: "index_housings_on_location_id"
+  end
+
+  create_table "housings_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "housing_id", null: false
+    t.bigint "tags_id"
+    t.bigint "housings_id"
+    t.index ["housings_id"], name: "index_housings_tags_on_housings_id"
+    t.index ["tags_id"], name: "index_housings_tags_on_tags_id"
   end
 
   create_table "housings_users", id: false, force: :cascade do |t|
@@ -164,6 +182,15 @@ ActiveRecord::Schema.define(version: 20170822155857) do
     t.bigint "side_trip_id"
     t.index ["location_id"], name: "index_locations_side_trips_on_location_id"
     t.index ["side_trip_id"], name: "index_locations_side_trips_on_side_trip_id"
+  end
+
+  create_table "locations_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "location_id", null: false
+    t.bigint "tags_id"
+    t.bigint "locations_id"
+    t.index ["locations_id"], name: "index_locations_tags_on_locations_id"
+    t.index ["tags_id"], name: "index_locations_tags_on_tags_id"
   end
 
   create_table "lodgings", force: :cascade do |t|
@@ -272,6 +299,15 @@ ActiveRecord::Schema.define(version: 20170822155857) do
     t.index ["cohort_id"], name: "index_side_trips_on_cohort_id"
   end
 
+  create_table "side_trips_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "side_trip_id", null: false
+    t.bigint "tags_id"
+    t.bigint "side_trips_id"
+    t.index ["side_trips_id"], name: "index_side_trips_tags_on_side_trips_id"
+    t.index ["tags_id"], name: "index_side_trips_tags_on_tags_id"
+  end
+
   create_table "side_trips_transits", id: false, force: :cascade do |t|
     t.bigint "transit_id"
     t.bigint "side_trip_id"
@@ -284,6 +320,39 @@ ActiveRecord::Schema.define(version: 20170822155857) do
     t.bigint "side_trip_id"
     t.index ["side_trip_id"], name: "index_side_trips_users_on_side_trip_id"
     t.index ["user_id"], name: "index_side_trips_users_on_user_id"
+  end
+
+  create_table "tag_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.bigint "tag_type_id"
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_type_id"], name: "index_tags_on_tag_type_id"
+  end
+
+  create_table "tags_tracks", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "track_id", null: false
+    t.bigint "tags_id"
+    t.bigint "tracks_id"
+    t.index ["tags_id"], name: "index_tags_tracks_on_tags_id"
+    t.index ["tracks_id"], name: "index_tags_tracks_on_tracks_id"
+  end
+
+  create_table "tags_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tag_id", null: false
+    t.bigint "users_id"
+    t.bigint "tags_id"
+    t.index ["tags_id"], name: "index_tags_users_on_tags_id"
+    t.index ["users_id"], name: "index_tags_users_on_users_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -352,14 +421,20 @@ ActiveRecord::Schema.define(version: 20170822155857) do
   add_foreign_key "event_rsvps", "users"
   add_foreign_key "events", "cohorts"
   add_foreign_key "events", "locations"
+  add_foreign_key "events_tags", "events", column: "events_id"
+  add_foreign_key "events_tags", "tags", column: "tags_id"
   add_foreign_key "events_users", "events"
   add_foreign_key "events_users", "users", column: "users_id"
   add_foreign_key "housings", "locations"
+  add_foreign_key "housings_tags", "housings", column: "housings_id"
+  add_foreign_key "housings_tags", "tags", column: "tags_id"
   add_foreign_key "housings_users", "housings", column: "housings_id"
   add_foreign_key "housings_users", "users", column: "users_id"
   add_foreign_key "location_details", "locations"
   add_foreign_key "locations_side_trips", "locations"
   add_foreign_key "locations_side_trips", "side_trips"
+  add_foreign_key "locations_tags", "locations", column: "locations_id"
+  add_foreign_key "locations_tags", "tags", column: "tags_id"
   add_foreign_key "lodgings", "locations"
   add_foreign_key "lodgings_side_trips", "lodgings"
   add_foreign_key "lodgings_side_trips", "side_trips"
@@ -382,10 +457,17 @@ ActiveRecord::Schema.define(version: 20170822155857) do
   add_foreign_key "schedule_items_transits", "schedule_items"
   add_foreign_key "schedule_items_transits", "transits"
   add_foreign_key "side_trips", "cohorts"
+  add_foreign_key "side_trips_tags", "side_trips", column: "side_trips_id"
+  add_foreign_key "side_trips_tags", "tags", column: "tags_id"
   add_foreign_key "side_trips_transits", "side_trips"
   add_foreign_key "side_trips_transits", "transits"
   add_foreign_key "side_trips_users", "side_trips"
   add_foreign_key "side_trips_users", "users"
+  add_foreign_key "tags", "tag_types"
+  add_foreign_key "tags_tracks", "tags", column: "tags_id"
+  add_foreign_key "tags_tracks", "tracks", column: "tracks_id"
+  add_foreign_key "tags_users", "tags", column: "tags_id"
+  add_foreign_key "tags_users", "users", column: "users_id"
   add_foreign_key "tracks", "cohorts"
   add_foreign_key "tracks", "events", column: "events_id"
   add_foreign_key "tracks", "locations"

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tags
+  resources :tag_types
   resources :housings do
     resources :photos
   end

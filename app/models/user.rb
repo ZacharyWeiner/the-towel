@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :side_trips
   has_and_belongs_to_many :tracks
+  has_and_belongs_to_many :tags
   has_many :posts
   has_many :event_rsvps
   has_many :events, through: :event_rsvps
@@ -39,5 +40,13 @@ class User < ApplicationRecord
 
   def current_cohort_city
     transits = self.current_cohort.transits.where("date <= ?", Date.today).order("date DESC").limit(1)
+  end
+
+  def skills
+    self.tags.where(tag_type: TagType.where(name: 'Skill'))
+  end
+
+  def interests
+    self.tags.where(tag_type: TagType.where(name: 'Interest'))
   end
 end
