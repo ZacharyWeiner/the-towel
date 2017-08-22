@@ -14,8 +14,6 @@ class User < ApplicationRecord
   has_many :events, through: :event_rsvps
   has_many :photos
 
-  acts_as_taggable # Alias for acts_as_taggable_on :tags
-  acts_as_taggable_on :skills, :interests
 
   def gravitar_url
     user_hash = Digest::MD5.hexdigest(self.email)
