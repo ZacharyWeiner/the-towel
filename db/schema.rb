@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822140448) do
+ActiveRecord::Schema.define(version: 20170822155857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,33 @@ ActiveRecord::Schema.define(version: 20170822140448) do
     t.index ["users_id"], name: "index_events_users_on_users_id"
   end
 
+  create_table "housings", force: :cascade do |t|
+    t.string "name"
+    t.integer "rooms"
+    t.decimal "bathrooms"
+    t.string "street_number"
+    t.bigint "location_id"
+    t.text "map"
+    t.string "street_name"
+    t.string "postal_code"
+    t.string "neighborhood"
+    t.text "other_details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "unit"
+    t.string "full_address"
+    t.index ["location_id"], name: "index_housings_on_location_id"
+  end
+
+  create_table "housings_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "housing_id", null: false
+    t.bigint "users_id"
+    t.bigint "housings_id"
+    t.index ["housings_id"], name: "index_housings_users_on_housings_id"
+    t.index ["users_id"], name: "index_housings_users_on_users_id"
+  end
+
   create_table "location_details", force: :cascade do |t|
     t.bigint "location_id"
     t.text "image"
@@ -174,6 +201,7 @@ ActiveRecord::Schema.define(version: 20170822140448) do
     t.bigint "side_trip_id"
     t.bigint "lodging_id"
     t.bigint "user_id"
+    t.bigint "housing_id"
     t.index ["cohort_id"], name: "index_photos_on_cohort_id"
     t.index ["event_id"], name: "index_photos_on_event_id"
     t.index ["location_id"], name: "index_photos_on_location_id"
@@ -353,6 +381,9 @@ ActiveRecord::Schema.define(version: 20170822140448) do
   add_foreign_key "events", "locations"
   add_foreign_key "events_users", "events"
   add_foreign_key "events_users", "users", column: "users_id"
+  add_foreign_key "housings", "locations"
+  add_foreign_key "housings_users", "housings", column: "housings_id"
+  add_foreign_key "housings_users", "users", column: "users_id"
   add_foreign_key "location_details", "locations"
   add_foreign_key "locations_side_trips", "locations"
   add_foreign_key "locations_side_trips", "side_trips"

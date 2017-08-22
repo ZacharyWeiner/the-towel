@@ -1,0 +1,28 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3"><%= @housing.name %> </h1>
+    <p class="lead"><%= @housing.rooms %> Bed /  <%= @housing.bathrooms %> Bath</p>
+  </div>
+</div>
+<div class='row'>
+  <%= link_to "Add Pictures", new_housing_photo_path(@housing), class: 'btn btn-primary' %>
+</div>
+<div class='row'>
+  <div class="col-md-6">
+    <%= @housing.map.html_safe %>
+  </div>
+  <div class="col-md-6">
+    <%= @housing.street_number %> <%= @housing.street_name %>
+    <br/>
+    <%= @housing.location.name %> <%= @housing.postal_code %>
+    <br/>
+    <%= @housing.neighborhood %>
+    <br/>
+    <strong>Other details:</strong>
+    <%= @housing.other_details %>
+    <br/>
+    <%= render 'housings/partials/image_gallery' %>
+  </div>
+</div>
+<%= link_to 'Edit', edit_housing_path(@housing) %> |
+<%= link_to 'Back', housings_path %>

@@ -1,0 +1,82 @@
+<%= form_with(model: housing, local: true) do |form| %>
+  <% if housing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(housing.errors.count, "error") %> prohibited this housing from being saved:</h2>
+
+      <ul>
+      <% housing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='row'>
+    <div class='col-md-6'>
+       <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :housing_name, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :rooms %>
+        <%= form.number_field :rooms, id: :housing_rooms, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :bathrooms %>
+        <%= form.text_field :bathrooms, id: :housing_bathrooms, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :neighborhood %>
+        <%= form.text_field :neighborhood, id: :housing_neighborhood, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :other_details %>
+        <%= form.text_area :other_details, id: :housing_other_details, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='col-md-6'>
+       <div class="form-group">
+        <%= form.label :street_number %>
+        <%= form.text_field :street_number, id: :housing_street_number, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :unit %>
+        <%= form.text_field :unit, id: :housing_unit, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :street_name %>
+        <%= form.text_field :street_name, id: :housing_street_name, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :full_address %>
+        <%= form.text_field :full_address, id: :housing_full_address, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <% if @housing.location.nil? %>
+        <% city = 0 %>
+        <% else %>
+        <% city = @housing.location.id %>
+        <% end%>
+        <%= form.label :city %>
+        <%= form.select 'location_id', options_for_select(
+          Location.where(location_type: 'city').map {|c| [c.name, c.id]},
+          city), {},
+          {:multiple => false, class: 'form-control'}%>
+      </div>
+      <div class="form-group">
+        <%= form.label :postal_code %>
+        <%= form.text_field :postal_code, id: :housing_postal_code, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= form.label :map %>
+        <%= form.text_area :map, id: :housing_map, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

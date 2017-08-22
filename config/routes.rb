@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :housings do
+    resources :photos
+  end
   resources :photos
   resources :tracks do
     get 'events/', to: 'events#index'

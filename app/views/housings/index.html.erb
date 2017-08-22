@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Housings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rooms</th>
+      <th>Bathrooms</th>
+      <th>Street number</th>
+      <th>Location</th>
+      <th>Map</th>
+      <th>Street name</th>
+      <th>Postal code</th>
+      <th>Neighborhood</th>
+      <th>Other details</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @housings.each do |housing| %>
+      <tr>
+        <td><%= housing.name %></td>
+        <td><%= housing.rooms %></td>
+        <td><%= housing.bathrooms %></td>
+        <td><%= housing.street_number %></td>
+        <td><%= housing.location %></td>
+        <td><%= housing.map %></td>
+        <td><%= housing.street_name %></td>
+        <td><%= housing.postal_code %></td>
+        <td><%= housing.neighborhood %></td>
+        <td><%= housing.other_details %></td>
+        <td><%= link_to 'Show', housing %></td>
+        <td><%= link_to 'Edit', edit_housing_path(housing) %></td>
+        <td><%= link_to 'Destroy', housing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Housing', new_housing_path %>

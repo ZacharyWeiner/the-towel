@@ -23,6 +23,9 @@ class PhotosController < ApplicationController
   # GET /photos/new
   def new
     @photo = Photo.new
+    if params[:housing_id]
+      @housing = Housing.find(params[:housing_id])
+    end
   end
 
   # GET /photos/1/edit
@@ -34,14 +37,28 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.user = current_user
-    @photo.cohort = current_user.current_cohort
-    if params[:event_id]
-      @photo.event_id = params[:event_id]
+    if  params[:photo][:housing_id]
+      @housing = Housing.find(params[:photo][:housing_id])
+      @photo.location = @housing.location
+    else
+      @photo.cohort = current_user.current_cohort
+    end
+    if params[:photo][:event_id]
+      @photo.event_id = params[:photo][:event_id]
     end
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
-        format.json { render :show, status: :created, location: @photo }
+        if params[:photo][:housing_id]
+          @housing.photos << @photo
+          format.html { redirect_to @housing, notice: 'Photo was successfully created.' }
+          format.json { render :show, status: :created, location: @photo }
+        elsif params[:photo][:event_id]
+          format.html { redirect_to Event.find(params[:event_id]), notice: 'Photo was successfully created.' }
+          format.json { render :show, status: :created, location: @photo }
+        else
+          format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
+          format.json { render :show, status: :created, location: @photo }
+        end
       else
         format.html { render :new }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
@@ -81,6 +98,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:cohort_id, :event_id, :city_id, :post_id, :lodging_id, :side_trip_id, :picture, :caption)
+      params.require(:photo).permit(:cohort_id, :event_id, :city_id, :post_id, :lodging_id, :side_trip_id, :picture, :caption, :housing_id)
     end
 end

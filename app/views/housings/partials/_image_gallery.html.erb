@@ -1,0 +1,9 @@
+<div class='row'>
+  <% @housing.photos.each do |photo| %>
+    <div class='col-md-4'>
+      <%= link_to photo do %>
+        <%= image_tag photo.picture, style: 'width:100%; max-height:150px; object-fit: scale-down;' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

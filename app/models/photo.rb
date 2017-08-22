@@ -5,7 +5,8 @@ class Photo < ApplicationRecord
   belongs_to :post, optional: true
   belongs_to :lodging, optional: true
   belongs_to :side_trip, optional: true
-  belongs_to :user
+  belongs_to :user, optional: true
+  belongs_to :housing, optional: true
 
   mount_uploader :picture, PictureUploader
   attr_accessor :picture_cache
