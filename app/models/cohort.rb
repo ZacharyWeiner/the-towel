@@ -7,4 +7,5 @@ class Cohort < ApplicationRecord
   has_many :posts
   has_many :side_trips
   has_many :photos
+  has_many :schedule_items
 end

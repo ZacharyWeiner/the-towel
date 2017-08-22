@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821162124) do
+ActiveRecord::Schema.define(version: 20170822140448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,6 +213,24 @@ ActiveRecord::Schema.define(version: 20170821162124) do
     t.index ["user_id"], name: "index_roles_users_on_user_id"
   end
 
+  create_table "schedule_items", force: :cascade do |t|
+    t.bigint "cohort_id"
+    t.bigint "location_id"
+    t.date "arrival_date"
+    t.date "departure_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cohort_id"], name: "index_schedule_items_on_cohort_id"
+    t.index ["location_id"], name: "index_schedule_items_on_location_id"
+  end
+
+  create_table "schedule_items_transits", id: false, force: :cascade do |t|
+    t.bigint "schedule_item_id"
+    t.bigint "transit_id"
+    t.index ["schedule_item_id"], name: "index_schedule_items_transits_on_schedule_item_id"
+    t.index ["transit_id"], name: "index_schedule_items_transits_on_transit_id"
+  end
+
   create_table "side_trips", force: :cascade do |t|
     t.string "title"
     t.date "start_date"
@@ -355,6 +373,10 @@ ActiveRecord::Schema.define(version: 20170821162124) do
   add_foreign_key "posts", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
+  add_foreign_key "schedule_items", "cohorts"
+  add_foreign_key "schedule_items", "locations"
+  add_foreign_key "schedule_items_transits", "schedule_items"
+  add_foreign_key "schedule_items_transits", "transits"
   add_foreign_key "side_trips", "cohorts"
   add_foreign_key "side_trips_transits", "side_trips"
   add_foreign_key "side_trips_transits", "transits"

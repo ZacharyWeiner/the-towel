@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :photos
   resources :tracks do
     get 'events/', to: 'events#index'
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     resources :side_trips
     resources :transits
     get 'photos', to: 'photos#index', as: 'list_photos'
+     resources :schedule_items
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'

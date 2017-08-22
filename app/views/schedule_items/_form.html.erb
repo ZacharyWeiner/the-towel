@@ -1,0 +1,44 @@
+<%= form_with(model: @schedule_item, url: cohort_schedule_items_path, local: true) do |form| %>
+  <% if schedule_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(schedule_item.errors.count, "error") %> prohibited this schedule_item from being saved:</h2>
+
+      <ul>
+      <% schedule_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.hidden_field :cohort_id, :value => params[:cohort_id] %>
+  </div>
+
+  <div class="field">
+     <% if @schedule_item.location.nil? %>
+        <% city = 0 %>
+      <% else %>
+        <% city = @schedule_item.location.id %>
+      <% end%>
+     <%= form.label :city %>
+        <%= form.select 'location_id', options_for_select(
+          Location.where(location_type: 'city').map {|c| [c.name, c.id]},
+        city), {},
+        {:multiple => false, class: 'form-control'}%>
+  </div>
+
+  <div class="field">
+    <%= form.label :arrival_date %>
+    <%= form.date_select :arrival_date, id: :schedule_item_arrival_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departure_date %>
+    <%= form.date_select :departure_date, id: :schedule_item_departure_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
