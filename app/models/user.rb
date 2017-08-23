@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :photos
   has_and_belongs_to_many :chat_rooms
   has_many :messages, dependent: :destroy
+  has_many :roomate_requests, :foreign_key => "requested_by"
+  has_many :requested_me, :class_name => :RoomateRequest, :foreign_key => "requested"
 
 
   def gravitar_url
@@ -60,6 +62,13 @@ class User < ApplicationRecord
     @tags_to_destroy = self.tags.where(tag_type: TagType.where(name: 'Housing'))
     @tags_to_destroy.each do |tag|
       self.tags.destroy(tag)
+    end
+  end
+
+  def clear_roomate_preferences
+    @requests_to_destroy = self.roomate_requests
+    @requests_to_destroy.each do |request|
+      request.destroy
     end
   end
 end

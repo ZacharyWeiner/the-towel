@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get 'users/:user_id/photos', to: 'photos#index', as: 'user_photos'
   get 'users/:id/preferences', to: 'users#preferences', as:'user_preferences'
   post'users/:id/housing_preferences', to: 'users#update_housing_preferences'
+  post'users/:id/roomate_preferences', to: 'users#update_roomate_preferences'
   get 'admin/cohorts'
   get 'admin/cohort/:cohort_id/managers', to: 'admin#cohort_managers', as: 'cohort_managers'
   get 'admin/cohort/:cohort_id/cohort_managers/add/:user_id', to: 'admin#add_cohort_manager', as: 'add_cohort_manager'
