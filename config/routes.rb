@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :tag_types
   resources :housings do
     resources :photos
+    get 'tags', to: 'housings#update_tags'
+    post 'tags', to: 'housings#set_tags'
   end
   resources :photos
   resources :tracks do

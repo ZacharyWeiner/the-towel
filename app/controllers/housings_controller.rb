@@ -1,5 +1,5 @@
 class HousingsController < ApplicationController
-  before_action :set_housing, only: [:show, :edit, :update, :destroy]
+  before_action :set_housing, only: [:show, :edit, :update, :destroy, :update_tags, :set_tags]
 
   # GET /housings
   # GET /housings.json
@@ -61,10 +61,29 @@ class HousingsController < ApplicationController
     end
   end
 
+  def update_tags
+
+  end
+
+  def set_tags
+    @housing.tags.clear
+     params.each do |param|
+      @tag = Tag.where(name: param).first
+      if @tag
+        @housing.tags << @tag
+      end
+    end
+    redirect_to @housing
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_housing
-      @housing = Housing.find(params[:id])
+      if params[:id]
+        @housing = Housing.find(params[:id])
+      elsif params[:housing_id]
+        @housing = Housing.find(params[:housing_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
