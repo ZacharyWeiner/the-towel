@@ -1,0 +1,7 @@
+<% @units.each do |unit| %>
+  <div>
+  <%= link_to admin_housing_unit_path(unit) do %>
+    <%= unit.name %>
+  <% end %>
+  </div>
+<% end %>

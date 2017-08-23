@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resources :side_trips
     resources :transits
     get 'photos', to: 'photos#index', as: 'list_photos'
-     resources :schedule_items
+    resources :schedule_items
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'
@@ -54,14 +54,13 @@ Rails.application.routes.draw do
   get 'admin/cohort/:cohort_id/managers', to: 'admin#cohort_managers', as: 'cohort_managers'
   get 'admin/cohort/:cohort_id/cohort_managers/add/:user_id', to: 'admin#add_cohort_manager', as: 'add_cohort_manager'
   get 'admin/cohort/:cohort_id/cohort_managers/remove/:user_id', to: 'admin#remove_cohort_manager', as: 'remove_cohort_manager'
-
+  get 'admin/housing'
+  get 'admin/housing/location/:location_id', to: 'admin#housing', as: 'admin_housing_location'
+  get 'admin/housing/housing/:housing_id', to: 'admin#housing', as: 'admin_housing_unit'
 
   resources :chat_rooms, only: [:new, :create, :show, :index] do
     get '/leave', to: 'chat_rooms#leave_room', as: 'leave_room'
   end
-
-
-
 
 
   root to:'pages#home'

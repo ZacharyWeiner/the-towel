@@ -1,0 +1,30 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3 text-center">Room Assigments</h1>
+    <p class="lead"> </p>
+  </div>
+</div>
+<div class='container'>
+  <div class='row'>
+  <div class='col-md-3'>
+    City
+    <ul>
+      <% current_user.current_cohort.schedule_items.map {|si| si.location}.each do |location|%>
+        <li>
+          <%= link_to admin_housing_location_path(location) do %>
+          <%= location.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class='col-md-9'>
+    Housing
+    <% if params[:location_id] %>
+      <%= render 'admin/partials/housing/unit_selection' %>
+    <% elsif params[:housing_id] %>
+      <%= render 'admin/partials/housing/user_assignment' %>
+    <% end %>
+  </div>
+  </div>
+</div>

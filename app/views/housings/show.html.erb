@@ -9,7 +9,9 @@
 </div>
 <div class='row'>
   <div class="col-md-6">
-    <%= @housing.map.html_safe %>
+    <% unless @housing.map.nil? %>
+      <%= @housing.map.html_safe %>
+      <% end %>
   </div>
   <div class="col-md-6">
     <%= @housing.street_number %> <%= @housing.street_name %>

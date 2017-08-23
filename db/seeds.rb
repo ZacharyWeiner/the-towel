@@ -79,6 +79,9 @@ good_wifi = Tag.create!(name: 'Strong Wifi', tag_type: tag_type_housing)
 modern = Tag.create!(name: 'Modern', tag_type: tag_type_housing)
 city_center = Tag.create!(name: 'Close to City Center', tag_type: tag_type_housing)
 close_to_workspace = Tag.create!(name: 'Close to Workspace', tag_type: tag_type_housing)
+single_bedroom = Tag.create!(name: 'Live Alone', tag_type: tag_type_housing)
+full_kitchen = Tag.create!(name: 'Full Kitchen', tag_type: tag_type_housing)
+close_to_other_housing = Tag.create!(name: 'Close To Other Housing', tag_type: tag_type_housing)
 
 location_moutains = Tag.create!(name: 'Moutains', tag_type: tag_type_location)
 location_beach = Tag.create!(name: 'Beach', tag_type: tag_type_location)
@@ -170,13 +173,24 @@ borneo_travel_company_lodging = Lodging.create!(name: "Borneo Adventure Bungalow
 puts 'End Build Lodging'
 ################################## End Lodging  #####################################
 
+################################## Schedule Items  #######################################
+puts 'Build Schedule Items'
+libertatem_kl = ScheduleItem.create!(cohort: libertatem, location: kl, arrival_date: Date.today + 2.days, departure_date: Date.today + 30.days)
+libertatem_changmai = ScheduleItem.create!(cohort: libertatem, location: changmai, arrival_date: Date.today + 60.days, departure_date: Date.today + 90.days)
+libertatem_cambodia = ScheduleItem.create!(cohort: libertatem, location: phnompenh, arrival_date: Date.today + 90.days, departure_date: Date.today + 120.days)
+libertatem_split = ScheduleItem.create!(cohort: libertatem, location: split, arrival_date: Date.today + 120.days, departure_date: Date.today + 150.days)
+libertatem_prague = ScheduleItem.create!(cohort: libertatem, location: prague, arrival_date: Date.today + 150.days, departure_date: Date.today + 180.days)
+libertatem_lisbon = ScheduleItem.create!(cohort: libertatem, location: lisbon, arrival_date: Date.today + 180.days, departure_date: Date.today + 210.days)
+puts 'End Schedule Items'
+################################## End Schedule Items  #######################################
+
 ################################## Transits  #######################################
 puts 'Build Transits'
 kl_to_thailand = Transit.create(date: Date.today + 30.days, title: 'KL to Chang Mai', departure_location_id: kl.id, arrival_location_id: changmai.id)
 thailand_to_cambodia = Transit.create(date: Date.today + 60.days, title: 'Thailand to Cambodia', departure_location: changmai, arrival_location: phnompenh)
 cambodia_to_croatia = Transit.create(date: Date.today + 90.days, title: 'Cambodia To Split', departure_location: phnompenh, arrival_location: split)
 croatia_to_czech = Transit.create(date: Date.today + 120.days, title: 'Split To Prague', departure_location: split, arrival_location: prague)
-czech_to_lisbon = Transit.create(date: Date.today + 150.days, title: 'Prague TO Lisbon', departure_location: split, arrival_location: lisbon)
+czech_to_lisbon = Transit.create(date: Date.today + 150.days, title: 'Prague TO Lisbon', departure_location: prague, arrival_location: lisbon)
 
 libertatem.transits << thailand_to_cambodia
 libertatem.transits << kl_to_thailand
@@ -234,4 +248,34 @@ puts 'End Build Tracks'
 
 ################################## End Tracks #######################################
 
-################################## Build Housings  #######################################
+##################################  Housings  #######################################
+maple_suites_101 = Housing.create!(name: 'Maples Suites 101', rooms: 2, bathrooms: 2, street_number: '1', location: kl, street_name: 'Changkat Raja Chulan', postal_code: 50200, neighborhood: 'Bukit Bingtang', unit: '101', full_address: '1, Changkat Raja Chulan, Bukit Ceylon, 50200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia')
+maple_suites_102 = Housing.create!(name: 'Maples Suites 102', rooms: 2, bathrooms: 2, street_number: '1', location:kl, street_name: 'Changkat Raja Chulan', postal_code: 50200, neighborhood: 'Bukit Bingtang', unit: '102', full_address: '1, Changkat Raja Chulan, Bukit Ceylon, 50200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia')
+maple_suites_103 = Housing.create!(name: 'Maples Suites 103', rooms: 2, bathrooms: 2, street_number: '1', location:kl, street_name: 'Changkat Raja Chulan', postal_code: 50200, neighborhood: 'Bukit Bingtang', unit: '103', full_address: '1, Changkat Raja Chulan, Bukit Ceylon, 50200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia')
+maple_suites_104 = Housing.create!(name: 'Maples Suites 104', rooms: 2, bathrooms: 2, street_number: '1', location:kl, street_name: 'Changkat Raja Chulan', postal_code: 50200, neighborhood: 'Bukit Bingtang', unit: '104', full_address: '1, Changkat Raja Chulan, Bukit Ceylon, 50200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia')
+
+loyfa_1 = Housing.create!(name: 'Loyfa 1', rooms: 1, bathrooms: 1, street_number: '14-1',
+                                  location:changmai, street_name: 'Moo 8', postal_code: 84280,
+                                  neighborhood: 'Bukit Bingtang', unit: '1', full_address: '14/1 Moo 8, Srithanu Beach, Koh Phangan, Surat Thani Koh Phangan, Tambon Ko Pha-ngan, Amphoe Ko Pha-ngan, Chang Wat Surat Thani 84280, Thailand')
+
+loyfa_2 = Housing.create!(name: 'Loyfa 2', rooms: 1, bathrooms: 1, street_number: '14-1',
+                                  location:changmai, street_name: 'Moo 8', postal_code: 84280,
+                                  neighborhood: 'Bukit Bingtang', unit: '2', full_address: '14/1 Moo 8, Srithanu Beach, Koh Phangan, Surat Thani Koh Phangan, Tambon Ko Pha-ngan, Amphoe Ko Pha-ngan, Chang Wat Surat Thani 84280, Thailand')
+loyfa_3 = Housing.create!(name: 'Loyfa 3', rooms: 1, bathrooms: 1, street_number: '14-1',
+                                  location:changmai, street_name: 'Moo 8', postal_code: 84280,
+                                  neighborhood: 'Bukit Bingtang', unit: '3', full_address: '14/1 Moo 8, Srithanu Beach, Koh Phangan, Surat Thani Koh Phangan, Tambon Ko Pha-ngan, Amphoe Ko Pha-ngan, Chang Wat Surat Thani 84280, Thailand')
+loyfa_4 = Housing.create!(name: 'Loyfa 1', rooms: 1, bathrooms: 1, street_number: '14-1',
+                                  location:changmai, street_name: 'Moo 8', postal_code: 84280,
+                                  neighborhood: 'Bukit Bingtang', unit: '4', full_address: '14/1 Moo 8, Srithanu Beach, Koh Phangan, Surat Thani Koh Phangan, Tambon Ko Pha-ngan, Amphoe Ko Pha-ngan, Chang Wat Surat Thani 84280, Thailand')
+
+
+################################## End Build Housings  #######################################
+
+
+
+
+
+
+
+
+
