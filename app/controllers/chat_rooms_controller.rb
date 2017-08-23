@@ -20,6 +20,15 @@ class ChatRoomsController < ApplicationController
   def show
     @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
     @message = Message.new
+    unless current_user.chat_rooms.include?(@chat_room)
+      current_user.chat_rooms << @chat_room
+    end
+  end
+
+  def leave_room
+    @chat_room = ChatRoom.find(params[:chat_room_id])
+    @chat_room.users.destroy(current_user)
+    redirect_to chat_rooms_path
   end
 
   private

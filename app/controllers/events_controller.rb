@@ -16,6 +16,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event_comment = EventComment.new
+    if @event.chat_room.nil?
+      create_chat_room
+    end
   end
 
   # GET /events/new
@@ -38,6 +41,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     respond_to do |format|
       if @event.save
+        create_chat_room
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -72,13 +76,19 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type, :cohort_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type, :cohort_id)
+  end
+
+  def create_chat_room
+    @chat_room = ChatRoom.create!(title: @event.title, owner: current_user)
+    @event.chat_room = @chat_room
+    @event.save
+  end
 end

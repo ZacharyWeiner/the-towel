@@ -8,6 +8,7 @@ class Event < ApplicationRecord
   has_many :event_comments
   has_many :event_rsvps
   has_many :photos
+  belongs_to :chat_room, optional: true
 
   def self.create_itinerary_items(collection)
     response = []

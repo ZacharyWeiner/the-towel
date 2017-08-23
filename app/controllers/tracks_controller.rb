@@ -14,6 +14,9 @@ class TracksController < ApplicationController
   # GET /tracks/1
   # GET /tracks/1.json
   def show
+    if @track.chat_room.nil?
+      create_chat_room
+    end
   end
 
   # GET /tracks/new
@@ -32,6 +35,7 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       if @track.save
+        create_chat_room
         format.html { redirect_to @track, notice: 'Track was successfully created.' }
         format.json { render :show, status: :created, location: @track }
       else
@@ -74,5 +78,11 @@ class TracksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
       params.require(:track).permit(:name, :description, :events_id, :location_id, :cohort_id)
+    end
+
+    def create_chat_room
+      @chat_room = ChatRoom.create!(title: @track.name, owner: current_user)
+      @track.chat_room = @chat_room
+      @track.save
     end
 end

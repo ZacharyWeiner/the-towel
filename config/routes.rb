@@ -51,7 +51,10 @@ Rails.application.routes.draw do
   get 'admin/cohort/:cohort_id/cohort_managers/remove/:user_id', to: 'admin#remove_cohort_manager', as: 'remove_cohort_manager'
 
 
-  resources :chat_rooms, only: [:new, :create, :show, :index]
+  resources :chat_rooms, only: [:new, :create, :show, :index] do
+    get '/leave', to: 'chat_rooms#leave_room', as: 'leave_room'
+  end
+
 
 
 

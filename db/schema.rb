@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822185516) do
+ActiveRecord::Schema.define(version: 20170822202618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,22 @@ ActiveRecord::Schema.define(version: 20170822185516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_chat_rooms_on_user_id"
+  end
+
+  create_table "chat_rooms_cohorts", id: false, force: :cascade do |t|
+    t.bigint "cohort_id"
+    t.bigint "chat_room_id"
+    t.index ["chat_room_id"], name: "index_chat_rooms_cohorts_on_chat_room_id"
+    t.index ["cohort_id"], name: "index_chat_rooms_cohorts_on_cohort_id"
+  end
+
+  create_table "chat_rooms_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chat_room_id", null: false
+    t.bigint "users_id"
+    t.bigint "chat_rooms_id"
+    t.index ["chat_rooms_id"], name: "index_chat_rooms_users_on_chat_rooms_id"
+    t.index ["users_id"], name: "index_chat_rooms_users_on_users_id"
   end
 
   create_table "cohorts", force: :cascade do |t|
@@ -109,6 +125,8 @@ ActiveRecord::Schema.define(version: 20170822185516) do
     t.datetime "updated_at", null: false
     t.bigint "cohort_id"
     t.bigint "track_id"
+    t.bigint "chat_room_id"
+    t.index ["chat_room_id"], name: "index_events_on_chat_room_id"
     t.index ["cohort_id"], name: "index_events_on_cohort_id"
     t.index ["location_id"], name: "index_events_on_location_id"
   end
@@ -183,6 +201,8 @@ ActiveRecord::Schema.define(version: 20170822185516) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "chat_room_id"
+    t.index ["chat_room_id"], name: "index_locations_on_chat_room_id"
   end
 
   create_table "locations_side_trips", id: false, force: :cascade do |t|
@@ -314,6 +334,8 @@ ActiveRecord::Schema.define(version: 20170822185516) do
     t.datetime "updated_at", null: false
     t.bigint "cohort_id"
     t.text "description"
+    t.bigint "chat_room_id"
+    t.index ["chat_room_id"], name: "index_side_trips_on_chat_room_id"
     t.index ["cohort_id"], name: "index_side_trips_on_cohort_id"
   end
 
@@ -381,6 +403,8 @@ ActiveRecord::Schema.define(version: 20170822185516) do
     t.bigint "cohort_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "chat_room_id"
+    t.index ["chat_room_id"], name: "index_tracks_on_chat_room_id"
     t.index ["cohort_id"], name: "index_tracks_on_cohort_id"
     t.index ["events_id"], name: "index_tracks_on_events_id"
     t.index ["location_id"], name: "index_tracks_on_location_id"
@@ -429,6 +453,10 @@ ActiveRecord::Schema.define(version: 20170822185516) do
   end
 
   add_foreign_key "chat_rooms", "users"
+  add_foreign_key "chat_rooms_cohorts", "chat_rooms"
+  add_foreign_key "chat_rooms_cohorts", "cohorts"
+  add_foreign_key "chat_rooms_users", "chat_rooms", column: "chat_rooms_id"
+  add_foreign_key "chat_rooms_users", "users", column: "users_id"
   add_foreign_key "cohorts_transits", "cohorts"
   add_foreign_key "cohorts_transits", "transits"
   add_foreign_key "cohorts_users", "cohorts"
@@ -438,6 +466,7 @@ ActiveRecord::Schema.define(version: 20170822185516) do
   add_foreign_key "event_comments", "users"
   add_foreign_key "event_rsvps", "events"
   add_foreign_key "event_rsvps", "users"
+  add_foreign_key "events", "chat_rooms"
   add_foreign_key "events", "cohorts"
   add_foreign_key "events", "locations"
   add_foreign_key "events_tags", "events", column: "events_id"
@@ -450,6 +479,7 @@ ActiveRecord::Schema.define(version: 20170822185516) do
   add_foreign_key "housings_users", "housings", column: "housings_id"
   add_foreign_key "housings_users", "users", column: "users_id"
   add_foreign_key "location_details", "locations"
+  add_foreign_key "locations", "chat_rooms"
   add_foreign_key "locations_side_trips", "locations"
   add_foreign_key "locations_side_trips", "side_trips"
   add_foreign_key "locations_tags", "locations", column: "locations_id"
@@ -477,6 +507,7 @@ ActiveRecord::Schema.define(version: 20170822185516) do
   add_foreign_key "schedule_items", "locations"
   add_foreign_key "schedule_items_transits", "schedule_items"
   add_foreign_key "schedule_items_transits", "transits"
+  add_foreign_key "side_trips", "chat_rooms"
   add_foreign_key "side_trips", "cohorts"
   add_foreign_key "side_trips_tags", "side_trips", column: "side_trips_id"
   add_foreign_key "side_trips_tags", "tags", column: "tags_id"
@@ -489,6 +520,7 @@ ActiveRecord::Schema.define(version: 20170822185516) do
   add_foreign_key "tags_tracks", "tracks", column: "tracks_id"
   add_foreign_key "tags_users", "tags", column: "tags_id"
   add_foreign_key "tags_users", "users", column: "users_id"
+  add_foreign_key "tracks", "chat_rooms"
   add_foreign_key "tracks", "cohorts"
   add_foreign_key "tracks", "events", column: "events_id"
   add_foreign_key "tracks", "locations"

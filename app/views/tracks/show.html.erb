@@ -3,6 +3,7 @@
     <h1 class="display-3"><%= @track.name %></h1>
     <p><%= @track.cohort.name %></p>
     <p><%= @track.location.name %></p>
+    <p> <%= link_to "Chat", @track.chat_room, class: 'btn btn-secondary'%></p>
   </div>
 </div>
 <div class='container text-center'>

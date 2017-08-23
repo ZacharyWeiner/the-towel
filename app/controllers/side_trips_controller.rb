@@ -16,6 +16,9 @@ class SideTripsController < ApplicationController
   def show
     @post = Post.new
     @posts = @side_trip.posts.order(created_at: :desc)
+    if @side_trip.chat_room.nil?
+      create_chat_room
+    end
   end
 
   # GET /side_trips/new
@@ -35,6 +38,7 @@ class SideTripsController < ApplicationController
     set_side_trip_cohort
     respond_to do |format|
       if @side_trip.save
+        create_chat_room
         format.html { redirect_to @side_trip, notice: 'Side trip was successfully created.' }
         format.json { render :show, status: :created, location: @side_trip }
       else
@@ -110,5 +114,11 @@ class SideTripsController < ApplicationController
           @side_trip.cohort_id = 1
         end
       end
+    end
+
+    def create_chat_room
+      @chat_room = ChatRoom.create!(title: "ST- #{@side_trip.title}", owner:current_user)
+      @side_trip.chat_room = @chat_room
+      @side_trip.save
     end
 end

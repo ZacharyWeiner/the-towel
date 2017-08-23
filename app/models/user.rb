@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :event_rsvps
   has_many :events, through: :event_rsvps
   has_many :photos
-  has_many :chat_rooms, dependent: :destroy
+  has_and_belongs_to_many :chat_rooms
   has_many :messages, dependent: :destroy
 
 

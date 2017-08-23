@@ -10,6 +10,9 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    if @location.chat_room.nil?
+      create_chat_room
+    end
   end
 
   # GET /locations/new
@@ -25,9 +28,9 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-
     respond_to do |format|
       if @location.save
+        create_chat_room
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else
@@ -70,5 +73,11 @@ class LocationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
       params.require(:location).permit(:name, :location_type, :parent_id)
+    end
+
+    def create_chat_room
+      @chat_room = ChatRoom.create(title: @location.name, owner: current_user)
+      @location.chat_room = @chat_room
+      @location.save
     end
 end

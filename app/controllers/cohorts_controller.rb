@@ -13,6 +13,9 @@ class CohortsController < ApplicationController
     authenticate_user!
     @post = Post.new
     @posts = Post.where(cohort: @cohort).order(created_at: :desc)
+    if @cohort.chat_rooms.count == 0
+      create_chat_room
+    end
   end
 
   # GET /cohorts/new
@@ -28,9 +31,9 @@ class CohortsController < ApplicationController
   # POST /cohorts.json
   def create
     @cohort = Cohort.new(cohort_params)
-
     respond_to do |format|
       if @cohort.save
+        create_chat_room
         format.html { redirect_to @cohort, notice: 'Cohort was successfully created.' }
         format.json { render :show, status: :created, location: @cohort }
       else
@@ -81,13 +84,23 @@ class CohortsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cohort
-      @cohort = Cohort.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cohort
+    @cohort = Cohort.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cohort_params
-      params.require(:cohort).permit(:name, :description, :start_date, :end_date, :banner_image, :image)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cohort_params
+    params.require(:cohort).permit(:name, :description, :start_date, :end_date, :banner_image, :image)
+  end
+
+  def create_chat_room
+    if @cohort.chat_rooms.count == 0
+      @chat_room = ChatRoom.where(title: @cohort.name).first
+      unless @chat_room
+        @chat_room = ChatRoom.create(title: @cohort.name, owner: current_user)
+      end
+      @cohort.chat_rooms << @chat_room
     end
+  end
 end

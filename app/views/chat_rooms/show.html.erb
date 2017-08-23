@@ -11,17 +11,25 @@
   </div>
 
 <div class='container'>
-<div id="messages" data-chat-room-id="<%= @chat_room.id %>">
-  <%= render @chat_room.messages %>
+<div class='row'>
+  <%= link_to "Leave Room", chat_room_leave_room_path(@chat_room), class: 'btn btn-warning' %>
 </div>
-<%= form_for @message, url: '#' do |f| %>
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, class: 'form-control' %>
-    <small class="text-muted">From 2 to 1000 characters</small>
+<div class='row'>
+  <div class="col-md-3">
+    <%= render 'chat_rooms/partials/my_chat_rooms' %>
   </div>
+  <div class="col-md-9">
+    <div id="messages" data-chat-room-id="<%= @chat_room.id %>">
+      <%= render @chat_room.messages %>
+    </div>
+    <%= form_for @message, url: '#' do |f| %>
+      <div class="form-group">
+        <%= f.text_area :body, class: 'form-control', placeholder: 'Enter a Message From 2 to 1000 characters', rows: 4, style: 'margin-top:12px' %>
+      </div>
+      <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
+    <% end %>
+  </div>
+</div>
 
-  <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
-<% end %>
 </div>
 
