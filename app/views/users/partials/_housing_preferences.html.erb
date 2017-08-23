@@ -1,0 +1,17 @@
+<div class='row'>
+  <%= form_tag("/users/#{current_user.id}/housing_preferences", method: "post") do %>
+    <ul>
+    <% Tag.housing_tags.each do |tag|%>
+      <li>
+        <% if current_user.tags.include?(tag)%>
+          <%= check_box_tag(tag.name, tag.name, true) %>
+        <% else %>
+          <%= check_box_tag(tag.name) %>
+        <% end %>
+        <%= label_tag(tag.name, tag.name) %>
+      </li>
+    <% end %>
+    </ul>
+    <%= submit_tag("Update Prefs") %>
+  <% end %>
+</div>
