@@ -119,6 +119,28 @@ interest_snowboarding = Tag.create!(name: 'Snowboarding', tag_type: tag_type_int
 puts 'End Build Tags'
 ################################## End Tag  #####################################
 
+##################################  User Housing Tag  #####################################
+zack.tags << [modern, good_wifi, city_center]
+trabka.tags << [modern, good_wifi, natural_light]
+andrea.tags << [single_bedroom, close_to_workspace, city_center]
+geordan.tags << [good_wifi, city_center, close_to_other_housing]
+gemma.tags << [modern, good_wifi, full_kitchen]
+chech.tags << [close_to_other_housing, city_center, natural_light]
+alison.tags << [modern, natural_light, close_to_workspace]
+
+##################################  End User Housing Tag  #####################################
+
+##################################  RoommateRequests  #####################################
+RoomateRequest.create!(requester: trabka, requested_roomate: zack)
+RoomateRequest.create!(requester: trabka, requested_roomate: geordan)
+RoomateRequest.create!(requester: zack, requested_roomate: geordan)
+RoomateRequest.create!(requester: andrea, requested_roomate: alison)
+RoomateRequest.create!(requester: chech, requested_roomate: gemma)
+RoomateRequest.create!(requester: geordan, requested_roomate: gemma)
+RoomateRequest.create!(requester: alison, requested_roomate: andrea)
+
+##################################  RoommateRequests End #####################################
+
 ################################## Locations #######################################
 puts 'Build Locations'
 asia = Location.create!(name:"Asia", location_type: 'region')
@@ -268,7 +290,20 @@ loyfa_4 = Housing.create!(name: 'Loyfa 1', rooms: 1, bathrooms: 1, street_number
                                   location:changmai, street_name: 'Moo 8', postal_code: 84280,
                                   neighborhood: 'Bukit Bingtang', unit: '4', full_address: '14/1 Moo 8, Srithanu Beach, Koh Phangan, Surat Thani Koh Phangan, Tambon Ko Pha-ngan, Amphoe Ko Pha-ngan, Chang Wat Surat Thani 84280, Thailand')
 
+green_mansion_1 = Housing.create!(name: 'Green Mansion 11', rooms: 3, bathrooms: 2, street_number: '6', location: phnompenh, street_name: 'Samdach Preah Sokun Meanbon St. ', postal_code: 178, neighborhood: 'Kahn Dunh Penh', unit: '11', full_address: '#6, Samdach Preah Sokun Meanbon St. (178), Phnom Penh, Cambodia')
+green_mansion_1.tags << [natural_light, close_to_workspace, good_wifi]
+green_mansion_2 = Housing.create!(name: 'Green Mansion 12', rooms: 2, bathrooms: 2, street_number: '6', location: phnompenh, street_name: 'Samdach Preah Sokun Meanbon St. ', postal_code: 178, neighborhood: 'Kahn Dunh Penh', unit: '12', full_address: '#6, Samdach Preah Sokun Meanbon St. (178), Phnom Penh, Cambodia')
+green_mansion_2.tags << [close_to_workspace, good_wifi]
+green_mansion_3 = Housing.create!(name: 'Green Mansion 13', rooms: 1, bathrooms: 1, street_number: '6', location: phnompenh, street_name: 'Samdach Preah Sokun Meanbon St. ', postal_code: 178, neighborhood: 'Kahn Dunh Penh', unit: '13', full_address: '#6, Samdach Preah Sokun Meanbon St. (178), Phnom Penh, Cambodia')
+green_mansion_3.tags << [full_kitchen, close_to_workspace, good_wifi, single_bedroom]
 
+garden_mansion_1 = Housing.create!(name: 'Garden Mansion 445', rooms: 1, bathrooms: 1, street_number: '9', location: phnompenh, street_name: 'Ke Nou St.', postal_code: 178, neighborhood: 'Kahn Dunh Penh', unit: '445', full_address: 'Ke Nou St. (9), Phnom Penh, Cambodia')
+garden_mansion_1.tags << [close_to_other_housing, city_center, good_wifi]
+garden_mansion_2 = Housing.create!(name: 'Garden Mansion 456', rooms: 1, bathrooms: 1, street_number: '9', location: phnompenh, street_name: 'Ke Nou St.', postal_code: 178, neighborhood: 'Kahn Dunh Penh', unit: '446', full_address: 'Ke Nou St. (9), Phnom Penh, Cambodia')
+garden_mansion_2.tags << [close_to_other_housing, city_center, good_wifi, natural_light]
+
+living_252_1 = Housing.create!(name: '252 Boutique 201', rooms: 2, bathrooms: 2, street_number: '#11', location: phnompenh, street_name: 'Street 252', postal_code: 178, neighborhood: 'Kahn Dunh Penh', unit: '201', full_address: 'Street 252 #11, Phnom Penh, Cambodia')
+living_252_1.tags << [modern, full_kitchen, close_to_workspace]
 ################################## End Build Housings  #######################################
 
 

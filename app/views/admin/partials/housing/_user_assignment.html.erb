@@ -1,17 +1,76 @@
 <div class='row'>
   <div class='col-md-4'>
     <%= render 'housings/partials/image_gallery' %>
+    <%= @housing.name %>
+    <br><br>
+    <%= "#{@housing.street_number} #{@housing.street_name}" %>
+    <br>
+    <%= "#{@housing.location.name}" %>
+    <h4> Housing Features </h4>
     <% @housing.tags.each do |tag|%>
       <div> <%= tag.name %> </div>
     <% end %>
   </div>
   <div class='col-md-8'>
-    <div class=''>
-      <% @users.each do |user| %>
-        <div class='row'>
-          <%= user.email %>
-        </div>
-      <% end %>
-    </div>
+    <h4>Requested Roomates </h4>
+    <% @requested_roomates.each do |user| %>
+      <div>
+        <%= user.email %>
+        <% if user.housings.include?(@housing) %>
+          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    <h4>Perfect Matches </h4>
+    <% @rank_hash[:three].each do |user| %>
+      <div>
+        <%= user.email %>
+        <% if user.housings.include?(@housing) %>
+          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
+        <% end %>
+      </div>
+    <% end %>
+    <h4>Pretty Close </h4>
+    <% @rank_hash[:two].each do |user| %>
+      <div>
+        <%= user.email %>
+        <% if user.housings.include?(@housing) %>
+          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <h4>Not Soo Good</h4>
+    <% @rank_hash[:one].each do |user| %>
+      <div>
+        <%= user.email %>
+        <% if user.housings.include?(@housing) %>
+          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
+        <% end %>
+      </div>
+    <% end %>
+    <% @rank_hash[:zero].each do |user| %>
+      <div>
+        <%= user.email %>
+        <% if user.housings.include?(@housing) %>
+          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
+
+
+

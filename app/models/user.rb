@@ -15,10 +15,13 @@ class User < ApplicationRecord
   has_many :events, through: :event_rsvps
   has_many :photos
   has_and_belongs_to_many :chat_rooms
+  has_and_belongs_to_many :housings
   has_many :messages, dependent: :destroy
-  has_many :roomate_requests, :foreign_key => "requested_by"
-  has_many :requested_me, :class_name => :RoomateRequest, :foreign_key => "requested"
 
+
+  def requested_roomates
+    @roomate_requests = RoomateRequest.where(requested_by: self)
+  end
 
   def gravitar_url
     user_hash = Digest::MD5.hexdigest(self.email)
@@ -70,5 +73,15 @@ class User < ApplicationRecord
     @requests_to_destroy.each do |request|
       request.destroy
     end
+  end
+
+  def rank_for_housing(housing)
+    rank = 0
+    housing.tags.each do |t|
+      if self.tags.include?(t)
+        rank = rank + 1
+      end
+    end
+    rank
   end
 end

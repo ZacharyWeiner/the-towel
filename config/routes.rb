@@ -57,6 +57,8 @@ Rails.application.routes.draw do
   get 'admin/housing'
   get 'admin/housing/location/:location_id', to: 'admin#housing', as: 'admin_housing_location'
   get 'admin/housing/housing/:housing_id', to: 'admin#housing', as: 'admin_housing_unit'
+  get 'admin/housing/:housing_id/user/:user_id/add', to: 'admin#assign_user_to_housing', as: 'admin_housing_add_user'
+  get 'admin/housing/:housing_id/user/:user_id/remove', to: 'admin#remove_user_from_housing', as: 'admin_housing_remove_user'
 
   resources :chat_rooms, only: [:new, :create, :show, :index] do
     get '/leave', to: 'chat_rooms#leave_room', as: 'leave_room'

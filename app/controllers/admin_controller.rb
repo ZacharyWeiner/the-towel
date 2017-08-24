@@ -9,7 +9,56 @@ class AdminController < ApplicationController
     if params[:housing_id]
       @users = current_user.current_cohort.users
       @housing = Housing.find(params[:housing_id])
+      @users_in_home = []
+      @requested_roomates = []
+      @rank_hash = {}
+      rank_3 = []
+      rank_2 = []
+      rank_1 = []
+      rank_0 = []
+      rooms_taken = 0
+      @users.each do |user|
+        rank = user.rank_for_housing(@housing)
+        if user.housings.include?(@housing)
+          rooms_taken = rooms_taken +1
+          @users_in_home << user
+          user.requested_roomates.each do |request|
+            @requested_roomates << User.find(request.requested)
+          end
+        end
+        if rank == 0
+          rank_0 << user
+        elsif rank == 1
+          rank_1 << user
+        elsif rank == 2
+          rank_2 << user
+        elsif rank == 3
+          rank_3 << user
+        end
+      end
+      @rank_hash.store(:three, rank_3)
+      @rank_hash.store(:two, rank_2)
+      @rank_hash.store(:one, rank_1)
+      @rank_hash.store(:zero, rank_0)
+      @rooms_avialable = (@housing.rooms > rooms_taken)
+
     end
+  end
+
+  def assign_user_to_housing
+    @housing = Housing.find(params[:housing_id])
+    @user = User.find(params[:user_id])
+    unless @user.housings.include?(@housing)
+      @user.housings << @housing
+    end
+    redirect_to admin_housing_unit_path(@housing)
+  end
+
+  def remove_user_from_housing
+    @housing = Housing.find(params[:housing_id])
+    @user = User.find(params[:user_id])
+    @user.housings.destroy(@housing)
+    redirect_to admin_housing_unit_path(@housing)
   end
 
   def cohort_managers
