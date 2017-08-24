@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
+  resources :charges
   resources :tags
   resources :tag_types
   resources :housings do

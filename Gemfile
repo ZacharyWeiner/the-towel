@@ -54,6 +54,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 #Chat & Messages
 gem 'redis', '~> 3.2'
 
+#Stripe & Payments
+gem 'stripe'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
