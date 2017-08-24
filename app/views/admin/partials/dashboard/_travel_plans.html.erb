@@ -1,0 +1,5 @@
+<ul>
+  <% current_user.current_cohort.transits.each do |transit| %>
+    <li><%= link_to "#{transit.title}", edit_transit_path(transit)%></li>
+  <% end %>
+</ul>

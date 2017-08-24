@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  before_action :authenticate
   def cohorts
   end
 
@@ -120,5 +121,13 @@ class AdminController < ApplicationController
       @user.roles.destroy(@role)
     end
     redirect_to cohort_managers_path(@cohort)
+  end
+
+  private
+  def authenticate
+    authenticate_user!
+    unless current_user.is_in_role(Role.cohort_admin)
+      redirect_to root_path
+    end
   end
 end

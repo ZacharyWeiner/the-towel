@@ -1,0 +1,7 @@
+<ul>
+  <% current_user.current_cohort.tracks.each do |track| %>
+    <li>
+      <%= link_to "#{track.name}", edit_track_path(track) %>
+    </li>
+  <%end%>
+</ul>

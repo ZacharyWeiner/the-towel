@@ -1,0 +1,12 @@
+<ul style="list-style: none;">
+  <% current_user.current_cohort.events.each do |event| %>
+    <li>
+      <div class='row'>
+        <%= event.title %>
+      </div>
+      <div class='row'>
+       <%= link_to "Manage",  event_admin_path(event), class: 'btn btn-warning' %>
+      </div>
+    </li>
+  <% end %>
+</ul>

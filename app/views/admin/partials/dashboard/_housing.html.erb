@@ -1,0 +1,5 @@
+<ul>
+<% current_user.current_cohort.schedule_items.each do |schedule_item|%>
+  <li><%= schedule_item.location.name %><%= link_to "Manage", admin_housing_location_path(schedule_item.location), class: 'btn btn-warning' %></li>
+<% end %>
+</ul>
