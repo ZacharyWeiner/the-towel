@@ -18,6 +18,13 @@ class User < ApplicationRecord
   has_and_belongs_to_many :housings
   has_many :messages, dependent: :destroy
 
+  def waitlisted_events
+    EventWaitlist.where(user: self).map{|ew| ew.event}
+  end
+
+  def is_on_waitlist(event)
+    EventWaitlist.where(event: event, user: self).count > 0
+  end
 
   def requested_roomates
     @roomate_requests = RoomateRequest.where(requested_by: self)

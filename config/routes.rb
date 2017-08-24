@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     resources :event_comments
     resources :event_rsvps
     resources :photos
+    get 'waitlist/add/:user_id', to: "event_waitlists#create", as:'waitlist_add_user'
+    get 'waitlist/remove/:user_id', to: "event_waitlists#destroy", as:'waitlist_remove_user'
   end
   resources :locations
   resources :cohorts do

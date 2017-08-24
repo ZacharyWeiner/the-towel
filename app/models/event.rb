@@ -18,6 +18,10 @@ class Event < ApplicationRecord
     response
   end
 
+  def waitlist
+    EventWaitlist.where(event: self).map{|ew| ew.user }
+  end
+
   def create_itinerary_item
     ItineraryItem.new(date: self.date,
                       time: self.start_time,

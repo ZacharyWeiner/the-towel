@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823151227) do
+ActiveRecord::Schema.define(version: 20170824120208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,8 +106,20 @@ ActiveRecord::Schema.define(version: 20170823151227) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_paid"
+    t.text "notes"
+    t.string "charge_id"
     t.index ["event_id"], name: "index_event_rsvps_on_event_id"
     t.index ["user_id"], name: "index_event_rsvps_on_user_id"
+  end
+
+  create_table "event_waitlists", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_waitlists_on_event_id"
+    t.index ["user_id"], name: "index_event_waitlists_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -473,6 +485,8 @@ ActiveRecord::Schema.define(version: 20170823151227) do
   add_foreign_key "event_comments", "users"
   add_foreign_key "event_rsvps", "events"
   add_foreign_key "event_rsvps", "users"
+  add_foreign_key "event_waitlists", "events"
+  add_foreign_key "event_waitlists", "users"
   add_foreign_key "events", "chat_rooms"
   add_foreign_key "events", "cohorts"
   add_foreign_key "events", "locations"

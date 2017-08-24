@@ -24,7 +24,6 @@ class EventRsvpsController < ApplicationController
   # POST /event_rsvps
   # POST /event_rsvps.json
   def create
-
     @event_rsvp = EventRsvp.new(event_rsvp_params)
     @event = Event.find(params[:event_id])
     respond_to do |format|

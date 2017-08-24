@@ -46,11 +46,23 @@
     <!-- End Details and Comments -->
     <!-- RSVPs  -->
     <div class='col-md-3'>
-      <% if current_user.event_rsvps.where(event_id: @event.id).count == 0%>
+      <% rsvp = current_user.event_rsvps.where(event_id: @event.id).first %>
+      <% space_available = true %>
+      <% space_available = (@event.capacity < @event.event_rsvps.count) unless @event.capacity.nil? %>
+      <% if rsvp.nil? && space_available %>
         <%= button_to "RSVP", event_event_rsvps_path(@event), class:"btn btn-success", style:"", method: :post, remote: true, params: {:event_rsvp => {user_id: current_user.id, event_id: @event.id}} %>
-
+      <% elsif rsvp.nil? %>
+        <% unless current_user.is_on_waitlist(@event) %>
+          <%= link_to "Join Waitlist", event_waitlist_add_user_path(@event, current_user), class: 'btn btn-warning'  %>
+        <% else %>
+          <%= link_to "Leave Waitlist", event_waitlist_remove_user_path(@event, current_user), class: 'btn btn-warning'  %>
+        <% end %>
       <% else %>
-        <% rsvp = @event.event_rsvps.where(user: current_user).first %>
+        <% if rsvp.is_paid %>
+          <%= link_to 'Paid', "#",  class: 'btn btn-success btn-block disabled' %>
+        <% else %>
+          <%= render 'events/partials/event_payment' %>
+        <% end %>
         <%= link_to 'Cancel RSVP', event_event_rsvp_path(@event, rsvp), { :method => :delete,  class: 'btn btn-warning btn-block'}%>
       <% end %>
       <hr>

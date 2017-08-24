@@ -171,9 +171,9 @@ puts "End Build Locations"
 
 ################################## Events #######################################
 puts "Build Events"
-Event.create!(title: "Dinner @ Cruz", date: Date.today + 10.days, start_time: Time.now, description: "Details for Dinner @ Cruz", location: london, cohort: libertatem, event_type: 'cohort')
+Event.create!(title: "Dinner @ Cruz", date: Date.today + 10.days, start_time: Time.now, description: "Details for Dinner @ Cruz", location: london, cohort: libertatem, event_type: 'cohort', cost: 30)
 Event.create!(title: "Lunch @ Havana", date: Date.today + 15.days, start_time: Time.now, description: "Details for Lunch @ Havana", location: london, cohort: libertatem, event_type: 'cohort')
-Event.create!(title: "Dinner with Locals ", date: Date.today + 20.days, start_time: Time.now, description: "Details for Dinner with Locals", location: london, cohort: meraki, event_type: 'track')
+Event.create!(title: "Dinner with Locals ", date: Date.today + 20.days, start_time: Time.now, description: "Details for Dinner with Locals", location: london, cohort: meraki, event_type: 'track', cost: 20)
 puts "End Build Events"
 ################################## End Events #######################################
 
@@ -241,7 +241,7 @@ puts 'Build Tracks'
 puts 'Track 1'
 undiscovered_kl_track = Track.create!(name: "Undiscovered KL", description: 'Find out all about the undiscovered KL', cohort: libertatem, location: kl)
 undiscovered_kl_track.users << [andrea, trabka]
-undiscovered_kl_track_event_1 = Event.create!(title: "Hidden Gem Discovery", date: Date.today + 11.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Gems in KL", location: kl, cohort: libertatem, event_type: 'track')
+undiscovered_kl_track_event_1 = Event.create!(title: "Hidden Gem Discovery", date: Date.today + 11.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Gems in KL", location: kl, cohort: libertatem, event_type: 'track', cost: 15)
 undiscovered_kl_track_event_1.users << undiscovered_kl_track.users
 undiscovered_kl_track.events << undiscovered_kl_track_event_1
 puts 'End Track 1'
@@ -249,7 +249,7 @@ puts 'End Track 1'
 puts 'Track 2'
 kl_foodies_track = Track.create!(name: "KL Foodies", description: 'Learn All About the Food Scene In KL', cohort: libertatem, location: kl)
 kl_foodies_track.users << [zack, geordan]
-kl_foodies_track_event_1 = Event.create!(title: "Illegal Chineese", date: Date.today + 14.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Food Gems in KL", location: kl, cohort: libertatem, event_type: 'track')
+kl_foodies_track_event_1 = Event.create!(title: "Illegal Chineese", date: Date.today + 14.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Food Gems in KL", location: kl, cohort: libertatem, event_type: 'track', cost: 30)
 kl_foodies_track_event_1.users << kl_foodies_track.users
 kl_foodies_track.events << kl_foodies_track_event_1
 puts 'End Track 2'
@@ -257,7 +257,7 @@ puts 'End Track 2'
 puts 'Track 3'
 kl_temples_track = Track.create!(name: "KL Temples", description: 'Tour All The Amazing Temples in KL', cohort: libertatem, location: kl)
 kl_temples_track.users = [gemma, chech]
-kl_temples_track_event_1 = Event.create!(title: "Temple Walking Tour", date: Date.today + 17.days, start_time: Time.now, description: "Over the course of a few hours, you will walk through some cool neighborhoods and see the inside of some awesome temples", location: kl, cohort: libertatem, event_type: 'track')
+kl_temples_track_event_1 = Event.create!(title: "Temple Walking Tour", date: Date.today + 17.days, start_time: Time.now, description: "Over the course of a few hours, you will walk through some cool neighborhoods and see the inside of some awesome temples", location: kl, cohort: libertatem, event_type: 'track', cost: 25)
 kl_temples_track_event_1.users << kl_temples_track.users
 kl_temples_track.events << kl_temples_track_event_1
 puts 'End Track 3'
