@@ -26,6 +26,14 @@ class User < ApplicationRecord
     EventWaitlist.where(event: event, user: self).count > 0
   end
 
+  def rsvpd_for_event(event)
+    EventRsvp.where(event: event, user:self).count > 0
+  end
+
+  def event_rsvp(event)
+    EventRsvp.where(event: event, user:self).first
+  end
+
   def requested_roomates
     @roomate_requests = RoomateRequest.where(requested_by: self)
   end

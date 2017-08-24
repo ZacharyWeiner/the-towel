@@ -1,0 +1,6 @@
+<h4> Waitlist </h4>
+<ul style="list-style: none;">
+  <% @event.waitlist.each do |user| %>
+    <li><%= user.email %> <%= link_to "Add To Event", upgrade_from_waitlist_path(@event, user), class: 'btn btn-success'  %> </li>
+  <% end %>
+</ul>

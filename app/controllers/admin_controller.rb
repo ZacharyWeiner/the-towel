@@ -2,6 +2,36 @@ class AdminController < ApplicationController
   def cohorts
   end
 
+  def events
+    if params[:event_id]
+      @event = Event.find(params[:event_id])
+    end
+  end
+
+  def upgrade_from_waitlist
+    @event = Event.find(params[:event_id])
+    @user = User.find(params[:user_id])
+    @event_rsvp = EventRsvp.create!(user: @user, event:@event)
+    @event_waitlist = EventWaitlist.where(event: @event, user: @user).first
+    @event_waitlist.destroy
+    redirect_to event_admin_path(@event)
+  end
+
+  def remove_user_from_event
+    @event = Event.find(params[:event_id])
+    @user = User.find(params[:user_id])
+    @event.users.destroy(@user)
+    redirect_to event_admin_path(@event)
+  end
+
+  def create_event_rsvp
+    @event = Event.find(params[:event_id])
+    @user = User.find(params[:user_id])
+    @event_rsvp = EventRsvp.create!(event: @event, user: @user)
+
+    redirect_to event_admin_path(@event)
+  end
+
   def housing
     if params[:location_id]
       @location = Location.find(params[:location_id])

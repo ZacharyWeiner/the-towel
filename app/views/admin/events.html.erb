@@ -1,0 +1,35 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3 text-center">Event Management</h1>
+    <p class="lead text-center"> <%= @event.title unless @event.nil? %> </p>
+  </div>
+</div>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <ul style="list-style: none;">
+        <% current_user.current_cohort.events.each do |event| %>
+          <li>
+            <div class='row'>
+              <%= event.title %>
+            </div>
+            <div class='row'>
+             <%= link_to "Manage",  event_admin_path(event), class: 'btn btn-warning' %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class='col-md-9'>
+      <div class="row">
+        <div class='col-md-6'>
+          <%= render 'admin/partials/events/attendees'%>
+        </div>
+        <div class='col-md-6'>
+          <%= render 'admin/partials/events/waitlist'%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

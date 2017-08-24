@@ -26,6 +26,8 @@ class EventRsvpsController < ApplicationController
   def create
     @event_rsvp = EventRsvp.new(event_rsvp_params)
     @event = Event.find(params[:event_id])
+    @user = User.find(params[:event_rsvp][:user_id])
+    @event.users << @user
     respond_to do |format|
       if @event_rsvp.save
         format.html { redirect_to event_path(@event), notice: 'Event rsvp was successfully created.' }
@@ -55,8 +57,10 @@ class EventRsvpsController < ApplicationController
   # DELETE /event_rsvps/1
   # DELETE /event_rsvps/1.json
   def destroy
-    @event_rsvp.destroy
     @event = Event.find(params[:event_id])
+    @user = @event_rsvp.user
+    @event.users.destroy(@user)
+    @event_rsvp.destroy
     respond_to do |format|
       format.html { redirect_to event_path(@event), notice: 'Event rsvp was successfully destroyed.' }
       format.json { head :no_content }

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
+  get 'admin/events', to:'admin#events'
+  get 'admin/event/:event_id/upgrade/:user_id', to: 'admin#upgrade_from_waitlist', as:'upgrade_from_waitlist'
+  get 'admin/event/:event_id/add_rsvp/:user_id', to: 'admin#create_event_rsvp', as: 'create_event_rsvp'
   resources :charges
   resources :tags
   resources :tag_types
@@ -30,6 +33,7 @@ Rails.application.routes.draw do
     resources :photos
     get 'waitlist/add/:user_id', to: "event_waitlists#create", as:'waitlist_add_user'
     get 'waitlist/remove/:user_id', to: "event_waitlists#destroy", as:'waitlist_remove_user'
+    get 'admin', to: 'admin#events'
   end
   resources :locations
   resources :cohorts do

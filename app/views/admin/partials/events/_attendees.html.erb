@@ -1,0 +1,14 @@
+<h4>Attendees</h4>
+<ul style="list-style: none;">
+  <% @event.users.each do |user| %>
+    <li>
+      <%= user.email %>
+      <% unless user.rsvpd_for_event(@event) %>
+        <%= link_to "Create RSVP", create_event_rsvp_path(@event, user), class:"btn btn-success", style:"" %>
+      <% else %>
+        <%= "Unpaid" if (user.event_rsvp(@event).is_paid != true) %>
+        <%= link_to 'Cancel RSVP', event_event_rsvp_path(@event, user.event_rsvp(@event)), { :method => :delete,  class: 'btn btn-warning'}%>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
