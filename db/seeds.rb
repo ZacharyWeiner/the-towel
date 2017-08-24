@@ -52,7 +52,7 @@ gemma.roles << client
 chech.roles << client
 alison.roles << client
 
-libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison]
+libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra]
 puts 'End Build Users'
 ################################## End Users #######################################
 
