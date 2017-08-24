@@ -18,6 +18,9 @@
         <%= user.email %>
         <% if user.housings.include?(@housing) %>
           <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% elsif user.has_housing_in_location(@housing.location)  %>
+          <%= link_to "Already Has Home",
+          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
         <% else %>
           <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
         <% end %>
@@ -31,6 +34,9 @@
         <%= user.email %>
         <% if user.housings.include?(@housing) %>
           <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% elsif user.has_housing_in_location(@housing.location)  %>
+          <%= link_to "Already Has Home",
+          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
         <% else %>
           <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
         <% end %>
@@ -42,6 +48,9 @@
         <%= user.email %>
         <% if user.housings.include?(@housing) %>
           <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% elsif user.has_housing_in_location(@housing.location)  %>
+          <%= link_to "Already Has Home",
+          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
         <% else %>
           <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
         <% end %>
@@ -54,6 +63,9 @@
         <%= user.email %>
         <% if user.housings.include?(@housing) %>
           <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% elsif user.has_housing_in_location(@housing.location)  %>
+          <%= link_to "Already Has Home",
+          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
         <% else %>
           <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
         <% end %>
@@ -64,8 +76,11 @@
         <%= user.email %>
         <% if user.housings.include?(@housing) %>
           <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+        <% elsif user.has_housing_in_location(@housing.location)  %>
+          <%= link_to "Already Has Home",
+          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
         <% else %>
-          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' %>
+          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
         <% end %>
       </div>
     <% end %>

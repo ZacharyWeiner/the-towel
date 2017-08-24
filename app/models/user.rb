@@ -84,4 +84,8 @@ class User < ApplicationRecord
     end
     rank
   end
+
+  def has_housing_in_location(location)
+    self.housings.where(location: location).count > 0
+  end
 end

@@ -4,8 +4,10 @@ class AdminController < ApplicationController
 
   def housing
     if params[:location_id]
-      @units = Housing.where(location: Location.find(params[:location_id]))
-    end
+      @location = Location.find(params[:location_id])
+      @units = Housing.where(location: @location)
+      @users = current_user.current_cohort.users
+    end #if
     if params[:housing_id]
       @users = current_user.current_cohort.users
       @housing = Housing.find(params[:housing_id])

@@ -1,7 +1,24 @@
-<% @units.each do |unit| %>
-  <div>
-  <%= link_to admin_housing_unit_path(unit) do %>
-    <%= unit.name %>
+<div class='row'>
+  <div class='col-md-6'>
+  <% @units.each do |unit| %>
+    <div>
+    <%= link_to admin_housing_unit_path(unit) do %>
+      <%= unit.name %>
+    <% end %>
+    </div>
   <% end %>
   </div>
-<% end %>
+  <div class="col-md-6">
+    <% @users.each do |user|%>
+      <% if user.has_housing_in_location(@location) %>
+        <div class='row'>
+          <p style='color:green'><%= user.email %> </p>
+        </div>
+      <% else %>
+        <div class='row'>
+          <p style='color:black'><%= user.email %> (unassigned) </p>
+        </div>
+      <%end %>
+    <% end %>
+  </div>
+</div>
