@@ -29,6 +29,9 @@
   <% if params[:housing_id]%>
     <%= form.hidden_field :housing_id, :value => params[:housing_id] %>
   <% end %>
+  <% if params[:user_id]%>
+    <%= form.hidden_field :user_id, :value => params[:user_id] %>
+  <% end %>
 
   <div class="actions">
     <%= form.submit "Save Picture" %>

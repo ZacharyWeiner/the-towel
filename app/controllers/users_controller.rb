@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
   def show
+    if @user.profile.nil?
+      Profile.create!(user:@user)
+    end
   end
 
   def preferences
@@ -26,6 +29,21 @@ class UsersController < ApplicationController
       end
     end
     redirect_to user_preferences_path(current_user)
+  end
+
+  def skills
+
+  end
+
+  def update_skills
+    current_user.clear_skills
+    params.each do |param|
+      @tag = Tag.where(name: param).first
+      if @tag
+        current_user.tags << @tag
+      end
+    end
+    redirect_to user_skills_path(current_user)
   end
 
   private

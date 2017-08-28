@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :chat_rooms
   has_and_belongs_to_many :housings
   has_many :messages, dependent: :destroy
+  has_one :profile
 
   def waitlisted_events
     EventWaitlist.where(user: self).map{|ew| ew.event}
@@ -87,6 +88,13 @@ class User < ApplicationRecord
     @requests_to_destroy = self.roomate_requests
     @requests_to_destroy.each do |request|
       request.destroy
+    end
+  end
+
+  def clear_skills
+    @tags_to_destroy = self.tags.where(tag_type: TagType.where(name: 'Skill'))
+    @tags_to_destroy.each do |tag|
+      self.tags.destroy(tag)
     end
   end
 

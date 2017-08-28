@@ -1,0 +1,67 @@
+<%= form_with(model: profile, local: true) do |form| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :display_name %>
+    <%= form.text_field :display_name, id: :profile_display_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :hometown %>
+    <%= form.text_field :hometown, id: :profile_hometown, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, id: :profile_phone_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :whatsapp %>
+    <%= form.check_box :whatsapp, id: :profile_whatsapp, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :facebook %>
+    <%= form.text_field :facebook, id: :profile_facebook, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :instagram %>
+    <%= form.text_field :instagram, id: :profile_instagram, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :birthday %>
+    <%= form.date_select :birthday, id: :profile_birthday, start_year: 1965, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :website %>
+    <%= form.text_field :website, id: :profile_website, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :snapchat %>
+    <%= form.text_field :snapchat, id: :profile_snapchat, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :bio %>
+    <%= form.text_area :bio, id: :profile_bio, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Update", class: 'btn btn-primary' %>
+  </div>
+<% end %>

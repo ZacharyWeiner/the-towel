@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profiles
   mount ActionCable.server => '/cable'
   get 'admin/events', to:'admin#events'
   get 'admin/event/:event_id/upgrade/:user_id', to: 'admin#upgrade_from_waitlist', as:'upgrade_from_waitlist'
@@ -55,9 +56,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   get 'users/:id', to: 'users#show', as: 'show_user'
   get 'users/:user_id/photos', to: 'photos#index', as: 'user_photos'
+  get 'users/:user_id/photos/new', to: 'photos#new', as: 'new_user_photo'
   get 'users/:id/preferences', to: 'users#preferences', as:'user_preferences'
   post'users/:id/housing_preferences', to: 'users#update_housing_preferences'
   post'users/:id/roomate_preferences', to: 'users#update_roomate_preferences'
+  get 'users/:id/skills', to: 'users#skills', as: 'user_skills'
+  post'users/:id/skills', to: 'users#update_skills'
   get 'admin/cohorts'
   get 'admin/cohort/:cohort_id/managers', to: 'admin#cohort_managers', as: 'cohort_managers'
   get 'admin/cohort/:cohort_id/cohort_managers/add/:user_id', to: 'admin#add_cohort_manager', as: 'add_cohort_manager'

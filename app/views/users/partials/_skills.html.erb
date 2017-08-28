@@ -1,0 +1,21 @@
+<div class='row'>
+  <%= form_tag("/users/#{current_user.id}/skills", method: "post") do %>
+  <% Tag.skills.each do |tag| %>
+      <div class='col-md-3'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <% if current_user.tags.where(id: tag.id).count > 0 %>
+              <%= check_box_tag(tag.name, tag.name, true) %>
+            <% else %>
+              <%= check_box_tag(tag.name, tag.name) %>
+            <% end %>
+          </div>
+          <div class='col-md-6'>
+            <%= label_tag(tag.name, tag.name) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= submit_tag("Update Skills") %>
+  <% end %>
+</div>

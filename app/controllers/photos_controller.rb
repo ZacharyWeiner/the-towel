@@ -55,6 +55,9 @@ class PhotosController < ApplicationController
         elsif params[:photo][:event_id]
           format.html { redirect_to Event.find(params[:event_id]), notice: 'Photo was successfully created.' }
           format.json { render :show, status: :created, location: @photo }
+        elsif params[:photo][:user_id]
+          format.html { redirect_to user_photos_path(@photo.user), notice: 'Photo was successfully created.' }
+          format.json { render :show, status: :created, location: @photo }
         else
           format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
           format.json { render :show, status: :created, location: @photo }
@@ -71,8 +74,20 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @photo }
+        if params[:photo][:housing_id]
+          @housing.photos << @photo
+          format.html { redirect_to @housing, notice: 'Photo was successfully updated.' }
+          format.json { render :show, status: :created, location: @photo }
+        elsif params[:photo][:event_id]
+          format.html { redirect_to Event.find(params[:event_id]), notice: 'Photo was successfully updated.' }
+          format.json { render :show, status: :created, location: @photo }
+        elsif params[:photo][:user_id]
+          format.html { redirect_to user_photos_path(@photo.user), notice: 'Photo was successfully updated.' }
+          format.json { render :show, status: :created, location: @photo }
+        else
+          format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
+          format.json { render :show, status: :created, location: @photo }
+        end
       else
         format.html { render :edit }
         format.json { render json: @photo.errors, status: :unprocessable_entity }

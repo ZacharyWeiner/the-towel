@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824120208) do
+ActiveRecord::Schema.define(version: 20170824152942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -304,6 +304,23 @@ ActiveRecord::Schema.define(version: 20170824120208) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "display_name"
+    t.string "hometown"
+    t.string "phone_number"
+    t.boolean "whatsapp"
+    t.string "facebook"
+    t.string "instagram"
+    t.date "birthday"
+    t.string "website"
+    t.string "snapchat"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "title"
     t.integer "permissions"
@@ -522,6 +539,7 @@ ActiveRecord::Schema.define(version: 20170824120208) do
   add_foreign_key "posts", "events"
   add_foreign_key "posts", "side_trips"
   add_foreign_key "posts", "users"
+  add_foreign_key "profiles", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "schedule_items", "cohorts"
