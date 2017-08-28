@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get 'admin/dashboard', to: 'admin#dashboard', as: 'admin_dashboard'
 
   get 'invite', to: 'invites#invite'
+  post 'invites/new/:user_id', to: 'invites#create'
+  get 'invite/new', to: 'invites#new'
+  get 'invite/sent', to: 'invites#sent', as: "invite_sent"
+
 
 
   resources :charges
