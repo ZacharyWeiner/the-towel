@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get 'admin/event/:event_id/upgrade/:user_id', to: 'admin#upgrade_from_waitlist', as:'upgrade_from_waitlist'
   get 'admin/event/:event_id/add_rsvp/:user_id', to: 'admin#create_event_rsvp', as: 'create_event_rsvp'
   get 'admin/dashboard', to: 'admin#dashboard', as: 'admin_dashboard'
+
+  get 'invite', to: 'invites#invite'
+
+
   resources :charges
   resources :tags
   resources :tag_types
