@@ -20,7 +20,8 @@ class InvitesController < ApplicationController
 
     @invite_content = "You have been invited to Join the Group #{@cohort.name}, by #{@invitor.email}. Click this link to join the group: #{@link}"
     redirect_path =  @base_link + url_for(invite_sent_path) + "?sentto=#{@invite_email_address}"
-        byebug
+    response = UserMailer.send_invite(@invite_email_address, @cohort.name, @invite_content).deliver_now
+    byebug
     redirect_to(redirect_path)
   end
 
