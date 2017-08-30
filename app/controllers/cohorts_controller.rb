@@ -1,6 +1,6 @@
 class CohortsController < ApplicationController
   before_action :set_cohort, only: [:show, :edit, :update, :destroy]
-
+  layout 'admin'
   # GET /cohorts
   # GET /cohorts.json
   def index

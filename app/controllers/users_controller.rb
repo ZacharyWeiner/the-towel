@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  layout 'admin'
   def show
     if @user.profile.nil?
       Profile.create!(user:@user)

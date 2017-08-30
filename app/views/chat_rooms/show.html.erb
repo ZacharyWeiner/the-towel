@@ -22,12 +22,15 @@
     <div id="messages" data-chat-room-id="<%= @chat_room.id %>">
       <%= render @chat_room.messages %>
     </div>
-    <%= form_for @message, url: '#' do |f| %>
-      <div class="form-group">
+    <div class='container'>
+      <%= form_for @message do |f| %>
+      <div class="form-group" style='padding-right: 24px;'>
         <%= f.text_area :body, class: 'form-control', placeholder: 'Enter a Message From 2 to 1000 characters', rows: 4, style: 'margin-top:12px' %>
       </div>
       <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
     <% end %>
+    </div>
+
   </div>
 </div>
 

@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  layout 'admin'
   def home
     if session[:invited_cohort] && current_user
       @cohort = Cohort.find(session[:invited_cohort])

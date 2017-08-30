@@ -1,8 +1,7 @@
 class SideTripsController < ApplicationController
   before_action :set_side_trip, only: [:show, :edit, :update, :destroy, :add_user, :remove_user]
   before_action :authenticate_user!
-  # GET /side_trips
-  # GET /side_trips.json
+  layout 'admin'
   def index
     if params[:cohort_id]
       @side_trips = SideTrip.where(cohort_id: params[:cohort_id])

@@ -20,3 +20,7 @@
 //= require_tree .
 //= require bootstrap
 //= require cable
+
+
+$(document).ready(function() {
+});

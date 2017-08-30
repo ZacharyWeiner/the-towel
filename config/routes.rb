@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :profiles
   mount ActionCable.server => '/cable'
+  namespace :admin do
+    resources :users
+    root to: 'application#index'
+  end
+
   get 'admin/events', to:'admin#events'
   get 'admin/event/:event_id/upgrade/:user_id', to: 'admin#upgrade_from_waitlist', as:'upgrade_from_waitlist'
   get 'admin/event/:event_id/add_rsvp/:user_id', to: 'admin#create_event_rsvp', as: 'create_event_rsvp'

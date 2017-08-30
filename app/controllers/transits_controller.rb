@@ -2,6 +2,7 @@ class TransitsController < ApplicationController
   before_action :set_transit, only: [:show, :edit, :update, :destroy]
   # GET /transits
   # GET /transits.json
+  layout 'admin'
   def index
     if params[:cohort_id]
       set_cohort
@@ -92,7 +93,7 @@ class TransitsController < ApplicationController
     end
 
     def set_side_trip
-      if params[:transit][:side_trip_id]
+      if params[:transit] && params[:transit][:side_trip_id]
          @side_trip = SideTrip.find(params[:transit][:side_trip_id])
       elsif params[:side_trip_id]
          @side_trip = SideTrip.find(params[:side_trip_id])

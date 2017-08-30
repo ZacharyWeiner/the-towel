@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_action :authenticate
+  layout 'admin'
   def cohorts
   end
 

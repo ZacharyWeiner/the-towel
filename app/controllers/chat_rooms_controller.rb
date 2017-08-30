@@ -1,4 +1,5 @@
 class ChatRoomsController < ApplicationController
+  layout 'admin'
   def index
     @chat_rooms = ChatRoom.all
   end

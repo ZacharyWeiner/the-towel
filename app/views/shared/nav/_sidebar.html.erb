@@ -1,0 +1,36 @@
+<aside class="main-sidebar">
+  <section class="sidebar">
+
+    <div class="user-panel">
+      <div class="pull-left image">
+        <%= image_tag current_user.gravitar_url, class: "img-circle" %>
+      </div>
+      <div class="pull-left info">
+        <p><%= current_user.name unless current_user.nil? %></p>
+        <%= link_to '<i class="fa fa-circle text-success"></i><span>Online</span>'.html_safe, admin_root_path %>
+      </div>
+    </div>
+
+    <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <span class="input-group-btn">
+          <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </form>
+
+    <ul class="sidebar-menu">
+    <li class="header"><%= t('admin.sidebar.main_navigation') %></li>
+      <%= render 'shared/nav/sidebar/main_nav' %>
+
+      <li class="header"><%= t('admin.sidebar.administration') %></li>
+      <%= render 'shared/nav/sidebar/admin_nav' %>
+
+    </ul>
+
+  </section>
+</aside>
+
