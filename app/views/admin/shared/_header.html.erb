@@ -216,7 +216,7 @@
 
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <%= image_tag "http://placehold.it/160x160", class: "user-image" %>
+            <%= image_tag current_user.gravitar_url, class: "user-image" %>
             <span class="hidden-xs"><%= current_user.name unless current_user.nil? %></span>
           </a>
           <ul class="dropdown-menu">
