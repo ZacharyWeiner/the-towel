@@ -26,14 +26,14 @@
         <td><%= housing.rooms %></td>
         <td><%= housing.bathrooms %></td>
         <td><%= housing.street_number %></td>
-        <td><%= housing.location %></td>
+        <td><%= housing.location.name %></td>
         <td><%= housing.map %></td>
         <td><%= housing.street_name %></td>
         <td><%= housing.postal_code %></td>
         <td><%= housing.neighborhood %></td>
         <td><%= housing.other_details %></td>
-        <td><%= link_to 'Show', housing %></td>
-        <td><%= link_to 'Edit', edit_housing_path(housing) %></td>
+        <td><%= link_to 'Show', housing %> <span>|</span></td>
+        <td><%= link_to 'Edit', edit_housing_path(housing) %><span>|</span></td>
         <td><%= link_to 'Destroy', housing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

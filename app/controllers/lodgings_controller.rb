@@ -1,8 +1,6 @@
 class LodgingsController < ApplicationController
   before_action :set_lodging, only: [:show, :edit, :update, :destroy]
-
-  # GET /lodgings
-  # GET /lodgings.json
+  layout 'admin'
   def index
     @lodgings = Lodging.all
   end

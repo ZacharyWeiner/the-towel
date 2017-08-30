@@ -6,6 +6,8 @@ class Tag < ApplicationRecord
   has_and_belongs_to_many :side_trips
   has_and_belongs_to_many :tracks
   has_and_belongs_to_many :locations
+   has_many :children, :class_name => "Tag", :foreign_key => "parent_id"
+  belongs_to :parent, :class_name => "Tag", :foreign_key => "parent_id", optional: true
 
   def self.skills
     Tag.where(tag_type: TagType.where(name:'Skill').first)

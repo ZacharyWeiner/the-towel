@@ -1,3 +1,4 @@
+<%= content_for(:body_attributes, 'data-no-turbolink') %>
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
     <h1 class="display-3"><%= @event.title %></h1>
@@ -50,7 +51,7 @@
       <% space_available = true %>
       <% space_available = (@event.capacity < @event.event_rsvps.count) unless @event.capacity.nil? %>
       <% if rsvp.nil? && space_available %>
-        <%= button_to "RSVP", event_event_rsvps_path(@event), class:"btn btn-success", style:"", method: :post, remote: true, params: {:event_rsvp => {user_id: current_user.id, event_id: @event.id}} %>
+        <%= button_to "RSVP", event_event_rsvps_path(@event), class:"btn btn-success", style:"", method: :post,  params: {:event_rsvp => {user_id: current_user.id, event_id: @event.id}} %>
       <% elsif rsvp.nil? %>
         <% unless current_user.is_on_waitlist(@event) %>
           <%= link_to "Join Waitlist", event_waitlist_add_user_path(@event, current_user), class: 'btn btn-warning'  %>

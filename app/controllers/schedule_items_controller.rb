@@ -1,8 +1,7 @@
 class ScheduleItemsController < ApplicationController
   before_action :set_schedule_item, only: [:show, :edit, :update, :destroy]
   before_action :set_cohort
-  # GET /schedule_items
-  # GET /schedule_items.json
+  layout 'admin'
   def index
     @schedule_items = @cohort.schedule_items
   end

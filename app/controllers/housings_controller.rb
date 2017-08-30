@@ -1,8 +1,7 @@
 class HousingsController < ApplicationController
   before_action :set_housing, only: [:show, :edit, :update, :destroy, :update_tags, :set_tags]
 
-  # GET /housings
-  # GET /housings.json
+  layout 'admin'
   def index
     @housings = Housing.all
   end

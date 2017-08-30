@@ -3,6 +3,7 @@ class TracksController < ApplicationController
   before_action :authenticate_user!
   # GET /tracks
   # GET /tracks.json
+  layout 'admin'
   def index
     if current_user.is_in_role(Role.cohort_member)
       @tracks = Track.where(cohort: current_user.current_cohort)

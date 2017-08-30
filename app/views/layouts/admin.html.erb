@@ -14,7 +14,8 @@
     <%= stylesheet_link_tag 'application_back', media: 'all' %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="hold-transition skin-blue sidebar-mini">
+
+  <body class="hold-transition skin-blue sidebar-mini" <%= yield(:body_attributes) %>>
 
     <div class="wrapper">
       <%= render partial: 'admin/shared/header' %>

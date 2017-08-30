@@ -1,6 +1,6 @@
 class LocationDetailsController < ApplicationController
   before_action :set_location_detail, only: [:show, :edit, :update, :destroy]
-
+  layout 'admin'
   # GET /location_details
   # GET /location_details.json
   def index
@@ -65,6 +65,9 @@ class LocationDetailsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_location_detail
       @location_detail = LocationDetail.find(params[:id])
+      if @location_detail.nil?
+        @location_detail = LocationDetail.new
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

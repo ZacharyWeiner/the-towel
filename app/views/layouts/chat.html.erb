@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>TheTowel</title>
+    <%= csrf_meta_tags %>
+    <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
+    <%= stylesheet_link_tag 'chat', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'chat', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+    <%= render 'shared/nav/main_nav'%>
+    <%= yield %>
+  </body>
+</html>
+
