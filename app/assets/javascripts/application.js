@@ -17,7 +17,7 @@
 //= require jquery-ui
 //= require turbolinks
 //= require popper
-//= require_tree .
+
 //= require bootstrap
 //= require cable
 

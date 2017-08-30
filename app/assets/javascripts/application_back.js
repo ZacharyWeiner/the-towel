@@ -5,6 +5,8 @@
 //= require back/plugins/datatables/jquery.dataTables.min
 //= require back/plugins/datatables/dataTables.bootstrap.min
 //= require back/app
+//= require cable
+//= require channels/rooms
 
 $(document).ready(function() {
   var table = $('.dataTable').DataTable();
