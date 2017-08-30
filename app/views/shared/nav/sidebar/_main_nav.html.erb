@@ -1,4 +1,9 @@
-
-  <li>
-    <%= link_to '<i class="fa fa-dashboard"></i><span>Dashboard</span>'.html_safe, admin_dashboard_path %>
-  </li>
+  <% if current_user %>
+    <%= render 'shared/nav/sidebar/cohorts_menu' %>
+    <li>
+      <%= link_to '<i class="fa fa-calendar"></i><span>My Itinerary </span>'.html_safe, my_itinerary_path %>
+    </li>
+    <li>
+      <%= link_to '<i class="fa fa-linode"></i><span>My Events </span>'.html_safe, my_itinerary_path %>
+    </li>
+  <% end %>

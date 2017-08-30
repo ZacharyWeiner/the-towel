@@ -24,7 +24,7 @@ class Event < ApplicationRecord
 
   def create_itinerary_item
     ItineraryItem.new(date: self.date,
-                      time: self.start_time,
+                      time: self.start_time.to_time,
                       location: self.location.name,
                       title: self.title,
                       description: self.description,

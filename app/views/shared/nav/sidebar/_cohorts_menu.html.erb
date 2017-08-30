@@ -1,0 +1,14 @@
+<li class="treeview">
+  <a href="#">
+    <i class="fa fa-users"></i>
+    <span>Cohorts</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <% current_user.cohorts.each do |cohort|%>
+      <li> <%= link_to "<i class='fa fa-circle-o'></i> #{cohort.name}".html_safe, cohort_path(cohort) %> </li>
+    <% end %>
+  </ul>
+</li>

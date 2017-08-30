@@ -5,7 +5,7 @@
     <div class='col-md-3'>
       <%= ii.date.to_time.strftime('%a %b %e %Y') %>
       <% unless ii.time.nil? %>
-         <%= ii.time.to_short %>
+         <%= ii.time.to_formatted_s(:time)  %>
       <% end %>
     </div>
     <div class='col-md-6'>
