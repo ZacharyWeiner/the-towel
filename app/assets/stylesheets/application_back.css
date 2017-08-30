@@ -7,4 +7,5 @@
  *= require back/AdminLTE
  *= require back/skins/skin-blue
  *= require_self
+*= require font-awesome
  */
