@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     resources :transits
   end
 
-  resources :location_details
+
   resources :posts
   resources :roles
   resources :lodgings
@@ -53,7 +53,10 @@ Rails.application.routes.draw do
     get 'waitlist/remove/:user_id', to: "event_waitlists#destroy", as:'waitlist_remove_user'
     get 'admin', to: 'admin#events'
   end
-  resources :locations
+  resources :locations do
+    resources :location_details
+  end
+
   resources :cohorts do
     get 'add/:id', to: 'cohorts#add_user', as: 'add_user'
     get 'remove/:id', to: 'cohorts#remove_user', as: 'remove_user'

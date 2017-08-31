@@ -15,6 +15,7 @@ class LocationDetailsController < ApplicationController
   # GET /location_details/new
   def new
     @location_detail = LocationDetail.new
+    @location = Location.find(params[:location_id])
   end
 
   # GET /location_details/1/edit
@@ -25,10 +26,13 @@ class LocationDetailsController < ApplicationController
   # POST /location_details.json
   def create
     @location_detail = LocationDetail.new(location_detail_params)
-
+    if params[:organization_id]
+      @org = Organization.find(params[:organization_id])
+      @location_detail.organization = @org
+    end
     respond_to do |format|
       if @location_detail.save
-        format.html { redirect_to @location_detail, notice: 'Location detail was successfully created.' }
+        format.html { redirect_to @location_detail.location, notice: 'Location detail was successfully created.' }
         format.json { render :show, status: :created, location: @location_detail }
       else
         format.html { render :new }
@@ -72,6 +76,6 @@ class LocationDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_detail_params
-      params.require(:location_detail).permit(:location_id, :image, :description)
+      params.require(:location_detail).permit(:location_id, :image, :description, :organization_id)
     end
 end

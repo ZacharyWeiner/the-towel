@@ -1,6 +1,15 @@
 <h1>Editing Location Detail</h1>
+<div class='row'>
+  <div class='col-md-6'>
+    <%= render 'form', location_detail: @location_detail %>
+  </div>
+  <div class='col-md-6'>
+    <% unless @location_detail.image.nil?%>
+      <%= image_tag @location_detail.image %>
+    <% end %>
+  </div>
+</div>
 
-<%= render 'form', location_detail: @location_detail %>
 
 <%= link_to 'Show', @location_detail %> |
 <%= link_to 'Back', location_details_path %>

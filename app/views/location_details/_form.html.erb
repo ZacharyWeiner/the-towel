@@ -1,4 +1,4 @@
-<%= form_with(model: location_detail, local: true) do |form| %>
+<%= form_with(model: location_detail, local: true, url: location_location_details_path(@location, @location_detail)) do |form| %>
   <% if location_detail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(location_detail.errors.count, "error") %> prohibited this location_detail from being saved:</h2>
@@ -11,20 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :location_id %>
-    <%= form.text_field :location_id, id: :location_detail_location_id %>
+    <%= form.text_field :location_id, id: :location_detail_location_id, :value => "#{@location.id}", :readonly => true, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :image %>
-    <%= form.text_area :image, id: :location_detail_image %>
+    <div class="field">
+      <label class='fa fa-camera fa-2x' style='vertical-align: middle;'>
+        <%= form.file_field :image, id: :location_detail_image, style: 'display:none;' %>
+      </label>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :location_detail_description %>
+    <%= form.text_area :description, id: :location_detail_description, class: 'form-control' %>
   </div>
+
+  <%= hidden_field_tag :organization_id, current_user.organization_id %>
+
 
   <div class="actions">
     <%= form.submit %>
