@@ -1,6 +1,7 @@
 class Cohort < ApplicationRecord
   mount_uploader :image, PictureUploader
   mount_uploader :banner_image, PictureUploader
+  belongs_to :organization
   has_and_belongs_to_many :users
   has_and_belongs_to_many :transits
   has_and_belongs_to_many :chat_rooms

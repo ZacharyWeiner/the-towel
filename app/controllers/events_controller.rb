@@ -38,7 +38,13 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+
     @event = Event.new(event_params)
+    if params[:event][:track_id]
+      @track = Track.find(params[:event][:track_id])
+      @cohort = @track.cohort
+      @event.cohort = @cohort
+    end
     respond_to do |format|
       if @event.save
         create_chat_room
@@ -83,7 +89,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type, :cohort_id)
+    params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type, :cohort_id, :track_id)
   end
 
   def create_chat_room

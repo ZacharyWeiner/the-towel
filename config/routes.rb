@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :organizations do
+    resources :cohorts
+  end
   resources :profiles
   mount ActionCable.server => '/cable'
   namespace :admin do
@@ -28,7 +31,7 @@ Rails.application.routes.draw do
   end
   resources :photos
   resources :tracks do
-    get 'events/', to: 'events#index'
+    resources :events
   end
   resources :side_trips do
     get 'add/:id', to: 'side_trips#add_user', as: 'add_user'

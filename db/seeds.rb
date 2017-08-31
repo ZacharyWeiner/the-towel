@@ -5,6 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+################################## Organization  #######################################
+remote_year = Organization.create!(name:'Remote Year', description: 'Reemote Year is ...')
+we_roam = Organization.create!(name:'We Roam', description: 'We Roam')
+################################## End Organization  #######################################
+
 ################################## Roles  #######################################
 puts 'Build Roles'
 site_admin = Role.create(title: 'site_admin')
@@ -16,27 +22,33 @@ puts 'End Build Roles'
 
 ################################## Cohorts #######################################
 puts 'Build Cohorts'
-nation = Cohort.create!(name: "Remote Nation", description:"That Nomad Life",)
-libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter", start_date:Date.parse('28-08-2016'), end_date: Date.parse('26-08-2017'))
+nation = Cohort.create!(name: "Remote Nation", description:"That Nomad Life", organization: remote_year)
+libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter",  organization: remote_year, start_date:Date.parse('28-08-2016'), end_date: Date.parse('26-08-2017'))
 
-meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer", start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
+meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
+
+we_roam_nation = Cohort.create!(name: "We Roam Nation", description:"We Roam All Year Round",  organization: we_roam, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
 puts 'End Build Cohorts'
 ################################## End Cohorts #######################################
 
 ################################## Users  #######################################
 puts 'Build Users'
-paulina = User.create!(email: "paulina@ry.com", password: 'password')
-westy = User.create!(email: "westy@ry.com", password: 'password')
-alexandra = User.create!(email: "alexandra@ry.com", password: 'password')
-coti = User.create!(email: "coti@ry.com", password: 'password')
-jo = User.create!(email: "jose@ry.com", password: 'password')
-zack = User.create!(email:'zack@ry.com', password: 'password')
-trabka = User.create!(email:'trabka@ry.com', password: 'password')
-andrea = User.create!(email:'andrea@ry.com', password: 'password')
-geordan = User.create!(email:'geordan@ry.com', password: 'password')
-gemma = User.create!(email:'gemma@ry.com', password: 'password')
-chech = User.create!(email:'chech@ry.com', password: 'password')
-alison = User.create!(email:'alison@ry.com', password: 'password')
+paulina = User.create!(email: "paulina@ry.com", password: 'password',  organization: remote_year)
+westy = User.create!(email: "westy@ry.com", password: 'password',  organization: remote_year)
+alexandra = User.create!(email: "alexandra@ry.com", password: 'password',  organization: remote_year)
+coti = User.create!(email: "coti@ry.com", password: 'password',  organization: remote_year)
+jo = User.create!(email: "jose@ry.com", password: 'password',  organization: remote_year)
+zack = User.create!(email:'zack@ry.com', password: 'password',  organization: remote_year)
+trabka = User.create!(email:'trabka@ry.com', password: 'password',  organization: remote_year)
+andrea = User.create!(email:'andrea@ry.com', password: 'password',  organization: remote_year)
+geordan = User.create!(email:'geordan@ry.com', password: 'password',  organization: remote_year)
+gemma = User.create!(email:'gemma@ry.com', password: 'password',  organization: remote_year)
+chech = User.create!(email:'chech@ry.com', password: 'password',  organization: remote_year)
+alison = User.create!(email:'alison@ry.com', password: 'password',  organization: remote_year)
+
+justin = User.create!(email:'justin@weroam.com', password: 'password',  organization: we_roam)
+patrick = User.create!(email:'patrick@weroam.com', password: 'password',  organization: we_roam)
+lilly = User.create!(email:'lilly@weroam.com', password: 'password',  organization: we_roam)
 
 westy.roles << cohort_admin
 alexandra.roles << cohort_admin
@@ -53,6 +65,12 @@ chech.roles << client
 alison.roles << client
 
 libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra]
+
+justin.roles << site_admin
+patrick.roles << cohort_admin
+lilly.roles << client
+
+we_roam_nation.users << [justin, patrick, lilly]
 puts 'End Build Users'
 ################################## End Users #######################################
 

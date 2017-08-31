@@ -88,6 +88,9 @@
     <% if @cohort %>
       <%= form.hidden_field :cohort_id, :value => @cohort.id%>
       <%end%>
+      <% if params[:track_id] %>
+      <%= form.hidden_field :track_id, :value => params[:track_id] %>
+      <%end%>
   </div>
   <!-- End Row -->
   <div class="actions">

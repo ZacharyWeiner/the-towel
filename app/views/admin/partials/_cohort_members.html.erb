@@ -1,4 +1,4 @@
-  <% User.all.each do |user| %>
+  <% User.where(organization_id: params[:organization_id]).each do |user| %>
     <div class='row'>
       <div class="col-md-8"><%= user.email %></div>
       <% if user.cohorts.include?(@cohort) %>

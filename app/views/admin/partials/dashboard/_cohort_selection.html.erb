@@ -1,1 +1,24 @@
-_cohort_selection.html.erb
+<div class="row">
+  <%= form_tag admin_dashboard_path, :method => 'get' do %>
+    <div class="field">
+     <% if @cohort.nil? %>
+        <% cohort = 0 %>
+      <% else %>
+        <% cohort = @cohort.id %>
+      <% end%>
+      <div class='row'>
+        <div class='col-md-9'>
+          <%= label_tag :cohort %>
+          </div>
+          <div class='col-md-3'>
+            <%= link_to "Add Cohort", new_organization_cohort_path(current_user.organization) %>
+          </div>
+      </div>
+      <%= select_tag 'cohort_id', options_for_select(
+        Cohort.where(organization: @organization).map {|o| [o.name, o.id]},
+      cohort),
+      {:multiple => false, class: 'form-control'}%>
+    </div>
+    <%= submit_tag "Manage", :name => nil %>
+  <% end %>
+</div>

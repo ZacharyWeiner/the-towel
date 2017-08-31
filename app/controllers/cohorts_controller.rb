@@ -31,14 +31,23 @@ class CohortsController < ApplicationController
   # POST /cohorts.json
   def create
     @cohort = Cohort.new(cohort_params)
+    if params[:organization_id]
+      org = Organization.find(params[:organization_id])
+      @cohort.organization = org
+    end
     respond_to do |format|
       if @cohort.save
         create_chat_room
         format.html { redirect_to @cohort, notice: 'Cohort was successfully created.' }
         format.json { render :show, status: :created, location: @cohort }
       else
+        if params[:cohort][:organization_id]
+          id = params[:cohort][:organization_id]
+          render "/organizations/#{id}/cohorts/new"
+        else
         format.html { render :new }
         format.json { render json: @cohort.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -91,7 +100,7 @@ class CohortsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cohort_params
-    params.require(:cohort).permit(:name, :description, :start_date, :end_date, :banner_image, :image)
+    params.require(:cohort).permit(:name, :description, :start_date, :end_date, :banner_image, :image, :organization_id)
   end
 
   def create_chat_room

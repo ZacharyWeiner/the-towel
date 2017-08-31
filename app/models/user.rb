@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :organization
   has_many :activities
   has_and_belongs_to_many :cohorts
   has_and_belongs_to_many :roles

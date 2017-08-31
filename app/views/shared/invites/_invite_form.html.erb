@@ -1,0 +1,17 @@
+<%= form_tag("/invites/new/#{current_user.id}", method: "post") do %>
+    <div class='form-group'>
+    <%= label_tag :invite_email_address %>
+    <%= text_field_tag :invite_email_address, nil, class: 'form-control' %>
+    </div>
+    <br/>
+    <% if @cohort %>
+       <%= hidden_field_tag :cohort_id, params[:cohort_id] %>
+    <% else %>
+     <%= label_tag :Group %>
+        <%= select_tag 'cohort_id', options_for_select(
+          current_user.cohorts.map {|c| [c.name, c.id]}),
+        {:multiple => false, class: 'form-control'}%>
+    <br/>
+    <% end %>
+    <%= submit_tag "Invite", class: 'btn btn-primary' %>
+  <% end %>

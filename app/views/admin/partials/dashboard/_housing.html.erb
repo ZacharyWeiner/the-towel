@@ -1,5 +1,14 @@
-<ul>
-<% current_user.current_cohort.schedule_items.each do |schedule_item|%>
-  <li><%= schedule_item.location.name %><%= link_to "Manage", admin_housing_location_path(schedule_item.location), class: 'btn btn-warning' %></li>
+<ul style="list-style: none;">
+<% @cohort.schedule_items.each do |schedule_item|%>
+  <li>
+    <div class='row' >
+      <div class='col-md-6'>
+        <%= schedule_item.location.name %>
+      </div>
+      <div class='col-md-6'>
+        <%= link_to "Manage", admin_housing_location_path(schedule_item.location), class: 'btn btn-warning' %>
+      </div>
+    </div>
+   </li>
 <% end %>
 </ul>

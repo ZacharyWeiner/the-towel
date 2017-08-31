@@ -7,8 +7,14 @@
     </span>
   </a>
   <ul class="treeview-menu">
-    <% current_user.cohorts.each do |cohort|%>
-      <li> <%= link_to "<i class='fa fa-circle-o'></i> #{cohort.name}".html_safe, cohort_path(cohort) %> </li>
+    <% if current_user.is_site_admin %>
+      <% current_user.organization.cohorts.each do |cohort|%>
+       <li> <%= link_to "<i class='fa fa-circle-o'></i> #{cohort.name}".html_safe, cohort_path(cohort) %> </li>
+       <% end %>
+    <% else %>
+      <% current_user.cohorts.each do |cohort|%>
+        <li> <%= link_to "<i class='fa fa-circle-o'></i> #{cohort.name}".html_safe, cohort_path(cohort) %> </li>
+      <% end %>
     <% end %>
   </ul>
 </li>

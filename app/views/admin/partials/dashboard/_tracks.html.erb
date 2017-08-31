@@ -1,7 +1,17 @@
-<ul>
-  <% current_user.current_cohort.tracks.each do |track| %>
+<ul style="list-style: none;">
+  <% @cohort.tracks.each do |track| %>
     <li>
-      <%= link_to "#{track.name}", edit_track_path(track) %>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= link_to "#{track.name}", edit_track_path(track) %>
+        </div>
+        <div class='col-md-3'>
+          <%= link_to "Manage Events", track_events_path(track), class: 'btn btn-warning' %>
+        </div>
+        <div class='col-md-3'>
+          <%= link_to "Add Event", new_track_event_path(track), class: 'btn btn-success' %>
+        </div>
+      </div>
     </li>
   <%end%>
 </ul>

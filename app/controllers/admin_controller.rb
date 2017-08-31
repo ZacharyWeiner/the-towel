@@ -5,7 +5,17 @@ class AdminController < ApplicationController
   end
 
   def dashboard
-    byebug
+    @organization = current_user.organization
+    @cohort = Cohort.where(organization: @organization).first
+    @events = []
+
+    if current_user.is_site_admin && params[:cohort_id]
+      @cohort = Cohort.find(params[:cohort_id])
+    elsif !current_user.is_site_admin
+      @cohort = current_user.current_cohort
+    end
+
+    @events = @cohort.events
   end
 
   def events

@@ -1,5 +1,5 @@
 <ul style="list-style: none;">
-  <% current_user.current_cohort.events.each do |event| %>
+  <% @events.each do |event| %>
     <li>
       <div class='row'>
         <%= event.title %>

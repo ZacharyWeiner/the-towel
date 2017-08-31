@@ -1,30 +1,52 @@
-<div class="jumbotron jumbotron-fluid">
+ <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3 text-center">Dashboard</h1>
+    <h1 class="display-3 text-center"><%= @organization.name %> Dashboard</h1>
+    <% if current_user.is_site_admin || (current_user.is_cohort_admin && current_user.cohorts.include?(@cohort)) %>
+      <%= link_to "Manage", edit_organization_cohort_path(@organization, @cohort)%>
+    <% end %>
     <p class="lead text-center">
     </p>
   </div>
 </div>
 
-<div class='container'>
+
+<div class=''>
+<% if current_user.is_site_admin %>
+  <div class='row'>
+    <div class='col-md-6'>
+       <%= render 'admin/partials/dashboard/cohort_selection' %>
+    </div>
+    <div class='col-md-6'>
+      <%= render 'shared/invites/invite_form' %>
+    </div>
+  </div>
+<% end %>
+
 <div class='row'>
-  <div class='col-md-6'>
-    <h6>Events</h6>
+  <div class='col-md-6' style='max-height: 300px; overflow: auto'>
+    <h6>Events (scroll list)</h6>
     <%= render 'admin/partials/dashboard/events'%>
   </div>
-   <div class='col-md-6'>
-    <h6>Housing</h6>
+  <div class='col-md-6' style='max-height: 300px; overflow: auto'>
+    <h6>Housing (scroll list)</h6>
      <%= render 'admin/partials/dashboard/housing'%>
    </div>
 </div>
 <div class='row'>
-  <div class='col-md-6'>
-    Travel Plans
+  <div class='col-md-6' style='max-height: 300px; overflow: auto'>
+    Travel Plans (scroll list)
     <%= render 'admin/partials/dashboard/travel_plans'%>
   </div>
   <div class='col-md-6'>
-    Tracks
-    <%= render 'admin/partials/dashboard/tracks'%>
+    <div class='row'>
+      <div class='col-md-6'>Tracks (scroll list)</div>
+      <div class='col-md-6'>
+        <%= link_to "Add Track", new_track_path %>
+      </div>
+    </div>
+    <div class='row' style='max-height: 300px; overflow: auto'>
+      <%= render 'admin/partials/dashboard/tracks'%>
+    </div>
   </div>
 </div>
 </div>
