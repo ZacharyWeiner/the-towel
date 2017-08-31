@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
-  get 'my-itinerary', to: "pages#my_itinerary"
+  get 'my-itinerary', to: "user_pages#my_itinerary"
 
   devise_for :users, controllers: { registrations: "registrations" }
   get 'users/:id', to: 'users#show', as: 'show_user'
