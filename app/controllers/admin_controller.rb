@@ -4,6 +4,10 @@ class AdminController < ApplicationController
   def cohorts
   end
 
+  def dashboard
+    byebug
+  end
+
   def events
     if params[:event_id]
       @event = Event.find(params[:event_id])
@@ -126,8 +130,8 @@ class AdminController < ApplicationController
 
   private
   def authenticate
-    authenticate_user!
-    unless current_user.is_in_role(Role.cohort_admin)
+    :authenticate_user!
+    unless current_user.is_admin
       redirect_to root_path
     end
   end

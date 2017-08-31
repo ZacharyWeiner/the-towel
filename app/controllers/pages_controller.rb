@@ -11,6 +11,8 @@ class PagesController < ApplicationController
 
     if current_user && current_user.is_in_role(Role.cohort_member)
       redirect_to cohort_path(current_user.cohorts.first)
+    elsif current_user && current_user.is_admin
+      redirect_to admin_dashboard_path
     end
   end
 

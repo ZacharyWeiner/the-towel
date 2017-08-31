@@ -19,6 +19,26 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_one :profile
 
+  def is_site_admin
+    self.is_in_role(Role.site_admin)
+  end
+
+  def is_city_admin
+    self.is_in_role(Role.city_admin)
+  end
+
+  def is_cohort_admin
+    self.is_in_role(Role.cohort_admin)
+  end
+
+  def is_admin
+    (self.is_in_role(Role.cohort_admin) || self.is_in_role(Role.city_admin) || self.is_in_role(Role.site_admin))
+  end
+
+  def is_cohort_member
+    self.is_in_role(Role.cohort_member)
+  end
+
   def waitlisted_events
     EventWaitlist.where(user: self).map{|ew| ew.event}
   end
