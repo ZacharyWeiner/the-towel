@@ -16,14 +16,18 @@
     <%= form.text_field :name, id: :location_name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :location_type %>
-    <%= form.text_field :location_type, id: :location_location_type %>
+    <%= form.select 'location_type', options_for_select(['Region', 'Country', 'City']), {},
+    {:multiple => false, class: 'form-control'}%>
   </div>
+
 
   <div class="field">
     <%= form.label :parent_id %>
-    <%= form.number_field :parent_id, id: :location_parent_id %>
+    <%= form.select 'parent_id', options_for_select(
+      Location.where.not(location_type: 'city').map {|l| [l.name, l.id]}), {},
+    {:multiple => false, class: 'form-control'}%>
   </div>
 
   <div class="actions">
