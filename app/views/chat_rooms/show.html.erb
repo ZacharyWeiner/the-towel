@@ -23,7 +23,7 @@
       <%= render @chat_room.messages %>
     </div>
     <div class='container'>
-      <%= form_for @message, url: '#' do |f| %>
+      <%= form_for @message, url: chat_room_message_path(@chat_room) do |f| %>
       <div class="form-group"'>
         <%= f.text_area :body, class: 'form-control', placeholder: 'Enter a Message From 2 to 1000 characters', rows: 4, style: 'margin-top:12px' %>
       </div>

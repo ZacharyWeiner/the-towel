@@ -101,6 +101,7 @@ Rails.application.routes.draw do
 
   resources :chat_rooms, only: [:new, :create, :show, :index] do
     get '/leave', to: 'chat_rooms#leave_room', as: 'leave_room'
+    post 'message', to: 'messages#create'
   end
 
 
