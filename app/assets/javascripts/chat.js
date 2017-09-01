@@ -17,9 +17,9 @@
 //= require jquery-ui
 //= require turbolinks
 //= require popper
-
-//= require bootstrap
 //= require cable
+//= require bootstrap
+
 
 
 $(document).ready(function() {
