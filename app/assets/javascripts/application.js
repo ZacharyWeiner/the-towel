@@ -15,11 +15,12 @@
 //= require jquery.turbolinks
 //= require rails-ujs
 //= require jquery-ui
+//= require cable
 //= require turbolinks
 //= require popper
 
 //= require bootstrap
-//= require cable
+
 
 
 $(document).ready(function() {
