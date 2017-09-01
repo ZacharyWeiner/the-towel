@@ -37,6 +37,7 @@ class SideTripsController < ApplicationController
     set_side_trip_cohort
     respond_to do |format|
       if @side_trip.save
+        @side_trip.users << current_user
         create_chat_room
         format.html { redirect_to @side_trip, notice: 'Side trip was successfully created.' }
         format.json { render :show, status: :created, location: @side_trip }
@@ -108,7 +109,6 @@ class SideTripsController < ApplicationController
         @side_trip.cohort_id = params[:cohort_id]
       else
         @side_trip.cohort_id = current_user.cohorts.first.id
-        byebug
         if @side_trip.cohort_id.nil?
           @side_trip.cohort_id = 1
         end
