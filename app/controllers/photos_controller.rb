@@ -52,7 +52,7 @@ class PhotosController < ApplicationController
           format.html { redirect_to @housing, notice: 'Photo was successfully created.' }
           format.json { render :show, status: :created, location: @photo }
         elsif params[:photo][:event_id]
-          format.html { redirect_to Event.find(params[:event_id]), notice: 'Photo was successfully created.' }
+          format.html { redirect_to Event.find(params[:photo][:event_id]), notice: 'Photo was successfully created.' }
           format.json { render :show, status: :created, location: @photo }
         elsif params[:photo][:user_id]
           format.html { redirect_to user_photos_path(@photo.user), notice: 'Photo was successfully created.' }
