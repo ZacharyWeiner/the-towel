@@ -13,4 +13,17 @@ class UserPagesController < ApplicationController
     current_user.events.each{ |event| @itinerary_items << event.create_itinerary_item}
     @itinerary_items = @itinerary_items.sort {|x,y| x.date  <=> y.date}
   end
+
+  def my_events
+    @events = current_user.events
+    @waitlist = current_user.waitlisted_events
+  end
+
+  def my_photos
+    redirect_to user_photos_path(current_user)
+  end
+
+  def my_sidetrips
+    @sidetrips = current_user.side_trips
+  end
 end

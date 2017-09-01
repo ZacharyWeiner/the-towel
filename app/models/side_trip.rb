@@ -20,12 +20,16 @@ class SideTrip < ApplicationRecord
   def create_itinerary_item
     locations = ""
     self.locations.each{|l| locations << "#{l.name} "}
+    timezone = ""
+    unless self.locations.first.nil?
+      timezone = "#{self.locations.first.name}/#{self.locations.first.parent.parent.name}"
+    end
     ItineraryItem.new(date: self.start_date,
                       location: locations,
                       title: self.title,
                       description: self.description,
                       link: Rails.application.routes.url_helpers.side_trip_path(self.id),
-                      timezone: "#{self.locations.first.name}/#{self.locations.first.parent.parent.name}")
+                      timezone: timezone)
   end
 end
 

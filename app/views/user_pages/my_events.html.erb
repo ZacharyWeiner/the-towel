@@ -1,0 +1,61 @@
+<div class='row'>
+  <div class='col-md-6'>
+  <h2> My Events </h2>
+    <ul>
+      <% @events.each do |event| %>
+        <li class='list-group-item list-group-item-action'>
+          <div class='row'>
+            <h5> <%= event.title %> || <%= event.location.name %> </h5>
+          </div>
+          <div class='row'>
+            <small><%= event.date.to_time.strftime('%a %b %e %Y') %></small>
+            <% unless event.start_time.nil? %>
+               <small><%= event.start_time.to_formatted_s(:time)  %></small>
+            <% end %>
+          </div>
+           <div class='row'>
+            <div class='col-md-9'>
+              <h6> <%= event.description %> </h6>
+            </div>
+            <div class='col-md-3'>
+              <%= link_to "Details", event_path(event), class: 'btn btn-primary' %>
+              <br/><br/>
+
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class='col-md-6'>
+  <h2> On Waitlist </h2>
+    <ul>
+      <% @waitlist.each do |event| %>
+        <li class='list-group-item list-group-item-action'>
+          <div class='row'>
+            <h5> <%= event.title %> || <%= event.location.name %> </h5>
+          </div>
+          <div class='row'>
+            <small><%= event.date.to_time.strftime('%a %b %e %Y') %></small>
+            <% unless event.start_time.nil? %>
+               <small><%= event.start_time.to_formatted_s(:time)  %></small>
+            <% end %>
+          </div>
+           <div class='row'>
+            <div class='col-md-9'>
+              <h6> <%= event.description %> </h6>
+            </div>
+            <div class='col-md-3'>
+              <%= link_to "Details", event_path(event), class: 'btn btn-primary' %>
+              <br/><br/>
+
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+</div>
+
+

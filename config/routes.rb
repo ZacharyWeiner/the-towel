@@ -71,6 +71,9 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
   get 'my-itinerary', to: "user_pages#my_itinerary"
+  get 'my-events', to: "user_pages#my_events"
+  get 'my-photos', to: "user_pages#my_photos"
+  get 'my-sidetrips', to: "user_pages#my_sidetrips"
 
   devise_for :users, :skip => [:registrations]
   as :user do
