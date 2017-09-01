@@ -57,6 +57,8 @@ gem 'redis', '~> 3.2'
 #Stripe & Payments
 gem 'stripe'
 
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
+
 gem 'rails_12factor', group: :production
 
 # Use Capistrano for deployment
