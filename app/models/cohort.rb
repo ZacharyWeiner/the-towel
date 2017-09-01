@@ -15,4 +15,15 @@ class Cohort < ApplicationRecord
   def main_chat
     self.chat_rooms.where(title: self.name).first
   end
+
+  def admins
+    role = Role.where(title: Role.site_admin).first
+    response = []
+    role.users.each do |user|
+      if user.cohorts.include?(self)
+        response << user
+      end
+    end
+    response
+  end
 end

@@ -72,7 +72,15 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   get 'my-itinerary', to: "user_pages#my_itinerary"
 
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, :skip => [:registrations]
+  as :user do
+  # Registrations
+  get   '/signup'   => 'devise/registrations#new', as: :new_user_registration
+  post  '/signup'   => 'devise/registrations#create', as: :user_registration
+
+  end
+  get '/account', to: 'pages#account'
+
   get 'users/:id', to: 'users#show', as: 'show_user'
   get 'users/:user_id/photos', to: 'photos#index', as: 'user_photos'
   get 'users/:user_id/photos/new', to: 'photos#new', as: 'new_user_photo'

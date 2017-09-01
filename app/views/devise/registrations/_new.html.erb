@@ -21,7 +21,10 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
+  <% if params[:cohort] %>
+    <% @organization = Cohort.find(params[:cohort]).organization %>
+    <%= f.hidden_field :organization_id, :value => @organization.id %>
+  <% end %>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

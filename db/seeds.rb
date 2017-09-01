@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ################################## Organization  #######################################
+digital_nomads =Organization.create!(name:'Digital Nomads', description: 'Being a digital nomad is ... ')
 remote_year = Organization.create!(name:'Remote Year', description: 'Reemote Year is ...')
 we_roam = Organization.create!(name:'We Roam', description: 'We Roam')
 ################################## End Organization  #######################################
@@ -22,6 +23,7 @@ puts 'End Build Roles'
 
 ################################## Cohorts #######################################
 puts 'Build Cohorts'
+nomad_nation = Cohort.create(name: "Nomad Nation", description:"We Dem DigiNoms", organization: digital_nomads)
 nation = Cohort.create!(name: "Remote Nation", description:"That Nomad Life", organization: remote_year)
 libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter",  organization: remote_year, start_date:Date.parse('28-08-2016'), end_date: Date.parse('26-08-2017'))
 
@@ -33,6 +35,10 @@ puts 'End Build Cohorts'
 
 ################################## Users  #######################################
 puts 'Build Users'
+nomad_admin = User.create(email: "digi@nom.com", password: 'password',  organization: digital_nomads)
+nomad_admin.roles << site_admin
+
+
 paulina = User.create!(email: "paulina@ry.com", password: 'password',  organization: remote_year)
 westy = User.create!(email: "westy@ry.com", password: 'password',  organization: remote_year)
 alexandra = User.create!(email: "alexandra@ry.com", password: 'password',  organization: remote_year)
@@ -71,6 +77,8 @@ patrick.roles << cohort_admin
 lilly.roles << client
 
 we_roam_nation.users << [justin, patrick, lilly]
+
+nomad_nation.users << nomad_admin
 puts 'End Build Users'
 ################################## End Users #######################################
 

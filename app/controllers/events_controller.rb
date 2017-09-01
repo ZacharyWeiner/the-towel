@@ -16,6 +16,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event_comment = EventComment.new
+    if @event.cost.nil?
+      @event.cost = 0
+    end
     if @event.chat_room.nil?
       create_chat_room
     end
@@ -40,6 +43,9 @@ class EventsController < ApplicationController
   def create
 
     @event = Event.new(event_params)
+    if @event.cost == nil?
+      @event.cost = 0
+    end
     if params[:event][:track_id]
       @track = Track.find(params[:event][:track_id])
       @cohort = @track.cohort

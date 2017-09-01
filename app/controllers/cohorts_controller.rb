@@ -107,7 +107,8 @@ class CohortsController < ApplicationController
     if @cohort.chat_rooms.count == 0
       @chat_room = ChatRoom.where(title: @cohort.name).first
       unless @chat_room
-        @chat_room = ChatRoom.create(title: @cohort.name, owner: current_user)
+        admins = current_user.current_cohort.admins
+        @chat_room = ChatRoom.create(title: @cohort.name, owner: admins.first)
       end
       @cohort.chat_rooms << @chat_room
     end
