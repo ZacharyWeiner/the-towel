@@ -11,6 +11,8 @@ Rails.application.config.assets.precompile += %w( application_back.css )
 Rails.application.config.assets.precompile += %w( application_back.js )
 Rails.application.config.assets.precompile += %w( chat.css )
 Rails.application.config.assets.precompile += %w( chat.js )
+Rails.application.config.assets.precompile += %w( jquery.js )
+Rails.application.config.assets.precompile += %w( jquery_ujs.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
