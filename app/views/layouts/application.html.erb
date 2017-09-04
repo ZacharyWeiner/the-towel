@@ -17,4 +17,18 @@
     <%= render 'shared/nav/main_nav'%>
     <%= yield %>
   </body>
+
+  <script type="text/javascript">
+    document.addEventListener("turbolinks:load", function() {
+      alert('excuting jquery');
+      App.messages = App.cable.subscriptions.create('MessagesChannel', {
+        connected: function (data){
+          alert('connected')
+        },
+        received: function(data) {
+        location.reload()
+        }
+      });
+    });
+  </script>
 </html>
