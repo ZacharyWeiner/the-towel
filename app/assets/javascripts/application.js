@@ -32,6 +32,6 @@ $(document).ready(function() {
     },
     received: function(data) {
     location.reload()
-    },
+    }
   }
 });
