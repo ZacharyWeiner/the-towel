@@ -19,20 +19,7 @@
   </body>
 
   <script type="text/javascript">
-    $(document).ready(function() {
-      (function() {
-        this.App || (this.App = {});
-        App.cable = ActionCable.createConsumer();
-      }).call(this);
-      alert('excuting jquery');
-      App.messages = App.cable.subscriptions.create('MessagesChannel', {
-        connected: function (data){
-          alert('connected')
-        },
-        received: function(data) {
-        location.reload()
-        }
-      });
-    });
+
+
   </script>
 </html>

@@ -15,9 +15,9 @@
 //= require jquery-ui
 //= require popper
 //= require bootstrap
-//= require_tree ./channels
 //= require turbolinks
 //= require turbolinks-compatibility
+//= require_tree ./channels
 
 if (typeof jQuery === "undefined") {
   throw new Error("AdminLTE requires jQuery");
