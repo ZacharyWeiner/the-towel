@@ -10,7 +10,7 @@ class CohortsController < ApplicationController
   # GET /cohorts/1
   # GET /cohorts/1.json
   def show
-    authenticate_user!
+    :authenticate_user!
     @post = Post.new
     @posts = Post.where(cohort: @cohort).order(created_at: :desc)
     if @cohort.chat_rooms.count == 0
@@ -107,8 +107,13 @@ class CohortsController < ApplicationController
     if @cohort.chat_rooms.count == 0
       @chat_room = ChatRoom.where(title: @cohort.name).first
       unless @chat_room
-        admins = current_user.current_cohort.admins
-        @chat_room = ChatRoom.create(title: @cohort.name, owner: admins.first)
+        if current_user.current_cohort
+          admins = current_user.current_cohort.admins
+          @chat_room = ChatRoom.create(title: @cohort.name, owner: admins.first)
+        else
+          admin = @cohort.admins
+          @chat_room = ChatRoom.create(title: @cohort.name, owner: admin.first)
+        end
       end
       @cohort.chat_rooms << @chat_room
     end

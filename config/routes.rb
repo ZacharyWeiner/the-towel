@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :organizations do
     resources :cohorts
   end
+  resources :conversations do
+    resources :mails
+  end
   resources :profiles
   mount ActionCable.server => '/cable'
   namespace :admin do

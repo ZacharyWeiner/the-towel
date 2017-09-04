@@ -20,6 +20,20 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_one :profile
 
+  def new_messages
+    @conversations = Conversation.where(sender_id: self.id).or(Conversation.where(recipient_id: self.id))
+    @new_messages = []
+    @conversations.each do |convo|
+      last_msg = convo.mails.where.not(user_id: self.id).last
+      unless last_msg.nil?
+        if last_msg.read == false
+          @new_messages << convo.mails.where.not(user_id: self.id).last
+        end
+      end
+    end
+    @new_messages
+  end
+
   def is_site_admin
     self.is_in_role(Role.site_admin)
   end
