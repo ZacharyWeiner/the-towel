@@ -19,9 +19,6 @@
     <%= render 'chat_rooms/partials/my_chat_rooms' %>
   </div>
   <div class="col-md-9">
-    <div id="messages" data-chat-room-id="<%= @chat_room.id %>">
-      <%= render @chat_room.messages %>
-    </div>
     <div class='container'>
       <%= form_for @message, url: chat_room_message_path(@chat_room) do |f| %>
       <div class="form-group"'>
@@ -30,7 +27,9 @@
       <%= f.submit "Post", id:'new_message', class: 'btn btn-primary btn-lg' %>
     <% end %>
     </div>
-
+    <div id="messages" data-chat-room-id="<%= @chat_room.id %>">
+      <%= render @chat_room.messages.reverse %>
+    </div>
   </div>
 </div>
 
