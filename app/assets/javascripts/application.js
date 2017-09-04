@@ -26,12 +26,17 @@ if (typeof jQuery === "undefined") {
 
 
 $(document).ready(function() {
-  App.messages = App.cable.subscriptions.create('MessagesChannel', {
-    connected: function (data){
-      alert('connected')
-    },
-    received: function(data) {
-    location.reload()
+  App.messages = App.cable.subscriptions.create(
+  'MessagesChannel',
+    {
+      connected: function (data)
+      {
+        alert('connected')
+      },
+      received: function(data)
+      {
+      location.reload()
+      }
     }
-  }
+  });
 });
