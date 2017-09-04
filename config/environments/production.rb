@@ -91,5 +91,5 @@ Rails.application.configure do
 
   config.action_cable.allowed_request_origins = ['https://the-towel.herokuapp.com',
                                                'http://the-towel.herokuapp.com']
-  config.action_cable.url = "wss://the-towel.herokuapp.com/cable"
+  config.web_socket_server_url  = "wss://the-towel.herokuapp.com/cable"
 end
