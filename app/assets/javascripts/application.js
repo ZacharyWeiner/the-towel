@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require bootstrap-sprockets
-//= require jquery3
-//= require jquery.turbolinks
 //= require rails-ujs
 //= require jquery-ui
 //= require popper
@@ -20,10 +18,13 @@
 //= require_tree ./channels
 //= require turbolinks
 
-
+if (typeof jQuery === "undefined") {
+  throw new Error("AdminLTE requires jQuery");
+}
 
 
 
 
 $(document).ready(function() {
+
 });
