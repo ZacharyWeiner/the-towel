@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require_tree ./channels
 //= require turbolinks
+//= require turbolinks-compatibility
 
 if (typeof jQuery === "undefined") {
   throw new Error("AdminLTE requires jQuery");
