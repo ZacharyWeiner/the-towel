@@ -88,8 +88,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
+  config.web_socket_server_url  = "wss://the-towel.herokuapp.com/cable"
   config.action_cable.allowed_request_origins = ['https://the-towel.herokuapp.com',
                                                'http://the-towel.herokuapp.com']
-  config.web_socket_server_url  = "wss://the-towel.herokuapp.com/cable"
+
 end
