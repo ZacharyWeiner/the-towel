@@ -26,6 +26,7 @@ if (typeof jQuery === "undefined") {
 
 
 $(document).ready(function() {
+  alert('excuting jquery');
   App.messages = App.cable.subscriptions.create('MessagesChannel', {
     connected: function (data){
       alert('connected')
