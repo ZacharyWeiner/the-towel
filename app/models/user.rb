@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :photos
   has_many :announcements
   has_many :user_announcements
+  has_many :notifications
   has_and_belongs_to_many :chat_rooms, dependent: :destroy
   has_and_belongs_to_many :housings
   has_many :messages, dependent: :destroy
@@ -37,7 +38,11 @@ class User < ApplicationRecord
   end
 
   def new_announcements
-    UserAnnouncement.where(user: current_user, read: false )
+    UserAnnouncement.where(user: self, read: false )
+  end
+
+  def new_notifications
+    Notification.where(user: self, read: false)
   end
 
   def is_site_admin

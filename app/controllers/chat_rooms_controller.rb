@@ -21,8 +21,13 @@ class ChatRoomsController < ApplicationController
   def show
     @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
     @message = Message.new
-    unless current_user.chat_rooms.include?(@chat_room)
+    unless @chat_room.users.include?(current_user)
       current_user.chat_rooms << @chat_room
+    end
+    notification = Notification.where(notification_type: "Chat", notification_obeject_id: @chat_room.id, user: current_user).first
+    unless notification.nil?
+      notification.read = true
+      notification.save
     end
   end
 
