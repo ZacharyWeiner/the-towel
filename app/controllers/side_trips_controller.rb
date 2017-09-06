@@ -39,6 +39,7 @@ class SideTripsController < ApplicationController
       if @side_trip.save
         @side_trip.users << current_user
         create_chat_room
+        send_notifications
         format.html { redirect_to @side_trip, notice: 'Side trip was successfully created.' }
         format.json { render :show, status: :created, location: @side_trip }
       else
@@ -119,5 +120,14 @@ class SideTripsController < ApplicationController
       @chat_room = ChatRoom.create!(title: "ST- #{@side_trip.title}", owner:current_user)
       @side_trip.chat_room = @chat_room
       @side_trip.save
+    end
+
+    def send_notifications
+      if @cohort.nil?
+        @cohort = Cohort.find(params[:side_trip][:cohort_id])
+      end
+      @cohort.users.each do |user|
+        notification = Notification.create!(user: user, notification_type: "Side Trip", notification_obeject_id: @side_trip.id)
+      end
     end
 end

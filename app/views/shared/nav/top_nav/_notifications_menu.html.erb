@@ -18,6 +18,12 @@
               <%= link_to chat_room  do %>
                 <%= chat_room.title %> Has A New Message
               <% end %>
+            <% elsif notification.notification_type == "Event" %>
+              <% event = Event.find(notification.notification_obeject_id)%>
+              <% cohort = Cohort.find(event.cohort.id) %>
+              <%= link_to event_path(event) do %>
+                <%= event.title %> was created in <%= event.cohort.name%>
+              <% end %>
             <% end %>
           </li>
         <% end %>

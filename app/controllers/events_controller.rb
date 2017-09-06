@@ -22,6 +22,11 @@ class EventsController < ApplicationController
     if @event.chat_room.nil?
       create_chat_room
     end
+    notification = Notification.where(user: current_user, notification_type: "Event", notification_obeject_id: @event.id).first
+    if notification.read == false
+      notification.read = true
+      notification.save
+    end
   end
 
   # GET /events/new
@@ -41,7 +46,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-
     @event = Event.new(event_params)
     if @event.cost == nil?
       @event.cost = 0
@@ -53,6 +57,7 @@ class EventsController < ApplicationController
     end
     respond_to do |format|
       if @event.save
+        send_notifications
         create_chat_room
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
@@ -102,5 +107,14 @@ class EventsController < ApplicationController
     @chat_room = ChatRoom.create!(title: @event.title, owner: current_user)
     @event.chat_room = @chat_room
     @event.save
+  end
+
+  def send_notifications
+    if @cohort.nil?
+      @cohort = Cohort.find(params[:event][:cohort_id])
+    end
+    @cohort.users.each do |user|
+      notification = Notification.create!(user: user, notification_type: "Event", notification_obeject_id: @event.id)
+    end
   end
 end
