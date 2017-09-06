@@ -8,7 +8,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.where(cohort: @cohort)
+    @announcements = Announcement.where(cohort: @cohort).order(created_at: :desc)
   end
 
   # GET /announcements/1

@@ -1,10 +1,14 @@
 
-<%= link_to 'New Announcement', new_cohort_announcement_path, class: 'btn btn-primary' %>
+<% if (current_user.is_site_admin || current_user.is_cohort_admin || current_user.is_city_admin)%>
+  <%= link_to 'New Announcement', new_cohort_announcement_path, class: 'btn btn-primary' %>
+<% end %>
 <% @announcements.each do |announcement| %>
-  <div class='row'>
-    <%= announcement.title %>
-    <br>
-    <%= announcement.content %>
+  <div style="padding:12px">
+    <div class='row rounded' style='background-color: white'>
+      <h4><%= announcement.title %></h4>
+      <br>
+      <%= announcement.content %>
+    </div>
   </div>
 <% end %>
 
