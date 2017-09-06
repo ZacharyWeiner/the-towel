@@ -35,6 +35,9 @@
     <%= form.label :is_public %>
     <%= form.check_box :is_public, id: :side_trip_is_public %>
   </div>
+  <div class="field">
+    <%= form.hidden_field :cohort_id, :value => params[:cohort_id] %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

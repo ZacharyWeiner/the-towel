@@ -43,7 +43,7 @@ class SideTripsController < ApplicationController
         format.html { redirect_to @side_trip, notice: 'Side trip was successfully created.' }
         format.json { render :show, status: :created, location: @side_trip }
       else
-        format.html { render :new }
+        format.html { redirect_to new_cohort_side_trip_path(@cohort) }
         format.json { render json: @side_trip.errors, status: :unprocessable_entity }
       end
     end
@@ -106,8 +106,9 @@ class SideTripsController < ApplicationController
     end
 
     def set_side_trip_cohort
-      if params[:cohort_id]
-        @side_trip.cohort_id = params[:cohort_id]
+      byebug
+      if params[:side_trip][:cohort_id]
+        @side_trip.cohort_id = params[:side_trip][:cohort_id]
       else
         @side_trip.cohort_id = current_user.cohorts.first.id
         if @side_trip.cohort_id.nil?
@@ -123,6 +124,7 @@ class SideTripsController < ApplicationController
     end
 
     def send_notifications
+      byebug
       if @cohort.nil?
         @cohort = Cohort.find(params[:side_trip][:cohort_id])
       end

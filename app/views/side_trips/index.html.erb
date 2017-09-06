@@ -31,5 +31,8 @@
 </table>
 
 <br>
-
+<% if params[:cohort_id]%>
+<%= link_to 'New Side Trip', new_cohort_side_trip_path %>
+<% else %>
 <%= link_to 'New Side Trip', new_side_trip_path %>
+<% end %>

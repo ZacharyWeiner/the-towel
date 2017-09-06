@@ -72,6 +72,7 @@ Rails.application.routes.draw do
     get 'photos', to: 'photos#index', as: 'list_photos'
     resources :schedule_items
     resources :announcements
+    resources :side_trips
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'
