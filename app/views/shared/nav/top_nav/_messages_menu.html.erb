@@ -14,7 +14,7 @@
       <ul class="menu">
         <% @new_messages.each do |message | %>
           <li><!-- start message -->
-            <%= link_to conversation_mails_path(message.conversation, message) do%>
+            <%= link_to conversation_emails_path(message.conversation, message) do%>
               <div class="pull-left">
                 <%= image_tag message.user.gravitar_url%>
               </div>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :cohorts
   end
   resources :conversations do
-    resources :mails
+    resources :emails
   end
   resources :profiles
   mount ActionCable.server => '/cable'

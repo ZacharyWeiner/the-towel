@@ -27,10 +27,10 @@ class User < ApplicationRecord
     @conversations = Conversation.where(sender_id: self.id).or(Conversation.where(recipient_id: self.id))
     @new_messages = []
     @conversations.each do |convo|
-      last_msg = convo.mails.where.not(user_id: self.id).last
+      last_msg = convo.emails.where.not(user_id: self.id).last
       unless last_msg.nil?
         if last_msg.read == false
-          @new_messages << convo.mails.where.not(user_id: self.id).last
+          @new_messages << convo.emails.where.not(user_id: self.id).last
         end
       end
     end

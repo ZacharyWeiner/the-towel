@@ -1,6 +1,6 @@
-class CreateMails < ActiveRecord::Migration[5.1]
+class CreateEmails < ActiveRecord::Migration[5.1]
   def change
-    create_table :mails do |t|
+    create_table :emails do |t|
       t.text :body
      t.references :conversation, index: true
      t.references :user, index: true

@@ -107,6 +107,17 @@ ActiveRecord::Schema.define(version: 20170906150634) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "emails", force: :cascade do |t|
+    t.text "body"
+    t.bigint "conversation_id"
+    t.bigint "user_id"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_emails_on_conversation_id"
+    t.index ["user_id"], name: "index_emails_on_user_id"
+  end
+
   create_table "event_comments", force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "cohort_id"
@@ -276,17 +287,6 @@ ActiveRecord::Schema.define(version: 20170906150634) do
     t.index ["side_trip_id"], name: "index_lodgings_side_trips_on_side_trip_id"
   end
 
-  create_table "mails", force: :cascade do |t|
-    t.text "body"
-    t.bigint "conversation_id"
-    t.bigint "user_id"
-    t.boolean "read", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["conversation_id"], name: "index_mails_on_conversation_id"
-    t.index ["user_id"], name: "index_mails_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id"
@@ -301,7 +301,7 @@ ActiveRecord::Schema.define(version: 20170906150634) do
     t.bigint "user_id"
     t.string "notification_type"
     t.bigint "notification_obeject_id"
-    t.boolean "read"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
@@ -524,7 +524,7 @@ ActiveRecord::Schema.define(version: 20170906150634) do
   create_table "user_announcements", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "cohort_id"
-    t.boolean "read", default: true
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "announcement_id"

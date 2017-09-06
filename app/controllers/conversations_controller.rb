@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create!(conversation_params)
     end
-    redirect_to conversation_mails_path(@conversation)
+    redirect_to conversation_emails_path(@conversation)
   end
 private
  def conversation_params

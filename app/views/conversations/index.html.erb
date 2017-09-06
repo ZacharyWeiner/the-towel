@@ -10,7 +10,7 @@
       <% else %>
         <% recipient = User.find(conversation.sender_id) %>
       <% end %>
-      <%= link_to recipient.email,   conversation_mails_path(conversation)%>
+      <%= link_to recipient.email,   conversation_emails_path(conversation)%>
      <% end %>
     </div>
   <% end %>

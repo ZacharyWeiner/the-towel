@@ -2,7 +2,7 @@
  <%= link_to 'Show Previous', '?m=all' %>
 <% end %>
 <div class=”ui segment”>
- <% @mails.each do |mail| %>
+ <% @emails.each do |mail| %>
   <% if mail.body %>
    <% user = User.find(mail.user_id) %>
    <div class=”item”>
@@ -19,7 +19,7 @@
  <% end %>
 <% end %>
 </div>
-<%= form_for [@conversation, @mail], html: {class: "ui reply form"} do |f| %>
+<%= form_for [@conversation, @email], html: {class: "ui reply form"} do |f| %>
  <div class="field">
    <%= f.text_area :body, class: "form-control" %>
  </div>
