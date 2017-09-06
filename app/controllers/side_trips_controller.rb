@@ -18,6 +18,11 @@ class SideTripsController < ApplicationController
     if @side_trip.chat_room.nil?
       create_chat_room
     end
+    notification = Notification.where(user: current_user, notification_obeject_id: @side_trip.id, notification_type: "Side Trip").first
+    if notification.read == false
+      notification.read = true
+      notification.save
+    end
   end
 
   # GET /side_trips/new

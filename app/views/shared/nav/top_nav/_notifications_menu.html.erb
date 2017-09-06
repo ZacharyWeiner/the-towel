@@ -20,9 +20,14 @@
               <% end %>
             <% elsif notification.notification_type == "Event" %>
               <% event = Event.find(notification.notification_obeject_id)%>
-              <% cohort = Cohort.find(event.cohort.id) %>
               <%= link_to event_path(event) do %>
                 <%= event.title %> was created in <%= event.cohort.name%>
+              <% end %>
+            <% elsif notification.notification_type == "Side Trip" %>
+              <% side_trip = SideTrip.find(notification.notification_obeject_id)%>
+              <% cohort = Cohort.find(side_trip.cohort.id) %>
+              <%= link_to cohort_side_trip_path(cohort, side_trip) do %>
+                New Side Trip in <%= side_trip.cohort.name%>
               <% end %>
             <% end %>
           </li>
