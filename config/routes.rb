@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   get 'my-events', to: "user_pages#my_events"
   get 'my-photos', to: "user_pages#my_photos"
   get 'my-sidetrips', to: "user_pages#my_sidetrips"
+  get 'my-housings', to: "user_pages#my_housings"
 
   devise_for :users, :skip => [:registrations]
   as :user do

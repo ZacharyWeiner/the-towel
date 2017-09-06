@@ -1,0 +1,12 @@
+<% @housings.each do |housing|%>
+  <div class='row'>
+    <h4> <%= housing.location.name %> </h4>
+    <br>
+    Full Address: <br>
+    <%= housing.full_address %>
+    <% maps_base = "https://www.google.com.ar/maps/place/"%>
+    <% formatted_address = housing.full_address.sub!(" ", "+")%>
+    <% maps_address = maps_base + formatted_address %>
+    <%= link_to "View Map", maps_address, target: "_blank" %>
+  </div>
+<% end %>

@@ -26,4 +26,8 @@ class UserPagesController < ApplicationController
   def my_sidetrips
     @sidetrips = current_user.side_trips
   end
+
+  def my_housings
+    @housings = current_user.housings
+  end
 end
