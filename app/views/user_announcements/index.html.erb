@@ -1,0 +1,7 @@
+<% current_user.user_announcements.each do |ua| %>
+  <div class="row" style="padding:12px; background-color: white">
+    <h4><%= ua.announcement.title %></h4>
+    <br>
+    <%= auto_html(ua.announcement.content.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+  </div>
+<% end %>

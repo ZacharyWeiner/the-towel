@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :events, through: :event_rsvps
   has_many :photos
   has_many :announcements
+  has_many :user_announcements
   has_and_belongs_to_many :chat_rooms, dependent: :destroy
   has_and_belongs_to_many :housings
   has_many :messages, dependent: :destroy
@@ -33,6 +34,10 @@ class User < ApplicationRecord
       end
     end
     @new_messages
+  end
+
+  def new_announcements
+    UserAnnouncement.where(user: current_user, read: false )
   end
 
   def is_site_admin

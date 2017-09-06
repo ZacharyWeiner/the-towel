@@ -5,9 +5,9 @@
 <% @announcements.each do |announcement| %>
   <div style="padding:12px">
     <div class='row rounded' style='background-color: white'>
-      <h4><%= announcement.title %></h4>
+      <h4><%= announcement.title %></h4> <%= announcement.cohort.name %>
       <br>
-      <%= announcement.content %>
+      <%= auto_html(announcement.content.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
     </div>
   </div>
 <% end %>

@@ -9,6 +9,13 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.json
   def index
     @announcements = Announcement.where(cohort: @cohort).order(created_at: :desc)
+    @announcements.each do |announcement|
+      user_announcement = announcement.user_announcements.where(user: current_user, announcement: announcement).first
+      unless user_announcement.nil?
+        user_announcement.read = true
+        user_announcement.save
+      end
+    end
   end
 
   # GET /announcements/1
@@ -33,6 +40,9 @@ class AnnouncementsController < ApplicationController
     @announcement.cohort = @cohort
     respond_to do |format|
       if @announcement.save
+        @cohort.users.each do |user|
+          user_announcement = UserAnnouncement.create!(user: user, cohort:@cohort, announcement:@announcement, read: false)
+        end
         format.html { redirect_to @cohort, notice: 'Announcement was successfully created.' }
         format.json { render :show, status: :created, location: @announcement }
       else

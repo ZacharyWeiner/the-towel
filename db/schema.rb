@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906132930) do
+ActiveRecord::Schema.define(version: 20170906141736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -511,6 +511,18 @@ ActiveRecord::Schema.define(version: 20170906132930) do
     t.index ["departure_location_id"], name: "index_transits_on_departure_location_id"
   end
 
+  create_table "user_announcements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cohort_id"
+    t.boolean "read", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "announcement_id"
+    t.index ["announcement_id"], name: "index_user_announcements_on_announcement_id"
+    t.index ["cohort_id"], name: "index_user_announcements_on_cohort_id"
+    t.index ["user_id"], name: "index_user_announcements_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -609,4 +621,7 @@ ActiveRecord::Schema.define(version: 20170906132930) do
   add_foreign_key "tracks_users", "tracks"
   add_foreign_key "tracks_users", "users"
   add_foreign_key "transits", "companies"
+  add_foreign_key "user_announcements", "announcements"
+  add_foreign_key "user_announcements", "cohorts"
+  add_foreign_key "user_announcements", "users"
 end
