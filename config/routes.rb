@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :announcements
+
   resources :organizations do
     resources :cohorts
   end
@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     resources :transits
     get 'photos', to: 'photos#index', as: 'list_photos'
     resources :schedule_items
+    resources :announcements
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'

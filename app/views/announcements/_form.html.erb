@@ -1,4 +1,4 @@
-<%= form_with(model: announcement, local: true) do |form| %>
+<%= form_with(model: @announcement, local: true, url: cohort_announcements_path) do |form| %>
   <% if announcement.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
@@ -10,27 +10,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :announcement_title %>
+    <%= form.text_field :title, id: :announcement_title, class: 'form-control' %>
   </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :announcement_user_id %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :content %>
-    <%= form.text_area :content, id: :announcement_content %>
+    <%= form.text_area :content, id: :announcement_content, class: 'form-control' %>
   </div>
-
-  <div class="field">
-    <%= form.label :cohort_id %>
-    <%= form.text_field :cohort_id, id: :announcement_cohort_id %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>

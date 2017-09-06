@@ -71,7 +71,7 @@ chech.roles << client
 alison.roles << client
 
 libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra]
-
+nation.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra, jo, coti, paulina]
 justin.roles << site_admin
 patrick.roles << cohort_admin
 lilly.roles << client

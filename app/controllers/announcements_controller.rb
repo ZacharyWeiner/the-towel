@@ -1,10 +1,14 @@
 class AnnouncementsController < ApplicationController
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
+  before_action :set_cohort
+  before_action :check_role, only: [:new, :edit, :create, :update, :destroy]
 
+
+  layout 'admin'
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.all
+    @announcements = Announcement.where(cohort: @cohort)
   end
 
   # GET /announcements/1
@@ -25,10 +29,11 @@ class AnnouncementsController < ApplicationController
   # POST /announcements.json
   def create
     @announcement = Announcement.new(announcement_params)
-
+    @announcement.user = current_user
+    @announcement.cohort = @cohort
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to @announcement, notice: 'Announcement was successfully created.' }
+        format.html { redirect_to @cohort, notice: 'Announcement was successfully created.' }
         format.json { render :show, status: :created, location: @announcement }
       else
         format.html { render :new }
@@ -65,6 +70,16 @@ class AnnouncementsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_announcement
       @announcement = Announcement.find(params[:id])
+    end
+
+    def set_cohort
+      @cohort = Cohort.find(params[:cohort_id])
+    end
+
+    def check_role
+      unless (current_user.is_site_admin || current_user.is_cohort_admin || current_user.is_city_admin)
+        redirect_to @cohort
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

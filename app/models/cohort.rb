@@ -11,6 +11,7 @@ class Cohort < ApplicationRecord
   has_many :photos
   has_many :schedule_items
   has_many :tracks
+  has_many :announcements
 
   def main_chat
     self.chat_rooms.where(title: self.name).first

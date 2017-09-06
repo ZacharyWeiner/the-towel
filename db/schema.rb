@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904211929) do
+ActiveRecord::Schema.define(version: 20170906132930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20170904211929) do
     t.integer "cohort_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.text "content"
+    t.bigint "cohort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cohort_id"], name: "index_announcements_on_cohort_id"
+    t.index ["user_id"], name: "index_announcements_on_user_id"
   end
 
   create_table "chat_rooms", force: :cascade do |t|
@@ -518,6 +529,8 @@ ActiveRecord::Schema.define(version: 20170904211929) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "announcements", "cohorts"
+  add_foreign_key "announcements", "users"
   add_foreign_key "chat_rooms", "users"
   add_foreign_key "chat_rooms_cohorts", "chat_rooms"
   add_foreign_key "chat_rooms_cohorts", "cohorts"
