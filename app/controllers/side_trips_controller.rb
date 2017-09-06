@@ -106,7 +106,6 @@ class SideTripsController < ApplicationController
     end
 
     def set_side_trip_cohort
-      byebug
       if params[:side_trip][:cohort_id]
         @side_trip.cohort_id = params[:side_trip][:cohort_id]
       else
@@ -124,7 +123,6 @@ class SideTripsController < ApplicationController
     end
 
     def send_notifications
-      byebug
       if @cohort.nil?
         @cohort = Cohort.find(params[:side_trip][:cohort_id])
       end
