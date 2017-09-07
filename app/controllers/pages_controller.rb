@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-
+  layout 'solidstate'
   def home
 
     #Manage off the street sign ups
