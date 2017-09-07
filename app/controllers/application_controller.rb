@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  layout 'application'
+  layout :layout_by_resource
 
   def resource_name
     :user
@@ -23,4 +23,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :display_name, :profile_image,  :password, :tag_list, :organization_id])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :display_name, :profile_image,  :password,  :current_password, :tag_list])
   end
+
+  private def layout_by_resource
+    if devise_controller?
+      'layouts/devise'
+    else
+      'application'
+    end
+  end
 end
+
