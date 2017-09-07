@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create, :sent]
-  layout 'application'
+  layout 'devise'
   def invite
     vars = request.query_parameters
     @invited_cohort = vars[:cohort]
