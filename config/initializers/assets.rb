@@ -14,6 +14,8 @@ Rails.application.config.assets.precompile += %w( chat.js )
 Rails.application.config.assets.precompile += %w( jquery.js )
 Rails.application.config.assets.precompile += %w( jquery_ujs.js )
 Rails.application.config.assets.precompile += %w( jquery_init.js )
+Rails.application.config.assets.precompile += %w( solidstate.css )
+Rails.application.config.assets.precompile += %w( solidstate.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
