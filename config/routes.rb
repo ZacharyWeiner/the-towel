@@ -83,7 +83,7 @@ Rails.application.routes.draw do
   get 'my-sidetrips', to: "user_pages#my_sidetrips"
   get 'my-housings', to: "user_pages#my_housings"
 
-  devise_for :users, :skip => [:registrations]
+  devise_for :users, :skip => [:registrations], :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   as :user do
   # Registrations
   get   '/signup'   => 'devise/registrations#new', as: :new_user_registration

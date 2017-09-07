@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 #For users
 gem 'devise'
+gem 'omniauth-facebook'
 
 #For Image Upload
 gem 'carrierwave', '~> 1.0'
