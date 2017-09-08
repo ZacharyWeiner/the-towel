@@ -104,6 +104,18 @@ class User < ApplicationRecord
     self.is_in_role(Role.cohort_member)
   end
 
+  def my_itinerary
+    itinerary_items = []
+    @cohort = self.current_cohort
+    @cohort.transits.each { |t| itinerary_items << t.create_itinerary_item}
+    self.side_trips.each{ |st| itinerary_items << st.create_itinerary_item}
+    self.side_trips.each do | side_trip|
+      side_trip.transits.each{ |t| itinerary_items << t.create_itinerary_item}
+    end
+    self.events.each{ |event| itinerary_items << event.create_itinerary_item}
+    return  itinerary_items.sort {|x,y| x.date  <=> y.date}
+  end
+
   def waitlisted_events
     EventWaitlist.where(user: self).map{|ew| ew.event}
   end
