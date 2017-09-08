@@ -1,30 +1,39 @@
-<% if @over_ten %>
- <%= link_to 'Show Previous', '?m=all' %>
-<% end %>
-<div class=”ui segment”>
- <% @emails.each do |mail| %>
-  <% if mail.body %>
-   <% user = User.find(mail.user_id) %>
-   <div class=”item”>
-    <div class=”content”>
-     <div class=”header”><strong><%= user.email %></strong>     <%= mail.mail_time %></div>
-      <div class=”list”>
-       <div class=”item”>
-        <i class=”right triangle icon”></i>
-         <%= mail.body %>
-      </div>
+<div class="box box-primary direct-chat direct-chat-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Direct Chat <%= @email.conversation.sender.safe_name %> &amp; <%= @email.conversation.recipient.safe_name %></h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <%= form_for [@conversation, @email], html: {class: "ui reply form"} do |f| %>
+     <div class="field">
+       <%= f.text_area :body, class: "form-control" %>
+     </div>
+     <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+     <div>
+       <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
+     </div>
+    <% end %>
+    <!-- Conversations are loaded here -->
+    <div class="direct-chat-messages">
+      <% @emails.reverse.each do |message| %>
+        <% unless message.user.nil? %>
+          <% puts "Xxxxxxxxxxxxxxxxxxxxxxxx #{message.user_id} Xxxxxxxxxxxxxxxxxxxxxxxx"%>
+          <!-- Message. Default to the left -->
+          <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+              <span class="direct-chat-name pull-left"><%= message.user.safe_name%></span>
+              <span class="direct-chat-timestamp pull-right"><%= message.created_at %></span>
+            </div>
+            <!-- /.direct-chat-info -->
+            <img class="direct-chat-img" src="<%= message.user.gravitar_url%>" alt="Message User Image"><!-- /.direct-chat-img -->
+            <div class="direct-chat-text">
+              <%= message.body%>
+            </div>
+            <!-- /.direct-chat-text -->
+          </div>
+          <!-- /.direct-chat-msg -->
+        <% end %>
+      <% end %>
     </div>
-   </div>
- </div>
- <% end %>
-<% end %>
+  </div>
 </div>
-<%= form_for [@conversation, @email], html: {class: "ui reply form"} do |f| %>
- <div class="field">
-   <%= f.text_area :body, class: "form-control" %>
- </div>
- <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
- <div>
-   <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
- </div>
-<% end %>

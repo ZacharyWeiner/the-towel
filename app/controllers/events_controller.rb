@@ -23,7 +23,7 @@ class EventsController < ApplicationController
       create_chat_room
     end
     notification = Notification.where(user: current_user, notification_type: "Event", notification_obeject_id: @event.id).first
-    if notification.read == false
+    if notification.nil? == false && notification.read == false
       notification.read = true
       notification.save
     end

@@ -1,4 +1,5 @@
-<%= form_with(model: @post, local: true) do |form| %>
+<div class="box box-info row">
+<%= form_with(model: @post, local: true, class: 'form-horizontal') do |form| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -25,15 +26,15 @@
     <% end %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group" style='padding:24px'>
     <div class='row'>
-      <div class='col-md-11'>
-        <%= form.text_area :content, id: :post_content, placeholder: 'add post', class: 'form-control' %>
+      <div class='col-md-10'>
+        <%= form.text_area :content, id: :post_content, placeholder: 'add post', class: 'form-control', rows: 4 %>
       </div>
-      <div class='col-md-1'>
+      <div class='col-md-2'>
         <%= form.fields_for :photo do |photo_form| %>
           <div class="field">
-            <label class='fa fa-camera fa-2x' style='vertical-align: middle;'>
+            <label class='fa fa-camera fa-2x' style='vertical-align: middle; '>
               <%= photo_form.file_field :picture, id: :picture, style: 'display:none;' %>
             </label>
           </div>
@@ -48,3 +49,5 @@
     <%= form.submit class: 'btn btn-primary btn-block' %>
   </div>
 <% end %>
+</div>
+

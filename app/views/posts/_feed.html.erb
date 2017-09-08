@@ -1,18 +1,24 @@
 <div class='row' style='background-color: white'>
   <% @posts.each do |post| %>
-    <div class="post" style='padding-top:12px;'>
-      <div class="user-block">
-        <img class="img-circle img-bordered-sm" src="<%= post.user.gravitar_url %>" alt="user image">
-            <span class="username">
-              <%= link_to "#{post.user.email}", show_user_path(post.user) %>
-            </span>
-        <span class="description"><%= time_ago_in_words(post.created_at) %> ago</span>
-      </div>
-      <!-- /.user-block -->
-      <div style='padding-left:12px'>
-       <%= auto_html(post.content.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
-      </div>
+    <div class="post">
+    <div class="user-block text-left">
+      <img class="img-circle img-bordered-sm" src="<%= post.user.gravitar_url %>" alt="user image">
+          <span class="username">
+            <%= link_to show_user_path(post.user) do %>
+              <%= post.user.safe_name%>
+              <% end %>
+            <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+          </span>
+      <span class="description">Posted To: <%= post.posted_to%> - <%= time_ago_in_words(post.created_at) %> ago</span>
     </div>
+    <!-- /.user-block -->
+    <div class='text-left' style='padding-left:12px'>
+       <%= auto_html(post.content.html_safe){ image(:width => '100%'); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+      </div>
+      <% unless post.photos.first.nil? %>
+        <%= image_tag post.photos.first.picture, style: 'width:100%' %>
+       <% end %>
+  </div>
   <% end %>
 </div>
 
