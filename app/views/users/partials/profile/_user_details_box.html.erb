@@ -4,8 +4,10 @@
 
       <h3 class="profile-username text-center"><%= current_user.safe_name%></h3>
 
-      <p class="text-muted text-center">Software Engineer</p>
-
+      <p class="text-muted text-center"><%= current_user.profile.job_title %></p>
+      <% if @user.id == current_user.id %>
+       <%= link_to "Edit Profile", edit_profile_path(@user.profile), class: 'btn btn-primary btn-block' %>
+      <%end%>
       <ul class="list-group list-group-unbordered">
         <li class="list-group-item">
           <b>Followers</b> <a class="pull-right">1,322</a>
