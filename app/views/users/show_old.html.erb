@@ -1,0 +1,31 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3 text-center"><%= @user.profile.display_name %> Profile Page </h1>
+    <% cohort = @user.cohorts.where.not(id: 1).first %>
+    <p class="lead text-center">
+    <%= link_to "#{cohort.name}", cohort_path(cohort), class: 'btn btn-primary' %> </p>
+  </div>
+</div>
+<div class='container'>
+
+<div class='row'>
+  <% if @user.id == current_user.id %>
+  <%= link_to "Edit Profile", edit_profile_path(@user.profile), class: 'btn btn-primary' %>
+  <%end%>
+  <%= link_to "My Photos", user_photos_path(@user), class: 'btn btn-primary' %>
+</div>
+
+
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= image_tag @user.gravitar_url %>
+      <%= render 'users/partials/skills_display' %>
+    </div>
+    <div class='col-md-6'>
+      <%= render 'users/partials/profile_details' %>
+    </div>
+    <div class='col-md-3'>
+      <%= render 'users/partials/contact_details' %>
+    </div>
+  </div>
+</div>

@@ -46,6 +46,14 @@ class User < ApplicationRecord
     end
   end
 
+  def safe_name
+    if self.profile.nil? || self.profile.display_name.nil?
+      self.email
+    else
+      self.profile.display_name
+    end
+  end
+
   def new_messages
     @conversations = Conversation.where(sender_id: self.id).or(Conversation.where(recipient_id: self.id))
     @new_messages = []
