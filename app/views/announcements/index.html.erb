@@ -1,5 +1,5 @@
 
-<% if (current_user.is_site_admin || current_user.is_cohort_admin || current_user.is_city_admin)%>
+<% if (current_user.is_org_admin || current_user.is_cohort_admin || current_user.is_city_admin)%>
   <%= link_to 'New Announcement', new_cohort_announcement_path, class: 'btn btn-primary' %>
 <% end %>
 <% @announcements.each do |announcement| %>

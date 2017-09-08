@@ -68,8 +68,16 @@ class User < ApplicationRecord
     Notification.where(user: self, read: false)
   end
 
+  def is_super_admin
+    self.is_in_role(Role.super_admin)
+  end
+
   def is_site_admin
     self.is_in_role(Role.site_admin)
+  end
+
+  def is_org_admin
+    self.is_in_role(Role.org_admin)
   end
 
   def is_city_admin
@@ -81,7 +89,7 @@ class User < ApplicationRecord
   end
 
   def is_admin
-    (self.is_in_role(Role.cohort_admin) || self.is_in_role(Role.city_admin) || self.is_in_role(Role.site_admin))
+    (self.is_in_role(Role.cohort_admin) || self.is_in_role(Role.city_admin) || self.is_in_role(Role.org_admin) ||self.is_in_role(Role.site_admin) || self.is_in_role(Role.super_admin))
   end
 
   def is_cohort_member

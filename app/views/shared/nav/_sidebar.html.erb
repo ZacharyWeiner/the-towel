@@ -26,7 +26,7 @@
     <li class="header"><%= t('admin.sidebar.main_navigation') %></li>
       <%= render 'shared/nav/sidebar/main_nav' %>
       <% unless current_user.nil?%>
-        <% if current_user.is_in_role('site_admin') || current_user.is_in_role('cohort_admin') || current_user.is_in_role('city_admin')%>
+        <% if current_user.is_admin %>
           <li class="header"><%= t('admin.sidebar.administration') %></li>
           <%= render 'shared/nav/sidebar/admin_nav' %>
         <% end %>

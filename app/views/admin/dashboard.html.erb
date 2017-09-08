@@ -1,7 +1,7 @@
  <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-3 text-center"><%= @organization.name %> Dashboard</h1>
-    <% if current_user.is_site_admin || (current_user.is_cohort_admin && current_user.cohorts.include?(@cohort)) %>
+    <% if current_user.is_org_admin || (current_user.is_cohort_admin && current_user.cohorts.include?(@cohort)) %>
       <%= link_to "Manage", edit_organization_cohort_path(@organization, @cohort)%>
     <% end %>
     <p class="lead text-center">
@@ -11,7 +11,7 @@
 
 
 <div class=''>
-<% if current_user.is_site_admin %>
+<% if current_user.is_org_admin || current_user.is_cohort_admin %>
   <div class='row'>
     <div class='col-md-6'>
        <%= render 'admin/partials/dashboard/cohort_selection' %>

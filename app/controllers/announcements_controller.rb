@@ -87,7 +87,7 @@ class AnnouncementsController < ApplicationController
     end
 
     def check_role
-      unless (current_user.is_site_admin || current_user.is_cohort_admin || current_user.is_city_admin)
+      unless (current_user.is_org_admin || current_user.is_cohort_admin || current_user.is_city_admin)
         redirect_to @cohort
       end
     end

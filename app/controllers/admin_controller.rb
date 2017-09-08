@@ -9,9 +9,9 @@ class AdminController < ApplicationController
     @cohort = Cohort.where(organization: @organization).first
     @events = []
 
-    if current_user.is_site_admin && params[:cohort_id]
+    if current_user.is_org_admin && params[:cohort_id]
       @cohort = Cohort.find(params[:cohort_id])
-    elsif !current_user.is_site_admin
+    elsif !current_user.is_org_admin
       @cohort = current_user.current_cohort
     end
 

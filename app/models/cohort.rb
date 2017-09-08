@@ -18,7 +18,7 @@ class Cohort < ApplicationRecord
   end
 
   def admins
-    role = Role.where(title: Role.site_admin).first
+    role = Role.where(title: Role.org_admin).first
     response = []
     role.users.each do |user|
       if user.cohorts.include?(self)

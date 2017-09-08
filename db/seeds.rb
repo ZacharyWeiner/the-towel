@@ -14,7 +14,9 @@ we_roam = Organization.create!(name:'We Roam', description: 'We Roam')
 
 ################################## Roles  #######################################
 puts 'Build Roles'
+super_admin = Role.create(title: 'super_admin')
 site_admin = Role.create(title: 'site_admin')
+org_admin = Role.create(title: 'organization_admin')
 cohort_admin = Role.create(title: 'cohort_admin')
 city_admin = Role.create(title: 'city_admin')
 client = Role.create(title: 'cohort_member')
@@ -35,8 +37,11 @@ puts 'End Build Cohorts'
 
 ################################## Users  #######################################
 puts 'Build Users'
+
+super_admin_user = User.create(email: "super_admin@the-towel.com", password: 'password',  organization: digital_nomads)
+site_admin_user = User.create(email: "site_admin@the-towel.com", password: 'password',  organization: digital_nomads)
 nomad_admin = User.create(email: "digi@nom.com", password: 'password',  organization: digital_nomads)
-nomad_admin.roles << site_admin
+nomad_admin.roles << org_admin
 
 
 paulina = User.create!(email: "paulina@ry.com", password: 'password',  organization: remote_year)
@@ -56,11 +61,14 @@ justin = User.create!(email:'justin@weroam.com', password: 'password',  organiza
 patrick = User.create!(email:'patrick@weroam.com', password: 'password',  organization: we_roam)
 lilly = User.create!(email:'lilly@weroam.com', password: 'password',  organization: we_roam)
 
+super_admin_user.roles << super_admin
+site_admin_user.roles << site_admin
+
 westy.roles << cohort_admin
 alexandra.roles << cohort_admin
 jo.roles << city_admin
 coti.roles << city_admin
-paulina.roles << site_admin
+paulina.roles << org_admin
 
 zack.roles << client
 trabka.roles << client
@@ -72,7 +80,7 @@ alison.roles << client
 
 libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra]
 nation.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra, jo, coti, paulina]
-justin.roles << site_admin
+justin.roles << org_admin
 patrick.roles << cohort_admin
 lilly.roles << client
 
