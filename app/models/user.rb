@@ -152,6 +152,11 @@ class User < ApplicationRecord
 
   def current_cohort_city
     transits = self.current_cohort.transits.where("date <= ?", Date.today).order("date DESC").limit(1)
+    if transits.first .nil?
+      "Somewhere"
+    else
+      transits.first.location.name
+    end
   end
 
   def skills

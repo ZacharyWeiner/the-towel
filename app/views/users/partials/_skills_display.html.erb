@@ -1,5 +1,9 @@
-<ul>
+<strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+<% if @user == current_user%>
+<%= link_to "Edit", user_skills_path(@user), class: 'pull-right'%>
+<% end %>
+<p>
   <% @user.skills.each do |skill| %>
-    <li><%= skill.name %></li>
+     <span class="label label-success"><%= skill.name %></span>
   <% end %>
-</ul>
+</p>

@@ -1,0 +1,28 @@
+<div class="box-header with-border">
+  <h3 class="box-title">About Me</h3>
+</div>
+<!-- /.box-header -->
+<div class="box-body">
+  <strong><i class="fa fa-book margin-r-5"></i> Bio</strong>
+
+  <p class="text-muted">
+    <%= @user.profile.bio %>
+  </p>
+
+  <hr>
+
+  <strong><i class="fa fa-map-marker margin-r-5"></i> Hometown</strong>
+
+  <p class="text-muted"><%= @user.profile.hometown %></p>
+
+  <hr>
+
+  <%= render 'users/partials/skills_display' %>
+
+  <hr>
+
+  <!-- <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p> -->
+</div>
+<!-- /.box-body -->

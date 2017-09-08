@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :skills]
   layout 'admin'
   def show
     if @user.profile.nil?
@@ -33,7 +33,10 @@ class UsersController < ApplicationController
   end
 
   def skills
-
+    if editable
+    else
+      redirect_to show_user_path(@user)
+    end
   end
 
   def update_skills
@@ -51,6 +54,14 @@ class UsersController < ApplicationController
   def set_user
     if (params[:id])
       @user = User.find(params[:id])
+    end
+  end
+
+  def editable
+    if current_user != @user
+      return false
+    else
+      return true
     end
   end
 end

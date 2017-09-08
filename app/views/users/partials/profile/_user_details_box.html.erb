@@ -2,25 +2,25 @@
     <div class="box-body box-profile">
       <img class="profile-user-img img-responsive img-circle" src="<%= @user.gravitar_url%>" alt="User profile picture">
 
-      <h3 class="profile-username text-center"><%= current_user.safe_name%></h3>
+      <h3 class="profile-username text-center"><%= @user.safe_name%></h3>
 
-      <p class="text-muted text-center"><%= current_user.profile.job_title %></p>
-      <% if @user.id == current_user.id %>
-       <%= link_to "Edit Profile", edit_profile_path(@user.profile), class: 'btn btn-primary btn-block' %>
-      <%end%>
+      <p class="text-muted text-center"><%= @user.profile.job_title %></p>
+
       <ul class="list-group list-group-unbordered">
         <li class="list-group-item">
-          <b>Followers</b> <a class="pull-right">1,322</a>
+          <b>Org:</b> <%= @user.current_cohort.organization.name %>
         </li>
         <li class="list-group-item">
-          <b>Following</b> <a class="pull-right">543</a>
+          <b>Cohort: </b> <%= @user.current_cohort.name %>
         </li>
         <li class="list-group-item">
-          <b>Friends</b> <a class="pull-right">13,287</a>
+          <b>Current City:</b><%= @user.current_cohort_city%>
         </li>
       </ul>
+      <% if @user.id ==  current_user.id %>
+       <%= link_to "Edit Profile", edit_profile_path(@user.profile), class: 'btn btn-primary btn-block' %>
+      <%end%>
 
-      <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
     </div>
     <!-- /.box-body -->
   </div>

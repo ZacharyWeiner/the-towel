@@ -15,4 +15,14 @@ class Post < ApplicationRecord
     link :target => "_blank", :rel => "nofollow"
     simple_format
   end
+
+  def posted_to
+    if self.side_trip.nil? == false
+      self.side_trip.title
+    elsif self.event.nil? == false
+      self.event.title
+    else
+      self.cohort.name
+    end
+  end
 end
