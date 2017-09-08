@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contact Submissions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Message</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contact_submissions.each do |contact_submission| %>
+      <tr>
+        <td><%= contact_submission.name %></td>
+        <td><%= contact_submission.email %></td>
+        <td><%= contact_submission.message %></td>
+        <td><%= link_to 'Show', contact_submission %></td>
+        <td><%= link_to 'Edit', edit_contact_submission_path(contact_submission) %></td>
+        <td><%= link_to 'Destroy', contact_submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contact Submission', new_contact_submission_path %>

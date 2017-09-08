@@ -39,8 +39,11 @@
 
 
  -->
- <div class='text-center'>
- <%= link_to  user_facebook_omniauth_authorize_path do %>
-     Login with <i class='fa fa-facebook fa-2x'> </i>acebook
-    <% end%>
+ <div class='row text-center bold'>To Get Started:</div>
+ <br><br>
+<div class='row'>
+  <%= link_to  (user_facebook_omniauth_authorize_path), class: 'btn btn-block btn-social btn-facebook' do %>
+   <i class="fa fa-facebook"></i>
+   Login with Facebook
+  <% end%>
 </div>

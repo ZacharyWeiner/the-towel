@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   layout 'solidstate'
   def home
-
+    @contact_submission = ContactSubmission.new
     #Manage off the street sign ups
     if current_user && current_user.organization_id = 1 && current_user.cohorts.count == 0
       current_user.cohorts << current_user.organization.cohorts.first

@@ -33,9 +33,12 @@
     <% end %>
   </div>
   <div class='col-md-6'>
-    <%= link_to  user_facebook_omniauth_authorize_path do %>
-     Sign In with <i class='fa fa-facebook fa-2x'> </i>acebook
-    <% end%>
+    <div class='row'>
+      <%= link_to  (user_facebook_omniauth_authorize_path), class: 'btn btn-block btn-social btn-facebook' do %>
+       <i class="fa fa-facebook"></i>
+       Login with Facebook
+      <% end%>
+    </div>
   </div>
 </div>
 

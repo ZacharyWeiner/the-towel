@@ -1,0 +1,34 @@
+<%= form_with(model: @contact_submission, local: true) do |form| %>
+  <% if @contact_submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact_submission.errors.count, "error") %> prohibited this @contact_submission from being saved:</h2>
+
+      <ul>
+      <% @contact_submission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :contact_submission_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :contact_submission_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_area :message, id: :contact_submission_message %>
+  </div>
+
+  <ul class="actions">
+    <%= form.submit "Send Message"%>
+  </ul>
+<% end %>
+
+

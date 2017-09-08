@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact_submissions/message_thank_you', to: 'contact_submissions#message_thank_you'
+  resources :contact_submissions
 
   resources :user_announcements
   resources :organizations do
