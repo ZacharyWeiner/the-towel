@@ -1,12 +1,36 @@
-<ul style="list-style: none;">
-  <% @events.each do |event| %>
-    <li>
-      <div class='row'>
-        <%= event.title %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Events</h3>
       </div>
-      <div class='row'>
-       <%= link_to "Manage",  event_admin_path(event), class: 'btn btn-warning' %>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody><tr>
+            <th>Title</th>
+            <th>Capacity</th>
+            <th>Date</th>
+            <th>RSVP Count</th>
+            <th>Manage</th>
+          </tr>
+          <% @events.each do |event| %>
+            <tr>
+              <td><%= event.title %></td>
+              <td><%= event.capacity %></td>
+              <td>
+                <% unless event.start_time.nil? %>
+                  <%= event.date.to_time.strftime('%b %d `%y') %>
+                <% end %>
+              </td>
+              <td><%= event.event_rsvps.count %></td>
+              <td><%= link_to "Manage",  event_admin_path(event)%></td>
+            </tr>
+          <% end %>
+        </tbody></table>
       </div>
-    </li>
-  <% end %>
-</ul>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

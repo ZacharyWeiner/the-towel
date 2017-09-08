@@ -1,26 +1,42 @@
-<ul>
-<% @itinerary_items.each  do |ii| %>
-  <li class='list-group-item list-group-item-action'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <%= ii.date.to_time.strftime('%a %b %e %Y') %>
-      <% unless ii.time.nil? %>
-         <%= ii.time.to_formatted_s(:time)  %>
-      <% end %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">My Itinerary</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody><tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>View</th>
+            <th>Add To Cal</th>
+          </tr>
+          <% @itinerary_items.each  do |ii| %>
+            <tr>
+              <td><%= ii.date.to_time.strftime('%a %b %e %Y') %></td>
+              <td>
+                <% unless ii.time.nil? %>
+                   <%= ii.time.to_formatted_s(:time)  %>
+                <% end %>
+              </td>
+              <td><%= ii.title %></td>
+              <td><%= ii.location %></td>
+              <td><%= link_to "View Details", ii.link, class: 'btn btn-primary' %></td>
+              <td><%= render 'shared/itinerary_item_add_to_cal', ii: ii %></td>
+            </tr>
+          <% end %>
+        </tbody></table>
+      </div>
+      <!-- /.box-body -->
     </div>
-    <div class='col-md-6'>
-      <h6> <%= ii.title %> || <%= ii.location %> </h6>
-      <h6> <%= ii.description %> </h6>
-    </div>
-    <div class='col-md-3'>
-      <%= link_to "View Details", ii.link, class: 'btn btn-primary' %>
-      <br/><br/>
-      <%= render 'shared/itinerary_item_add_to_cal', ii: ii %>
-    </div>
+    <!-- /.box -->
   </div>
-  </li>
-<% end %>
-<ul>
+</div>
+
 
 <script type="text/javascript">(function () {
             if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;

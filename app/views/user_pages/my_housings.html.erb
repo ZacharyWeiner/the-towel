@@ -1,12 +1,35 @@
-<% @housings.each do |housing|%>
-  <div class='row'>
-    <h4> <%= housing.location.name %> </h4>
-    <br>
-    Full Address: <br>
-    <%= housing.full_address %>
-    <% maps_base = "https://www.google.com.ar/maps/place/"%>
-    <% formatted_address = housing.full_address.sub!(" ", "+")%>
-    <% maps_address = maps_base + formatted_address %>
-    <%= link_to "View Map", maps_address, target: "_blank" %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Housing</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody><tr>
+            <th>Location</th>
+            <th>Address</th>
+            <th>Show</th>
+            <th>Map</th>
+          </tr>
+          <% @housings.each do |housing|%>
+            <% maps_base = "https://www.google.com.ar/maps/place/"%>
+            <% formatted_address = housing.full_address.sub!(" ", "+")%>
+            <% maps_address = maps_base + formatted_address %>
+            <tr>
+              <td><%= housing.location.name %></td>
+              <td><%= housing.full_address %></td>
+              <td><%= link_to "Details", housing %></td>
+              <td><%= link_to "View Map", maps_address, target: "_blank" %></td>
+            </tr>
+          <% end %>
+        </tbody></table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
   </div>
-<% end %>
+</div>
+
+

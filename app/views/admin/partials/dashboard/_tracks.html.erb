@@ -1,17 +1,33 @@
-<ul style="list-style: none;">
-  <% @cohort.tracks.each do |track| %>
-    <li>
-      <div class='row'>
-        <div class='col-md-6'>
-          <%= link_to "#{track.name}", edit_track_path(track) %>
-        </div>
-        <div class='col-md-3'>
-          <%= link_to "Manage Events", track_events_path(track), class: 'btn btn-warning' %>
-        </div>
-        <div class='col-md-3'>
-          <%= link_to "Add Event", new_track_event_path(track), class: 'btn btn-success' %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Tracks</h3>
+        <div class="box-tools">
+          <div class="input-group input-group-sm" style="width: 150px;">
+            <%= link_to "Add Track", new_track_path, class: 'btn btn-success' %>
+          </div>
         </div>
       </div>
-    </li>
-  <%end%>
-</ul>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody><tr>
+            <th>Title</th>
+            <th>Manage</th>
+            <th>Add Event</th>
+          </tr>
+          <% @cohort.tracks.each do |track| %>
+            <tr>
+              <td><%= track.name %></td>
+              <td><%= link_to "Manage",  track_events_path(track)%></td>
+              <td><%= link_to "Add Event",  new_track_event_path(track)%></td>
+            </tr>
+          <% end %>
+        </tbody></table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

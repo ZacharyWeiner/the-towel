@@ -1,14 +1,32 @@
-<ul style="list-style: none;">
-<% @cohort.schedule_items.each do |schedule_item|%>
-  <li>
-    <div class='row' >
-      <div class='col-md-6'>
-        <%= schedule_item.location.name %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Housing</h3>
       </div>
-      <div class='col-md-6'>
-        <%= link_to "Manage", admin_housing_location_path(schedule_item.location), class: 'btn btn-warning' %>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody><tr>
+            <th>Location</th>
+            <th>Arrival</th>
+            <th>Departure</th>
+            <th>Manage</th>
+          </tr>
+          <% @cohort.schedule_items.each do |schedule_item|%>
+            <tr>
+              <td><%= schedule_item.location.name %></td>
+              <td><%= schedule_item.arrival_date.to_time.strftime('%b %d `%y') %></td>
+              <td>
+                  <%= schedule_item.departure_date.to_time.strftime('%b %d `%y') %>
+              </td>
+              <td><%= link_to "Manage",   admin_housing_location_path(schedule_item.location)%></td>
+            </tr>
+          <% end %>
+        </tbody></table>
       </div>
+      <!-- /.box-body -->
     </div>
-   </li>
-<% end %>
-</ul>
+    <!-- /.box -->
+  </div>
+</div>
