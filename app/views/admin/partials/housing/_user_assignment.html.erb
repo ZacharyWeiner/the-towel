@@ -21,6 +21,15 @@
           <% end %>
         </p>
         <hr>
+        <strong><i class="fa fa-pencil margin-r-5"></i> Assigned</strong>
+        <p>
+          <% @housing.users.each do |u|%>
+            <% if u.current_cohort == current_user.current_cohort %>
+              <span class="label label-success"><%= u.safe_name %></span>
+            <% end %>
+          <% end %>
+        </p>
+        <hr>
       </div>
     </div>
   </div>
