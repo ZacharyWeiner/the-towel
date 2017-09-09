@@ -1,91 +1,47 @@
 <div class='row'>
   <div class='col-md-4'>
-    <%= render 'housings/partials/image_gallery' %>
-    <%= @housing.name %>
-    <br><br>
-    <%= "#{@housing.street_number} #{@housing.street_name}" %>
-    <br>
-    <%= "#{@housing.location.name}" %>
-    <h4> Housing Features </h4>
-    <% @housing.tags.each do |tag|%>
-      <div> <%= tag.name %> </div>
-    <% end %>
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title"><%= @housing.name %></h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <strong><i class="fa fa-book margin-r-5"></i> Street Address</strong>
+        <p class="text-muted">
+          <%= "#{@housing.street_number} #{@housing.street_name}" %>
+        </p>
+        <hr>
+        <strong><i class="fa fa-map-marker margin-r-5"></i> City</strong>
+        <p class="text-muted"><%= @housing.location.name %></p>
+        <hr>
+        <strong><i class="fa fa-pencil margin-r-5"></i> Features</strong>
+        <p>
+          <% @housing.tags.each do |tag|%>
+            <span class="label label-primary"><%= tag.name %></span>
+          <% end %>
+        </p>
+        <hr>
+        <strong><i class="fa fa-pencil margin-r-5"></i> Assigned</strong>
+        <p>
+          <% @housing.users.each do |u|%>
+            <% if u.current_cohort == current_user.current_cohort %>
+              <span class="label label-success"><%= u.safe_name %></span>
+            <% end %>
+          <% end %>
+        </p>
+        <hr>
+      </div>
+    </div>
   </div>
   <div class='col-md-8'>
-    <h4>Requested Roomates </h4>
-    <% @requested_roomates.each do |user| %>
-      <div>
-        <%= user.email %>
-        <% if user.housings.include?(@housing) %>
-          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
-        <% elsif user.has_housing_in_location(@housing.location)  %>
-          <%= link_to "Already Has Home",
-          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
-        <% else %>
-          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
-        <% end %>
-      </div>
-    <% end %>
-
-
-    <h4>Perfect Matches </h4>
-    <% @rank_hash[:three].each do |user| %>
-      <div>
-        <%= user.email %>
-        <% if user.housings.include?(@housing) %>
-          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
-        <% elsif user.has_housing_in_location(@housing.location)  %>
-          <%= link_to "Already Has Home",
-          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
-        <% else %>
-          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
-        <% end %>
-      </div>
-    <% end %>
-    <h4>Pretty Close </h4>
-    <% @rank_hash[:two].each do |user| %>
-      <div>
-        <%= user.email %>
-        <% if user.housings.include?(@housing) %>
-          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
-        <% elsif user.has_housing_in_location(@housing.location)  %>
-          <%= link_to "Already Has Home",
-          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
-        <% else %>
-          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
-        <% end %>
-      </div>
-    <% end %>
-
-    <h4>Not Soo Good</h4>
-    <% @rank_hash[:one].each do |user| %>
-      <div>
-        <%= user.email %>
-        <% if user.housings.include?(@housing) %>
-          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
-        <% elsif user.has_housing_in_location(@housing.location)  %>
-          <%= link_to "Already Has Home",
-          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
-        <% else %>
-          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
-        <% end %>
-      </div>
-    <% end %>
-    <% @rank_hash[:zero].each do |user| %>
-      <div>
-        <%= user.email %>
-        <% if user.housings.include?(@housing) %>
-          <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
-        <% elsif user.has_housing_in_location(@housing.location)  %>
-          <%= link_to "Already Has Home",
-          "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
-        <% else %>
-          <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render 'admin/partials/housing/requested_roomates'%>
+    <%= render 'admin/partials/housing/perfect_match'%>
+    <%= render 'admin/partials/housing/pretty_close_matches'%>
+    <%= render 'admin/partials/housing/poor_matches'%>
   </div>
 </div>
+
+
 
 
 

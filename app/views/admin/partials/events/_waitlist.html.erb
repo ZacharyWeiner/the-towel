@@ -1,6 +1,22 @@
-<h4> Waitlist </h4>
-<ul style="list-style: none;">
-  <% @event.waitlist.each do |user| %>
-    <li><%= user.email %> <%= link_to "Add To Event", upgrade_from_waitlist_path(@event, user), class: 'btn btn-success'  %> </li>
-  <% end %>
-</ul>
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Waitlist</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>Add </th>
+        </tr>
+        <% @event.waitlist.each do |user| %>
+          <tr>
+            <td><%= user.safe_name %></td>
+            <td><%= link_to "Add To Event", upgrade_from_waitlist_path(@event, user), class: 'btn btn-success'  %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

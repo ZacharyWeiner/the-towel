@@ -1,0 +1,37 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Close Match</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tbody>
+      <tr>
+        <th>Name</th>
+        <th>Tags</th>
+        <th>Assign</th>
+      </tr>
+      <% @rank_hash[:two].each do |user| %>
+      <tr>
+        <td><%= user.safe_name %></td>
+        <td>
+          <% user.housing_preferences.each do |pref| %>
+            <span class="label label-success"><%= pref.name %></span><br>
+          <% end %>
+        </td>
+        <td>
+          <% if user.housings.include?(@housing) %>
+            <%= link_to "Remove From Home", admin_housing_remove_user_path(@housing, user), class: 'btn btn-danger' %>
+          <% elsif user.has_housing_in_location(@housing.location)  %>
+            <%= link_to "Already Has Home", "#", class: 'btn btn-primary disabled' if @rooms_avialable %>
+          <% else %>
+            <%= link_to "Add To Home", admin_housing_add_user_path(@housing, user), class: 'btn btn-primary' if @rooms_avialable %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody></table>
+  </div>
+  <!-- /.box-body -->
+</div>
+

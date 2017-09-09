@@ -1,14 +1,30 @@
-<h4>Attendees</h4>
-<ul style="list-style: none;">
-  <% @event.users.each do |user| %>
-    <li>
-      <%= user.email %>
-      <% unless user.rsvpd_for_event(@event) %>
-        <%= link_to "Create RSVP", create_event_rsvp_path(@event, user), class:"btn btn-success", style:"" %>
-      <% else %>
-        <%= "Unpaid" if (user.event_rsvp(@event).is_paid != true) %>
-        <%= link_to 'Cancel RSVP', event_event_rsvp_path(@event, user.event_rsvp(@event)), { :method => :delete,  class: 'btn btn-warning'}%>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Attendees</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>Create/Cancel</th>
+          <th>Paid</th>
+        </tr>
+        <% @event.users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+
+            <% unless user.rsvpd_for_event(@event) %>
+              <td><%= link_to "Create RSVP", create_event_rsvp_path(@event, user), class:"btn btn-success", style:"" %></td>
+            <% else %>
+              <td><%= link_to 'Cancel RSVP', event_event_rsvp_path(@event, user.event_rsvp(@event)), { :method => :delete,  class: 'btn btn-warning'}%></td>
+              <td><%= "Unpaid" if (user.event_rsvp(@event).is_paid != true) %></td>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

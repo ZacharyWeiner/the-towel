@@ -182,6 +182,10 @@ class User < ApplicationRecord
     self.tags.where(tag_type: TagType.where(name: 'Interest'))
   end
 
+  def housing_preferences
+    self.tags.where(tag_type: TagType.where(name: 'Housing'))
+  end
+
   def clear_housing_tags
     @tags_to_destroy = self.tags.where(tag_type: TagType.where(name: 'Housing'))
     @tags_to_destroy.each do |tag|
