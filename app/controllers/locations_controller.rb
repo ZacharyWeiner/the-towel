@@ -14,7 +14,6 @@ class LocationsController < ApplicationController
       create_chat_room
     end
     @location_details = LocationDetail.where(location: @location).where(organization: current_user.organization).first
-    byebug
   end
 
   # GET /locations/new

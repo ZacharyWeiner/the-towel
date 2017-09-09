@@ -40,7 +40,6 @@ class User < ApplicationRecord
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        byebug
         user.email = data["email"] if user.email.blank?
       end
     end
@@ -165,7 +164,6 @@ class User < ApplicationRecord
   def current_cohort_city
     if self.current_cohort
       transits = self.current_cohort.schedule_items.where("arrival_date <= ?", Date.today).order("arrival_date DESC").limit(1)
-      byebug
       if transits.first.nil?
         "Somewhere"
       else
