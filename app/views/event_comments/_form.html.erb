@@ -4,8 +4,8 @@
   </div>
   <!-- /.box-header -->
   <!-- form start -->
-  <form class="form-horizontal">
-  <%= form_with(model: @event_comment, local: true, url: event_event_comments_path(@event, @event_comment)) do |form| %>
+
+  <%= form_with(model: @event_comment, local: true, url: event_event_comments_path(@event, @event_comment), class: "form-horizontal") do |form| %>
     <div class="box-body">
       <div class="form-group">
         <div style="padding:12px;">

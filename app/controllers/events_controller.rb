@@ -57,6 +57,9 @@ class EventsController < ApplicationController
     end
     respond_to do |format|
       if @event.save
+        unless @track.nil?
+          update_users
+        end
         send_notifications
         create_chat_room
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -107,6 +110,13 @@ class EventsController < ApplicationController
     @chat_room = ChatRoom.create!(title: @event.title, owner: current_user)
     @event.chat_room = @chat_room
     @event.save
+  end
+
+  def update_users
+    @event.users << @track.users
+    @track.users.each do |u|
+      u.events << @event
+    end
   end
 
   def send_notifications

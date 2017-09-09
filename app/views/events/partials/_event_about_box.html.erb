@@ -1,0 +1,29 @@
+<div class="box-header with-border">
+  <h3 class="box-title">$<%= @event.cost %></h3>
+</div>
+<!-- /.box-header -->
+<div class="box-body">
+  <strong><i class="fa fa-book margin-r-5"></i> Description</strong>
+
+  <p class="text-muted">
+    <%= @event.description %>
+  </p>
+
+  <hr>
+
+  <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+  <p class="text-muted"><%= @event.location.name %></p>
+
+  <hr>
+
+  <strong><i class="fa fa-group margin-r-5"></i> Capacity</strong>
+  <p class="text-muted"><%= @event.capacity %></p>
+
+  <hr>
+
+  <!-- <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p> -->
+</div>
+<!-- /.box-body -->

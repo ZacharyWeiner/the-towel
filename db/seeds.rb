@@ -278,6 +278,8 @@ undiscovered_kl_track.users << [andrea, trabka]
 undiscovered_kl_track_event_1 = Event.create!(title: "Hidden Gem Discovery", date: Date.today + 11.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Gems in KL", location: kl, cohort: libertatem, event_type: 'track', cost: 15)
 undiscovered_kl_track_event_1.users << undiscovered_kl_track.users
 undiscovered_kl_track.events << undiscovered_kl_track_event_1
+andrea.events << undiscovered_kl_track_event_1
+trabka.events << undiscovered_kl_track_event_1
 puts 'End Track 1'
 
 puts 'Track 2'

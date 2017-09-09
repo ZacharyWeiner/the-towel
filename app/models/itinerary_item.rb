@@ -1,5 +1,5 @@
 class ItineraryItem
   include ActiveModel::Model
 
-  attr_accessor :date, :time, :location, :title, :description, :company, :route_number, :link, :timezone
+  attr_accessor :date, :time, :location, :title, :description, :company, :route_number, :link, :timezone, :item_type
 end

@@ -8,13 +8,17 @@
 
       <ul class="list-group list-group-unbordered">
         <li class="list-group-item">
-          <b>Org:</b> <%= @user.current_cohort.organization.name %>
+          <b>Org:</b> <%= @user.organization.name %>
         </li>
         <li class="list-group-item">
-          <b>Cohort: </b> <%= @user.current_cohort.name %>
+          <b>Cohort: </b>
+          <% if @user.current_cohort %>
+           <%= @user.current_cohort.name %>
+          <% end %>
         </li>
         <li class="list-group-item">
-          <b>Current City:</b><%= @user.current_cohort_city%>
+          <b>Current City:</b>
+            <%= @user.current_cohort_city%>
         </li>
       </ul>
       <% if @user.id ==  current_user.id %>

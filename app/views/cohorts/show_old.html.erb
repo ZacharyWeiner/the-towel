@@ -1,0 +1,57 @@
+
+<div id='outlier'>
+<div class="jumbotron jumbotron-fluid" style='background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("<%= @cohort.banner_image.url %>")'>
+  <div class="container" style='color:white'>
+    <div class='row'>
+      <div class='col-md-2'><%= image_tag @cohort.image, style:'width:100%'%></div>
+      <div class='col-md-10'>
+      <h1 class="display-3"><%= @cohort.name%></h1>
+      <p class="lead"><%= @cohort.description %>  </p>
+      <div class='col-md-3'>
+        <%= link_to "Chat", @cohort.main_chat, class: 'btn btn-secondary'%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<ul class="nav nav-pills nav-justified cohort-links">
+  <li class="nav-item">
+    <%= link_to "Announcements", cohort_announcements_path(@cohort), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Itinerary", '/my-itinerary', class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Housing</a>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Tracks",  tracks_path , class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Side Trips", cohort_side_trips_path(@cohort), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Gallery", cohort_list_photos_path(@cohort), class: 'nav-link' %>
+  </li>
+</ul>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h3> Memebers </h3>
+      <%= render '/cohorts/cohort_user_list' %>
+    </div>
+    <div class='col-md-6'>
+      <%= render 'posts/form'%>
+      <%= render 'posts/feed' %>
+    </div>
+    <div class='col-md-3'>
+      <h3> Events </h3>
+      <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning btn-block' %>
+      <%= render '/cohorts/cohort_events_widget' %>
+    </div>
+  </div>
+  <%= link_to 'Edit', edit_cohort_path(@cohort) %> |
+  <%= link_to 'Back', cohorts_path %>
+</div>
+

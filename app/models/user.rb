@@ -116,8 +116,8 @@ class User < ApplicationRecord
     return  itinerary_items.sort {|x,y| x.date  <=> y.date}
   end
 
-  def waitlisted_events
-    EventWaitlist.where(user: self).map{|ew| ew.event}
+  def waitlisted_events(page)
+    EventWaitlist.where(user: self).page(page)
   end
 
   def is_on_waitlist(event)
@@ -163,11 +163,16 @@ class User < ApplicationRecord
   end
 
   def current_cohort_city
-    transits = self.current_cohort.transits.where("date <= ?", Date.today).order("date DESC").limit(1)
-    if transits.first .nil?
-      "Somewhere"
+    if self.current_cohort
+      transits = self.current_cohort.schedule_items.where("arrival_date <= ?", Date.today).order("arrival_date DESC").limit(1)
+      byebug
+      if transits.first.nil?
+        "Somewhere"
+      else
+        transits.first.location.name
+      end
     else
-      transits.first.location.name
+      "Globetrotting"
     end
   end
 

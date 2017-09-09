@@ -1,18 +1,4 @@
-<div id='outlier'>
-<div class="jumbotron jumbotron-fluid" style='background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("<%= @cohort.banner_image.url %>")'>
-  <div class="container" style='color:white'>
-    <div class='row'>
-      <div class='col-md-2'><%= image_tag @cohort.image, style:'width:100%'%></div>
-      <div class='col-md-10'>
-      <h1 class="display-3"><%= @cohort.name%></h1>
-      <p class="lead"><%= @cohort.description %>  </p>
-      <div class='col-md-3'>
-        <%= link_to "Chat", @cohort.main_chat, class: 'btn btn-secondary'%>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+<section class="content">
 <ul class="nav nav-pills nav-justified cohort-links">
   <li class="nav-item">
     <%= link_to "Announcements", cohort_announcements_path(@cohort), class: 'nav-link' %>
@@ -33,24 +19,61 @@
     <%= link_to "Gallery", cohort_list_photos_path(@cohort), class: 'nav-link' %>
   </li>
 </ul>
+<hr>
+<div class="row">
+  <div class="col-md-3">
 
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <h3> Memebers </h3>
-      <%= render '/cohorts/cohort_user_list' %>
+    <!-- Profile Image -->
+    <%= render 'cohorts/partials/cohort_details_box'%>
+    <!-- /.box -->
+
+    <!-- About Me Box -->
+    <div class="box box-primary">
+
     </div>
-    <div class='col-md-6'>
-      <%= render 'posts/form'%>
-      <%= render 'posts/feed' %>
-    </div>
-    <div class='col-md-3'>
-      <h3> Events </h3>
-      <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning btn-block' %>
-      <%= render '/cohorts/cohort_events_widget' %>
+    <!-- /.box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-md-9">
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity</a></li>
+        <li class=""><a href="#photos" data-toggle="tab" aria-expanded="false">Photos</a></li>
+        <li class=""><a href="#events" data-toggle="tab" aria-expanded="false">Events</a></li>
+        <li class=""><a href="#members" data-toggle="tab" aria-expanded="false">Members</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="activity">
+          <%= render 'posts/form'%>
+          <div class='text-left' style="background-color: white">
+          <%= render 'posts/feed'%>
+          </div>
+        </div>
+        <div class="tab-pane" id="photos">
+          <%= link_to "Add", new_user_photo_path(current_user), class: 'nav-link' %>
+          <div class='row'>
+            <% @cohort.photos.each do |photo|%>
+              <div class='col-md-4'>
+                <%= link_to photo do %>
+                  <%= image_tag photo.picture, style: 'width:100%; max-height:150px; object-fit: scale-down;' %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="tab-pane" id="events">
+          <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning btn-block' %>
+          <%= render '/cohorts/cohort_events_widget' %>
+        </div>
+        <div class="tab-pane" id="members">
+          <h3> Memebers </h3>
+          <%= render '/cohorts/cohort_user_list' %>
+        </div>
     </div>
   </div>
-  <%= link_to 'Edit', edit_cohort_path(@cohort) %> |
-  <%= link_to 'Back', cohorts_path %>
 </div>
+<!-- /.col -->
+</div>
+<!-- /.row -->
+</section>
 

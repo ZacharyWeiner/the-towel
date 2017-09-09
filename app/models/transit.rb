@@ -15,6 +15,7 @@ class Transit < ApplicationRecord
 
   def create_itinerary_item
     ItineraryItem.new(date: self.date,
+                      item_type: 'transit',
                       location: self.departure_location.name,
                       title: self.title,
                       link: Rails.application.routes.url_helpers.transit_path(self.id),

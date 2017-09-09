@@ -25,6 +25,7 @@ class SideTrip < ApplicationRecord
       timezone = "#{self.locations.first.name}/#{self.locations.first.parent.parent.name}"
     end
     ItineraryItem.new(date: self.start_date,
+                      item_type: 'side_trip',
                       location: locations,
                       title: self.title,
                       description: self.description,

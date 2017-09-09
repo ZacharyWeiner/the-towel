@@ -1,0 +1,12 @@
+<div class="box box-primary">
+  <div class="box-body box-profile">
+    <img class="profile-user-img img-responsive img-circle" src="<%= @cohort.image%>" alt="Cohort picture">
+    <h3 class="profile-username text-center"><%= @cohort.name%></h3>
+
+    <p class="text-muted text-center"><%= link_to "Chat", @cohort.main_chat, class: 'btn btn-secondary'%></p>
+
+
+  </div>
+  <!-- /.box-body -->
+</div>
+

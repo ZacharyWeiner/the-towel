@@ -7,8 +7,8 @@ class UserPagesController < ApplicationController
   end
 
   def my_events
-    @events = current_user.events
-    @waitlist = current_user.waitlisted_events
+    @events = current_user.events.page params[:events_page]
+    @waitlist = current_user.waitlisted_events params[:waitlist_page]
   end
 
   def my_photos
