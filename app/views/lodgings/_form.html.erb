@@ -1,4 +1,10 @@
-<%= form_with(model: lodging, local: true) do |form| %>
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Horizontal Form</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+<%= form_with(model: lodging, local: true, class: "form-horizontal") do |form| %>
   <% if lodging.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(lodging.errors.count, "error") %> prohibited this lodging from being saved:</h2>
@@ -10,53 +16,63 @@
       </ul>
     </div>
   <% end %>
+<div style="margin:36px">
 
-  <div class="field">
+  <div class="form-group">
+    <%= form.label :nme %>
+    <%= form.text_field :name, id: :lodging_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :checkin_date %>
-    <%= form.date_select :checkin_date, id: :lodging_checkin_date %>
+    <%= form.date_select :checkin_date, id: :lodging_checkin_date, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :checkin_time %>
-    <%= form.time_select :checkin_time, id: :lodging_checkin_time %>
+    <%= form.time_select :checkin_time, id: :lodging_checkin_time, class: 'bootstrap-timepicker ' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :checkout_date %>
-    <%= form.date_select :checkout_date, id: :lodging_checkout_date %>
+    <%= form.date_select :checkout_date, id: :lodging_checkout_date, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :checkout_time %>
-    <%= form.time_select :checkout_time, id: :lodging_checkout_time %>
+    <%= form.time_select :checkout_time, id: :lodging_checkout_time, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :phone %>
-    <%= form.text_field :phone, id: :lodging_phone %>
+    <%= form.text_field :phone, id: :lodging_phone, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :website %>
-    <%= form.text_field :website, id: :lodging_website %>
+    <%= form.text_field :website, id: :lodging_website, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :address %>
-    <%= form.text_field :address, id: :lodging_address %>
+    <%= form.text_field :address, id: :lodging_address, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :location_id %>
-    <%= form.text_field :location_id, id: :lodging_location_id %>
+    <%= form.text_field :location_id, id: :lodging_location_id, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :map %>
-    <%= form.text_area :map, id: :lodging_map %>
+    <%= form.text_area :map, id: :lodging_map, class: 'form-control' %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+</div>
 <% end %>
+
+
+

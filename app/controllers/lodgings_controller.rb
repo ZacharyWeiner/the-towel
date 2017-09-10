@@ -2,12 +2,20 @@ class LodgingsController < ApplicationController
   before_action :set_lodging, only: [:show, :edit, :update, :destroy]
   layout 'admin'
   def index
-    @lodgings = Lodging.all
+    if params[:side_trip_id]
+      @side_trip = SideTrip.find(params[:side_trip_id])
+      @lodgings = @side_trip.lodgings
+    else
+      @lodgings = Lodging.all
+    end
   end
 
   # GET /lodgings/1
   # GET /lodgings/1.json
   def show
+    if params[:side_trip_id]
+      @side_trip = SideTrip.find(params[:side_trip_id])
+    end
   end
 
   # GET /lodgings/new

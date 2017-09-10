@@ -1,49 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class='row'>
+  <div class="col-md-3">
 
-<p>
-  <strong>Checkin date:</strong>
-  <%= @lodging.checkin_date %>
-</p>
+    <%= render 'lodgings/partials/sidebar' %>
+  </div>
+  <div class="col-md-9">
 
-<p>
-  <strong>Checkin time:</strong>
-  <%= @lodging.checkin_time %>
-</p>
-
-<p>
-  <strong>Checkout date:</strong>
-  <%= @lodging.checkout_date %>
-</p>
-
-<p>
-  <strong>Checkout time:</strong>
-  <%= @lodging.checkout_time %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @lodging.phone %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @lodging.website %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @lodging.address %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @lodging.location.name %>
-</p>
-
-<p>
-  <strong>Map:</strong>
-  <%= @lodging.map %>
-</p>
-
+  </div>
+</div>
 <%= link_to 'Edit', edit_lodging_path(@lodging) %> |
-<%= link_to 'Back', lodgings_path %>

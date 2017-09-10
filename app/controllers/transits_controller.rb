@@ -9,7 +9,7 @@ class TransitsController < ApplicationController
       @transits = @cohort.transits
     elsif params[:side_trip_id]
       set_side_trip
-      @transits = @side_trip.transits
+      @transits = @side_trip.transits.order(:date)
     else
       @transits = Transit.all
     end
