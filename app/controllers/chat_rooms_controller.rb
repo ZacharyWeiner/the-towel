@@ -1,5 +1,5 @@
 class ChatRoomsController < ApplicationController
-
+  layout 'solidstate'
   def index
     @chat_rooms = ChatRoom.all
   end
