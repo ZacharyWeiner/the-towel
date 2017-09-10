@@ -29,6 +29,9 @@ class PostsController < ApplicationController
       if @post.save
         if params[:post][:photo]
           @photo = Photo.create(picture: params[:post][:photo][:picture], user: current_user, cohort: current_user.current_cohort)
+          if params[:post][:side_trip_id]
+            @photo.side_trip_id = params[:post][:side_trip_id]
+          end
           @photo.save
           @post.photos << @photo
         end

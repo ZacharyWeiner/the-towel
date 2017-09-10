@@ -9,6 +9,8 @@ class PhotosController < ApplicationController
       @photos = Cohort.find(params[:cohort_id]).photos.order(created_at: :desc)
     elsif params[:event_id]
       @photos = Event.find(params[:event_id]).photos.order(created_at: :desc)
+    elsif params[:side_trip_id]
+      @photos = SideTrip.find(params[:side_trip_id]).photos.order(created_at: :desc)
     else
       @photos = Photo.all.order(created_at: :desc)
     end

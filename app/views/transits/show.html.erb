@@ -1,54 +1,70 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @transit.date %>
-</p>
-
-<p>
-  <strong>Departure time:</strong>
-  <%= @transit.departure_time %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @transit.title %>
-</p>
-
-<p>
-  <strong>Travel type:</strong>
-  <%= @transit.travel_type %>
-</p>
-
-<p>
-  <strong>Company:</strong>
-  <%= @transit.company %>
-</p>
-
-<p>
-  <strong>Route number:</strong>
-  <%= @transit.route_number %>
-</p>
-
-<p>
-  <strong>Departure location:</strong>
-  <%= @transit.departure_location.name %>
-</p>
-
-<p>
-  <strong>Departure map:</strong>
-  <%= @transit.departure_map %>
-</p>
-
-<p>
-  <strong>Arrival location:</strong>
-  <%= @transit.arrival_location.name %>
-</p>
-
-<p>
-  <strong>Arrival time:</strong>
-  <%= @transit.arrival_time %>
-</p>
 
 <%= link_to 'Edit', edit_transit_path(@transit) %> |
 <%= link_to 'Back', transits_path %>
+<div class='row'>
+  <div class='col-md-3'>
+    <% name = " Travel Plan" %>
+    <% if params[:side_trip_id] %>
+      <% name = SideTrip.find(params[:side_trip_id]).name + name %>
+      <% elsif @transit.side_trips.first.nil? == false%>
+      <% name = @transit.side_trips.first.title + name %>
+    <%  end %>
+
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title"><%= name %></h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <strong><i class="fa fa-book margin-r-5"></i> Departure</strong>
+        <p>
+
+            <strong>Date:</strong>
+            <%= @transit.date %>
+          </p>
+
+          <p>
+            <strong>Departure time:</strong>
+            <%= @transit.departure_time %>
+        </p>
+        <hr>
+
+        <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+        <p>
+          <strong>Departure location:</strong>
+          <%= @transit.departure_location.name %>
+        </p>
+        <p>
+          <strong>Arrival location:</strong>
+          <%= @transit.arrival_location.name %>
+        </p>
+        <hr>
+        <hr>
+        <strong><i class="fa fa-book margin-r-5"></i> Arrival</strong>
+        <p>
+          <strong>Arrival time:</strong>
+          <%= @transit.arrival_time %>
+        </p>
+        <hr>
+
+        <strong><i class="fa fa-file-text-o margin-r-5"></i> Details</strong>
+
+        <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Company:</b> <a class="pull-right"><%= @transit.company.name %></a>
+            </li>
+            <li class="list-group-item">
+              <b>Route number:</b> <a class="pull-right"><%= @transit.route_number %></a>
+            </li>
+            <li class="list-group-item">
+              <b>Travel type:</b> <a class="pull-right"><%= @transit.travel_type %></a>
+            </li>
+          </ul>
+      </div>
+      <!-- /.box-body -->
+    </div>
+  </div>
+  <div class='col-md-9'></div>
+</div>
+

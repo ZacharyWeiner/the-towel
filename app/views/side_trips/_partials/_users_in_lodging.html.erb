@@ -1,0 +1,22 @@
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Staying Here</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tbody><tr>
+        <th>Tripper</th>
+      </tr>
+      <% @side_trip.users.each do |user| %>
+        <% if user.lodgings.include? (@lodging)%>
+          <tr>
+            <td><%= user.safe_name %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>

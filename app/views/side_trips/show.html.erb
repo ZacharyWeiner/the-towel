@@ -10,6 +10,17 @@
     <p> <%= link_to "Chat", @side_trip.chat_room, class: 'btn btn-secondary'%></p>
   </div>
 </div>
+<ul class="nav nav-pills nav-justified cohort-links">
+  <li class="nav-item">
+    <%= link_to "Travel Plans",  side_trip_transits_path(@side_trip), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Accomodations", side_trip_lodgings_path(@side_trip), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Gallery", side_trip_photos_path(@side_trip), class: 'nav-link' %>
+  </li>
+</ul>
 <div class='container'>
 <div class="row">
   <%= render '/side_trips/_partials/join_button' %>
