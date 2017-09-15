@@ -1,38 +1,33 @@
 <h1 style='color:white'><%= @chat_room.title %></h1>
 
 <div class='container'>
-<div class='row'>
-  <%= link_to "Back", root_path, class: 'btn btn-primary' %> ||
-  <%= link_to "Leave Room", chat_room_leave_room_path(@chat_room), class: 'btn btn-warning' %>
-</div>
-<div class='row'>
-  <div class="col-md-3">
-    <%= render 'chat_rooms/partials/my_chat_rooms' %>
+  <div class='row'>
+    <%= link_to "Back", root_path, class: 'btn btn-primary' %> ||
+    <%= link_to "Leave Room", chat_room_leave_room_path(@chat_room), class: 'btn btn-warning' %>
   </div>
-  <div class="col-md-9">
-    <div class="panel-body">
-      <ul class="chat">
-      <div id="messages" data-chat-room-id="<%= @chat_room.id %>" style='max-height:400px'>
-        <%= render @chat_room.messages %>
-      </div>
-      </ul>
+  <div class='row'>
+    <div class="col-md-3">
+      <%= render 'chat_rooms/partials/my_chat_rooms' %>
     </div>
-
-        <%= form_for @message, url: chat_room_message_path(@chat_room) do |f| %>
-          <div class="panel-footer">
-            <div class="input-group">
-            <%= f.text_area :body, class: 'form-control ', placeholder: 'Enter a Message From 2 to 1000 characters', rows: 4, style: 'margin-top:12px; width:100%' %>
-              <br>
-              <%= f.submit "Post", id:'new_message', class: 'btn btn-warning btn-sm', style: 'margin-top:30%'%>
-            </div>
+    <div class="col-md-9">
+      <div class="panel-body">
+        <ul class="chat">
+        <div id="messages" data-chat-room-id="<%= @chat_room.id %>" style='max-height:400px'>
+          <%= render @chat_room.messages %>
+        </div>
+        </ul>
+      </div>
+      <%= form_for @message, url: chat_room_message_path(@chat_room) do |f| %>
+        <div class="panel-footer">
+          <div class="input-group">
+          <%= f.text_area :body, class: 'form-control ', placeholder: 'Enter a Message From 2 to 1000 characters', rows: 4, style: 'margin-top:12px; width:100%' %>
+            <br>
+            <%= f.submit "Post", id:'new_message', class: 'btn btn-warning btn-sm', style: 'margin-top:30%'%>
           </div>
-        <% end %>
-
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
-
-
-
 </div>
 <script type="text/javascript">
   var mydiv = $("#messages");
