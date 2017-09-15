@@ -5,7 +5,7 @@ class TracksController < ApplicationController
   # GET /tracks.json
   layout 'admin'
   def index
-    if current_user.is_in_role(Role.cohort_member)
+    if current_user.is_in_role(Role.cohort_member) || current_user.is_in_role(Role.cohort_admin)
       @tracks = Track.where(cohort: current_user.current_cohort)
     else
       @tracks = Track.all

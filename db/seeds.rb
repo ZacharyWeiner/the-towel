@@ -30,6 +30,7 @@ nation = Cohort.create!(name: "Remote Nation", description:"That Nomad Life", or
 libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter",  organization: remote_year, start_date:Date.parse('28-08-2016'), end_date: Date.parse('26-08-2017'))
 
 meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
+balboa = Cohort.create!(name: "Balboa", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-08-2017'))
 
 we_roam_nation = Cohort.create!(name: "We Roam Nation", description:"We Roam All Year Round",  organization: we_roam, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
 puts 'End Build Cohorts'
@@ -57,6 +58,40 @@ gemma = User.create!(email:'gemma@ry.com', password: 'password',  organization: 
 chech = User.create!(email:'chech@ry.com', password: 'password',  organization: remote_year)
 alison = User.create!(email:'alison@ry.com', password: 'password',  organization: remote_year)
 
+
+# Balboa People #
+
+amy_e = User.create!(email:'amy_e@balboa.com', password: 'password',  organization: remote_year)
+andrei = User.create!(email:'andrei@balboa.com', password: 'password',  organization: remote_year)
+annabel = User.create!(email:'annabel@balboa.com', password: 'password',  organization: remote_year)
+ashley_m = User.create!(email:'ashley_m@balboa.com', password: 'password',  organization: remote_year)
+chris_t = User.create!(email:'chris_t@balboa.com', password: 'password',  organization: remote_year)
+feef = User.create!(email:'feef@balboa.com', password: 'password',  organization: remote_year)
+grace = User.create!(email:'grace@balboa.com', password: 'password',  organization: remote_year)
+hailey = User.create!(email:'haley@balboa.com', password: 'password',  organization: remote_year)
+jamie_o = User.create!(email:'jamie_o@balboa.com', password: 'password',  organization: remote_year)
+jarett = User.create!(email:'jarett@balboa.com', password: 'password',  organization: remote_year)
+jenna = User.create!(email:'jenna@balboa.com', password: 'password',  organization: remote_year)
+jessica_s = User.create!(email:'jessica_s@balboa.com', password: 'password',  organization: remote_year)
+jon_l = User.create!(email:'jon_l@balboa.com', password: 'password',  organization: remote_year)
+katie_m = User.create!(email:'katie_m@balboa.com', password: 'password',  organization: remote_year)
+aj = User.create!(email:'aj@balboa.com', password: 'password',  organization: remote_year)
+adrienne = User.create!(email:'adreinne@balboa.com', password: 'password',  organization: remote_year)
+brad_w = User.create!(email:'brad_w@balboa.com', password: 'password',  organization: remote_year)
+brandon_c = User.create!(email:'brandon_c@balboa.com', password: 'password',  organization: remote_year)
+brittany_m = User.create!(email:'brittany_m@balboa.com', password: 'password',  organization: remote_year)
+chelsea_k = User.create!(email:'chelsea_k@balboa.com', password: 'password',  organization: remote_year)
+chris_h = User.create!(email:'chris_hß@balboa.com', password: 'password',  organization: remote_year)
+
+#Balboa PM #
+anastasia = User.create!(email:'anastasia@ry.com', password: 'password',  organization: remote_year)
+sara = User.create!(email:'sara@ry.com', password: 'password',  organization: remote_year)
+
+
+
+
+
+
 justin = User.create!(email:'justin@weroam.com', password: 'password',  organization: we_roam)
 patrick = User.create!(email:'patrick@weroam.com', password: 'password',  organization: we_roam)
 lilly = User.create!(email:'lilly@weroam.com', password: 'password',  organization: we_roam)
@@ -80,12 +115,59 @@ alison.roles << client
 
 libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra]
 nation.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra, jo, coti, paulina]
+
+
+#Balboa Roles
+
+amy_e.roles << client
+andrei.roles << client
+annabel.roles << client
+ashley_m.roles << client
+chris_t.roles << client
+feef.roles << client
+grace.roles << client
+hailey.roles << client
+jamie_o.roles << client
+jarett.roles << client
+jenna.roles << client
+jessica_s.roles << client
+jon_l.roles << client
+katie_m.roles << client
+aj.roles << client
+adrienne.roles << client
+brad_w.roles << client
+brandon_c.roles << client
+brittany_m.roles << client
+chelsea_k.roles << client
+chris_h.roles << client
+
+anastasia.roles << cohort_admin
+sara.roles << cohort_admin
+balboa.users << [amy_e, andrei, annabel, ashley_m, chris_t, feef, grace, hailey, jamie_o, jarett, jenna, jessica_s]
+balboa.users << [katie_m, aj, adrienne, brad_w, brandon_c, brittany_m, chelsea_k, chris_h]
+balboa.users << [anastasia, sara]
+
+nation.users << [amy_e, andrei, annabel, ashley_m, chris_t, feef, grace, hailey, jamie_o, jarett, jenna, jessica_s, katie_m, aj, adrienne, brad_w, brandon_c, brittany_m, chelsea_k, chris_h]
+#Balboa Roles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 justin.roles << org_admin
 patrick.roles << cohort_admin
 lilly.roles << client
 
 we_roam_nation.users << [justin, patrick, lilly]
-
 nomad_nation.users << nomad_admin
 puts 'End Build Users'
 ################################## End Users #######################################
@@ -154,6 +236,8 @@ puts 'End Build Tags'
 ################################## End Tag  #####################################
 
 ##################################  User Housing Tag  #####################################
+puts "Build user housing Tags"
+
 zack.tags << [modern, good_wifi, city_center]
 trabka.tags << [modern, good_wifi, natural_light]
 andrea.tags << [single_bedroom, close_to_workspace, city_center]
@@ -161,6 +245,33 @@ geordan.tags << [good_wifi, city_center, close_to_other_housing]
 gemma.tags << [modern, good_wifi, full_kitchen]
 chech.tags << [close_to_other_housing, city_center, natural_light]
 alison.tags << [modern, natural_light, close_to_workspace]
+
+
+
+
+
+
+amy_e.tags << [modern, good_wifi, city_center]
+andrei.tags << [modern, good_wifi, natural_light]
+annabel.tags << [single_bedroom, close_to_workspace, city_center]
+ashley_m.tags << [good_wifi, city_center, close_to_other_housing]
+chris_t.tags << [modern, good_wifi, full_kitchen]
+feef.tags << [close_to_other_housing, city_center, natural_light]
+grace.tags << [modern, natural_light, close_to_workspace]
+hailey.tags << [modern, natural_light, close_to_workspace]
+jamie_o.tags << [close_to_other_housing, city_center, natural_light]
+jarett.tags << [modern, good_wifi, full_kitchen]
+jenna.tags << [good_wifi, city_center, close_to_other_housing]
+jessica_s.tags << [single_bedroom, close_to_workspace, city_center]
+jon_l.tags << [modern, good_wifi, natural_light]
+katie_m.tags << [modern, good_wifi, city_center]
+aj.tags << [modern, natural_light, close_to_workspace]
+adrienne.tags << [close_to_other_housing, city_center, natural_light]
+brad_w.tags << [good_wifi, city_center, close_to_other_housing]
+brandon_c.tags << [modern, good_wifi, city_center]
+brittany_m.tags << [single_bedroom, close_to_workspace, city_center]
+chelsea_k.tags << [close_to_other_housing, city_center, natural_light]
+chris_h.tags << [single_bedroom, close_to_workspace, city_center]
 
 ##################################  End User Housing Tag  #####################################
 
@@ -172,6 +283,29 @@ RoomateRequest.create!(requester: andrea, requested_roomate: alison)
 RoomateRequest.create!(requester: chech, requested_roomate: gemma)
 RoomateRequest.create!(requester: geordan, requested_roomate: gemma)
 RoomateRequest.create!(requester: alison, requested_roomate: andrea)
+
+RoomateRequest.create!(requester: amy_e, requested_roomate: andrei)
+RoomateRequest.create!(requester: annabel, requested_roomate: ashley_m)
+RoomateRequest.create!(requester: chris_t, requested_roomate: feef)
+RoomateRequest.create!(requester: grace, requested_roomate: hailey)
+RoomateRequest.create!(requester: jamie_o, requested_roomate: jarett)
+RoomateRequest.create!(requester: jenna, requested_roomate: jessica_s)
+RoomateRequest.create!(requester: jon_l, requested_roomate: katie_m)
+RoomateRequest.create!(requester: katie_m, requested_roomate: aj)
+RoomateRequest.create!(requester: brad_w, requested_roomate: brandon_c)
+RoomateRequest.create!(requester: brittany_m, requested_roomate: chelsea_k)
+RoomateRequest.create!(requester: chris_h, requested_roomate: jon_l)
+RoomateRequest.create!(requester: andrei, requested_roomate: ashley_m)
+RoomateRequest.create!(requester: ashley_m, requested_roomate: feef)
+RoomateRequest.create!(requester: feef, requested_roomate: hailey)
+RoomateRequest.create!(requester: jarett, requested_roomate: jessica_s)
+RoomateRequest.create!(requester: jessica_s, requested_roomate: katie_m)
+RoomateRequest.create!(requester: katie_m, requested_roomate: aj)
+RoomateRequest.create!(requester: brandon_c, requested_roomate: chelsea_k)
+RoomateRequest.create!(requester: chelsea_k, requested_roomate: jon_l)
+RoomateRequest.create!(requester: ashley_m, requested_roomate: feef)
+RoomateRequest.create!(requester: feef, requested_roomate: hailey)
+RoomateRequest.create!(requester: hailey, requested_roomate: jessica_s)
 
 ##################################  RoommateRequests End #####################################
 
@@ -200,6 +334,20 @@ prague = Location.create!(name: 'Prague', location_type: 'city', parent: czech)
 portugal = Location.create!(name: 'Portugal', location_type: 'country', parent: europe)
 lisbon = Location.create!(name: 'Lisbon', location_type: 'city', parent: portugal)
 
+latam = Location.create!(name:"Latin America", location_type: 'region')
+argentina = Location.create!(name:"Argentina", location_type: 'country', parent: latam)
+buenos_aires = Location.create!(name: 'Buenos Aires', location_type: 'city', parent: argentina)
+cordoba = Location.create!(name: 'Cordoba', location_type: 'city', parent: argentina)
+
+peru = Location.create!(name:"Peru", location_type: 'country', parent: latam)
+lima = Location.create!(name: 'Lima', location_type: 'city', parent: peru)
+
+colombia = Location.create!(name:"Colombia", location_type: 'country', parent: latam)
+medellin = Location.create!(name: 'Medellin', location_type: 'city', parent: colombia)
+bogota = Location.create!(name: 'Bogota', location_type: 'city', parent: colombia)
+
+mexico = Location.create!(name:"Mexico", location_type: 'country', parent: latam)
+mexico_city = Location.create!(name: 'Mexico City', location_type: 'city', parent: mexico)
 puts "End Build Locations"
 ################################## End Locations #######################################
 
@@ -208,6 +356,10 @@ puts "Build Events"
 Event.create!(title: "Dinner @ Cruz", date: Date.today + 10.days, start_time: Time.now, description: "Details for Dinner @ Cruz", location: london, cohort: libertatem, event_type: 'cohort', cost: 30)
 Event.create!(title: "Lunch @ Havana", date: Date.today + 15.days, start_time: Time.now, description: "Details for Lunch @ Havana", location: london, cohort: libertatem, event_type: 'cohort')
 Event.create!(title: "Dinner with Locals ", date: Date.today + 20.days, start_time: Time.now, description: "Details for Dinner with Locals", location: london, cohort: meraki, event_type: 'track', cost: 20)
+
+Event.create!(title: "Dinner with Locals ", date: Date.today + 8.days, start_time: Time.now, description: "Details for Dinner with Locals", location: buenos_aires, cohort: balboa, event_type: 'cohort', cost: 20, capacity: 45)
+Event.create!(title: "Lunch At UCO", date: Date.today + 4.days, start_time: Time.now, description: "Details for UCO", location: buenos_aires, cohort: balboa, event_type: 'cohort', cost: 40, capacity: 10)
+
 puts "End Build Events"
 ################################## End Events #######################################
 
@@ -237,6 +389,18 @@ libertatem_cambodia = ScheduleItem.create!(cohort: libertatem, location: phnompe
 libertatem_split = ScheduleItem.create!(cohort: libertatem, location: split, arrival_date: Date.today + 120.days, departure_date: Date.today + 150.days)
 libertatem_prague = ScheduleItem.create!(cohort: libertatem, location: prague, arrival_date: Date.today + 150.days, departure_date: Date.today + 180.days)
 libertatem_lisbon = ScheduleItem.create!(cohort: libertatem, location: lisbon, arrival_date: Date.today + 180.days, departure_date: Date.today + 210.days)
+
+
+
+balboa_buenos_aries = ScheduleItem.create!(cohort: balboa, location: buenos_aires, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+balboa_cordoba = ScheduleItem.create!(cohort: balboa, location: cordoba, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+balboa_lima = ScheduleItem.create!(cohort: balboa, location: lima, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+balboa_medellin = ScheduleItem.create!(cohort: balboa, location: medellin, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+balboa_bogota = ScheduleItem.create!(cohort: balboa, location: bogota, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+balboa_mexico_city = ScheduleItem.create!(cohort: balboa, location: mexico_city, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
+
+
+
 puts 'End Schedule Items'
 ################################## End Schedule Items  #######################################
 
@@ -255,6 +419,19 @@ libertatem.transits << croatia_to_czech
 libertatem.transits << czech_to_lisbon
 
 
+
+ba_to_cordoba = Transit.create(date: Date.parse('30-09-2017') , title: 'BA to Cordoba', departure_location_id: buenos_aires.id, arrival_location_id: cordoba.id)
+cordoba_to_lima = Transit.create(date: Date.parse('04-11-2017') , title: 'Cordoba to Lima', departure_location_id: cordoba.id, arrival_location_id: lima.id)
+lima_to_medellin = Transit.create(date: Date.parse('02-12-2017') , title: 'Lima to Medellin', departure_location_id: lima.id, arrival_location_id: medellin.id)
+medellin_to_bogota = Transit.create(date: Date.parse('30-12-2017') , title: 'Medellin to Bogota', departure_location_id: medellin.id, arrival_location_id: bogota.id)
+bogota_to_cdmx = Transit.create(date: Date.parse('27-01-2017') , title: 'Bogota to Mexico City ', departure_location_id: bogota.id, arrival_location_id: mexico_city.id)
+
+balboa.transits << ba_to_cordoba
+balboa.transits << cordoba_to_lima
+balboa.transits << lima_to_medellin
+balboa.transits << medellin_to_bogota
+balboa.transits << bogota_to_cdmx
+
 puts 'End Build Transits'
 ################################## End Transits  #######################################
 
@@ -268,6 +445,10 @@ borneo.transits << borneo_side_trip_departure
 borneo_side_trip_departure = Transit.create(date: Date.today + 44.days, title: 'Return to KL', departure_location: sandakan, arrival_location: kl)
 borneo.transits << borneo_side_trip_departure
 borneo.lodgings << borneo_travel_company_lodging
+
+
+balboa_st_1 = SideTrip.create!(cohort: balboa, title: "Balboa To Mendoza", start_date: Date.today + 37.days, end_date: Date.today + 44.days, is_public: true, creator_id: anastasia.id)
+balboa_st_1.users << [grace, chris_h, brandon_c]
 puts 'End Build SideTrips'
 
 ################################## Tracks #######################################
@@ -302,7 +483,33 @@ thailand_mushrooms_track = Track.create!(name: "Thailand Mushrooms", description
 thailand_temples_track = Track.create!(name: "Thailand Temples", description: 'Tour All The Amazing Temples in ChangMai', cohort: libertatem, location: changmai)
 thailand_history_track = Track.create!(name: "History of Thai", description: 'Undiscovered wars to lost archives, learn all about the history of Thailand', cohort: libertatem, location: changmai)
 
+
+puts 'Balboa Track 1'
+undiscovered_ba_track = Track.create!(name: "Undiscovered BA", description: 'Find out all about the undiscovered BA', cohort: balboa, location: buenos_aires)
+undiscovered_ba_track.users << [aj, brandon_c, chris_h]
+undiscovered_ba_track_event_1 = Event.create!(title: "Hidden Gem Discovery", date: Date.today + 11.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Gems in KL", location: kl, cohort: libertatem, event_type: 'track', cost: 15)
+undiscovered_ba_track_event_1.users << undiscovered_ba_track.users
+undiscovered_ba_track.events << undiscovered_ba_track_event_1
+aj.events << undiscovered_ba_track_event_1
+brandon_c.events << undiscovered_ba_track_event_1
+chris_h.events << undiscovered_ba_track_event_1
+puts 'Balboa End Track 1'
+
+
+puts 'Balboa Track 2'
+ba_foodies_track = Track.create!(name: "BA Foodies", description: 'Learn All About the Food Scene In BA', cohort: balboa, location: buenos_aires)
+ba_foodies_track.users << [annabel, grace]
+ba_foodies_track_event_1 = Event.create!(title: "Steaks by Luis", date: Date.today + 14.days, start_time: Time.now, description: "Find out about one of the most amazing hidden Food Gems in KL", location: kl, cohort: libertatem, event_type: 'track', cost: 30)
+ba_foodies_track_event_1.users << kl_foodies_track.users
+ba_foodies_track.events << kl_foodies_track_event_1
+annabel.events << ba_foodies_track_event_1
+grace.events << ba_foodies_track_event_1
+puts 'Balboa End Track 2'
+
 puts 'End Build Tracks'
+
+
+
 
 ################################## End Tracks #######################################
 
@@ -340,6 +547,26 @@ garden_mansion_2.tags << [close_to_other_housing, city_center, good_wifi, natura
 
 living_252_1 = Housing.create!(name: '252 Boutique 201', rooms: 2, bathrooms: 2, street_number: '#11', location: phnompenh, street_name: 'Street 252', postal_code: 178, neighborhood: 'Kahn Dunh Penh', unit: '201', full_address: 'Street 252 #11, Phnom Penh, Cambodia')
 living_252_1.tags << [modern, full_kitchen, close_to_workspace]
+
+
+#balboa housing#
+
+cordoba_mansion_1 = Housing.create!(name: 'Cordoba Mansion 11', rooms: 3, bathrooms: 2, street_number: '6', location: cordoba, street_name: '1 de Julio', postal_code: "00874", neighborhood: 'Cordoba', unit: '11', full_address: '#6, 1 de Julio., Cordoba, Argentina 00874')
+cordoba_mansion_1.tags << [natural_light, close_to_workspace, good_wifi]
+cordoba_mansion_2 = Housing.create!(name: 'Cordoba Mansion 12', rooms: 2, bathrooms: 2, street_number: '6', location: cordoba, street_name: '1 de Julio ', postal_code: "00874", neighborhood: 'Cordoba', unit: '12', full_address: '#6, 1 de Julio., Cordoba, Argentina 00874')
+cordoba_mansion_2.tags << [close_to_workspace, good_wifi]
+cordoba_mansion_3 = Housing.create!(name: 'Cordoba Mansion 13', rooms: 1, bathrooms: 1, street_number: '6', location: cordoba, street_name: '1 de Julio', postal_code: "00874", neighborhood: 'Cordoba', unit: '13', full_address: '#6, 1 de Julio., Cordoba, Argentina 00874')
+cordoba_mansion_3.tags << [full_kitchen, close_to_workspace, good_wifi, single_bedroom]
+
+garden_mansion_1 = Housing.create!(name: 'Argentina Mansion 445', rooms: 1, bathrooms: 1, street_number: '9', location: cordoba, street_name: 'Avenida Indepencia', postal_code: "00874", neighborhood: 'Cordoba', unit: '445', full_address: '#9, Avenida Indepencia, Cordoba, Argentina 00874')
+garden_mansion_1.tags << [close_to_other_housing, city_center, good_wifi]
+garden_mansion_2 = Housing.create!(name: 'Argentina Mansion 456', rooms: 1, bathrooms: 1, street_number: '9', location: cordoba, street_name: 'Avenida Indepencia', postal_code: "00874", neighborhood: 'Cordoba', unit: '446', full_address: '#9, Avenida Indepencia, Cordoba, Argentina 00874')
+garden_mansion_2.tags << [close_to_other_housing, city_center, good_wifi, natural_light]
+
+cordoba_252_1 = Housing.create!(name: 'Cordoba Boutique 201', rooms: 2, bathrooms: 2, street_number: '#11', location: cordoba, street_name: 'Street 252', postal_code: "00874", neighborhood: 'Cordoba', unit: '201', full_address: 'Street 252 #11, Cordoba, Argentina')
+cordoba_252_1.tags << [modern, full_kitchen, close_to_workspace]
+
+
 ################################## End Build Housings  #######################################
 
 
