@@ -1,0 +1,25 @@
+<div class='container'>
+  <div class='row'>
+    <h3> Copy Event </h3>
+    <%= link_to "Copy Event", "#", class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='row'>
+    <h3> Move Event To Track </h3>
+    <% if @event.track.nil? %>
+      <% track = 0 %>
+    <% else %>
+      <% track = @event.track.id %>
+    <% end%>
+    <%= label_tag :track %>
+    <%= select_tag 'track_id', options_for_select(
+      Track.where(cohort_id: @event.cohort).map {|c| [c.name, c.id]},
+    track),
+    {:multiple => false, class: ''}%>
+    <%= link_to "Move Event", "#", class: "btn btn-primary" %>
+  </div>
+
+</div>
+
