@@ -20,8 +20,7 @@
       <ul class="nav nav-tabs">
         <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Activity</a></li>
         <li class=""><a href="#photos" data-toggle="tab" aria-expanded="false">Photos</a></li>
-        <!-- <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a></li>
-        -->
+       <li class=""><a href="#manage" data-toggle="tab" aria-expanded="false">Settings</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="activity">
@@ -34,7 +33,9 @@
           <%= link_to "Add Images", new_event_photo_path(@event), class: 'btn btn-primary'%>
           <%= render 'shared/events/event_image_thumbs' %>
         </div>
-         <!-- render 'users/partials/profile/settings_tab' -->
+        <div class="tab-pane" id="manage">
+         <%= render 'shared/events/city_manager.html.erb' %>
+        </div>
     </div>
   </div>
 </div>

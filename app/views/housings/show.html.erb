@@ -5,6 +5,11 @@
   </div>
 </div>
 <div class='row'>
+  <% @housing.users.each do |u|%>
+   <% if u.current_cohort == current_user.current_cohort %>
+      <div> <%= u.email %> </div>
+    <% end %>
+  <% end %>
   <%= link_to "Add Pictures", new_housing_photo_path(@housing), class: 'btn btn-primary' %>
 </div>
 <div class='row'>
