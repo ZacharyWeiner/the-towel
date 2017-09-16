@@ -18,7 +18,7 @@ class SideTripsController < ApplicationController
     if @side_trip.chat_room.nil?
       create_chat_room
     end
-    notification = Notification.where(notification_obeject_id: @side_trip.id, notification_type: "Side Trip", user_id: current_user.id).first
+    notification = Notification.where(read: false, notification_obeject_id: @side_trip.id, notification_type: "Side Trip", user_id: current_user.id).first
     unless notification.nil?
       notification.read = true
       notification.save
@@ -40,6 +40,7 @@ class SideTripsController < ApplicationController
     @side_trip = SideTrip.new(side_trip_params)
     @side_trip.creator = current_user
     set_side_trip_cohort
+    set_side_trip_event
     respond_to do |format|
       if @side_trip.save
         @side_trip.users << current_user
@@ -96,6 +97,23 @@ class SideTripsController < ApplicationController
     redirect_to side_trip_path(@side_trip)
   end
 
+  def invite
+    set_side_trip
+  end
+
+  def create_invitations
+    set_side_trip
+    invitees = params[:invite][:invitees]
+    safe_names = ""
+    invitees.each do |invitee|
+      Notification.create!(user_id: invitee, notification_type: "Side Trip", notification_obeject_id: @side_trip.id)
+      safe_names = safe_names + User.find(invitee).safe_name + " "
+    end
+    respond_to do |format|
+      format.html { redirect_to cohort_side_trip_path(@side_trip.cohort, @side_trip), notice: "#{safe_names} have been invited to #{@side_trip.title}" }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_side_trip
@@ -109,6 +127,12 @@ class SideTripsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def side_trip_params
       params.require(:side_trip).permit(:title, :start_date, :end_date, :is_public, :creator_id, :cohort_id, :description)
+    end
+
+    def set_side_trip_event
+      if params[:event_id]
+        @side_trip.event_id = params[:event_id]
+      end
     end
 
     def set_side_trip_cohort

@@ -43,9 +43,12 @@ Rails.application.routes.draw do
   resources :side_trips do
     get 'add/:id', to: 'side_trips#add_user', as: 'add_user'
     get 'remove/:id', to: 'side_trips#remove_user', as: 'remove_user'
+    get 'invite', to: 'side_trips#invite', as: 'invite'
+    post 'invite', to: 'side_trips#create_invitations', as: 'create_invitations'
     resources :transits
     resources :photos
     resources :lodgings
+    resources :events
   end
 
 

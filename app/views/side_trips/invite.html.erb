@@ -1,0 +1,17 @@
+<div class='container'>
+<div class='row'>
+<%= form_tag("invite", method: "post") do %>
+  <% @side_trip.cohort.users.each do |user| %>
+    <div class='col-md-4'>
+      <%= check_box_tag "invite[invitees][]", user.id, false, :id => user.id %>
+      <%= label_tag "#{user.safe_name}" %>
+    </div>
+  <% end %>
+  <%= submit_tag "Invite", class: 'btn btn-primary' %>
+<% end %>
+</div>
+</div>
+
+
+
+

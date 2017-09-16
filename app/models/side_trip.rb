@@ -9,6 +9,7 @@ class SideTrip < ApplicationRecord
   has_and_belongs_to_many :tags
   has_many :posts
   has_many :photos
+  has_many :events
   def self.create_itinerary_items(collection)
     response = []
     collection.each do |side_trip|
