@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :move_to_track]
   layout 'admin'
   # GET /events
   # GET /events.json
@@ -95,10 +95,21 @@ class EventsController < ApplicationController
     end
   end
 
+  def move_to_track
+    track = Track.find(params[:track_id])
+    @event.track = track
+    @event.save
+    redirect_to @event
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    if params[:event_id]
+      @event = Event.find(params[:event_id])
+    else
+      @event = Event.find(params[:id])
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -120,11 +131,13 @@ class EventsController < ApplicationController
   end
 
   def send_notifications
-    if @cohort.nil?
-      @cohort = Cohort.find(params[:event][:cohort_id])
-    end
-    @cohort.users.each do |user|
-      notification = Notification.create!(user: user, notification_type: "Event", notification_obeject_id: @event.id)
+    if @side_trip.is_public
+      if @cohort.nil?
+        @cohort = Cohort.find(params[:event][:cohort_id])
+      end
+      @cohort.users.each do |user|
+        notification = Notification.create!(user: user, notification_type: "Event", notification_obeject_id: @event.id)
+      end
     end
   end
 end

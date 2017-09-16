@@ -13,12 +13,14 @@
     <% else %>
       <% track = @event.track.id %>
     <% end%>
-    <%= label_tag :track %>
-    <%= select_tag 'track_id', options_for_select(
-      Track.where(cohort_id: @event.cohort).map {|c| [c.name, c.id]},
-    track),
-    {:multiple => false, class: ''}%>
-    <%= link_to "Move Event", "#", class: "btn btn-primary" %>
+    <%= form_tag("#{@event.id}/move_to_track", method: "post") do %>
+      <%= label_tag :track %>
+      <%= select_tag 'track_id', options_for_select(
+        Track.where(cohort_id: @event.cohort).map {|c| [c.name, c.id]},
+      track),
+      {:multiple => false, class: ''}%>
+      <%= submit_tag "Move Event", class: "btn btn-primary" %>
+    <% end %>
   </div>
 
 </div>

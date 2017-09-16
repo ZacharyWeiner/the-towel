@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     get 'waitlist/add/:user_id', to: "event_waitlists#create", as:'waitlist_add_user'
     get 'waitlist/remove/:user_id', to: "event_waitlists#destroy", as:'waitlist_remove_user'
     get 'admin', to: 'admin#events'
+    post 'move_to_track', to: "events#move_to_track", as: "move_to_track"
   end
   resources :locations do
     resources :location_details

@@ -4,7 +4,7 @@ class SideTripsController < ApplicationController
   layout 'admin'
   def index
     if params[:cohort_id]
-      @side_trips = SideTrip.where(cohort_id: params[:cohort_id])
+      @side_trips = SideTrip.where(cohort_id: params[:cohort_id]).where(is_public: true)
     else
       @side_trips = SideTrip.all
     end
@@ -17,6 +17,11 @@ class SideTripsController < ApplicationController
     @posts = @side_trip.posts.order(created_at: :desc)
     if @side_trip.chat_room.nil?
       create_chat_room
+    end
+    notification = Notification.where(notification_obeject_id: @side_trip.id, notification_type: "Side Trip", user_id: current_user.id).first
+    unless notification.nil?
+      notification.read = true
+      notification.save
     end
   end
 
@@ -67,9 +72,10 @@ class SideTripsController < ApplicationController
   # DELETE /side_trips/1
   # DELETE /side_trips/1.json
   def destroy
+    @cohort = @side_trip.cohort
     @side_trip.destroy
     respond_to do |format|
-      format.html { redirect_to side_trips_url, notice: 'Side trip was successfully destroyed.' }
+      format.html { redirect_to @cohort, notice: 'Side trip was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

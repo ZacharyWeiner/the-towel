@@ -11,22 +11,7 @@
     <li>
       <!-- inner menu: contains the actual data -->
       <ul class="menu">
-        <%current_user.new_notifications.each do |notification| %>
-          <li>
-            <% if notification.notification_type == "Chat" %>
-              <% chat_room = ChatRoom.find(notification.notification_obeject_id) %>
-              <%= link_to chat_room  do %>
-                <%= chat_room.title %> Has A New Message
-              <% end %>
-            <% elsif notification.notification_type == "Event" %>
-              <% event = Event.find(notification.notification_obeject_id)%>
-              <% cohort = Cohort.find(event.cohort.id) %>
-              <%= link_to event_path(event) do %>
-                <%= event.title %> was created in <%= event.cohort.name%>
-              <% end %>
-            <% end %>
-          </li>
-        <% end %>
+        <%= render current_user.new_notifications %>
       </ul>
     </li>
     <li class="footer">

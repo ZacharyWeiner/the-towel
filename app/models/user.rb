@@ -141,7 +141,7 @@ class User < ApplicationRecord
   end
 
   def current_cohort
-    self.cohorts.where.not(id: 2).first
+    self.cohorts.last
   end
 
   def is_in_role(role_name)

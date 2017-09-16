@@ -9,6 +9,9 @@
     <p class='lead'> <%= @side_trip.description %></p>
     <p> <%= link_to "Chat", @side_trip.chat_room, class: 'btn btn-secondary'%></p>
   </div>
+  <% if @side_trip.creator == current_user %>
+    <div>  <%= link_to "Delete", side_trip_path(@side_trip), method: "delete" %> </div>
+  <% end %>
 </div>
 <ul class="nav nav-pills nav-justified cohort-links">
   <li class="nav-item">

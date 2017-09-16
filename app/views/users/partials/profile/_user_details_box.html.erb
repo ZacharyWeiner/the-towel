@@ -23,6 +23,9 @@
       </ul>
       <% if @user.id ==  current_user.id %>
        <%= link_to "Edit Profile", edit_profile_path(@user.profile), class: 'btn btn-primary btn-block' %>
+      <% else %>
+        <%= link_to "Message Me", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: 'btn btn-primary btn-block' %>
+
       <%end%>
 
     </div>
