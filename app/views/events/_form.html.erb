@@ -87,6 +87,10 @@
            <%= form.hidden_field :event_type, :value => 'cohort'%>
         <% end %>
       </div>
+      <div class="form-group">
+        <%= form.label :public %>
+        <%= form.check_box :is_public, id: :side_trip_is_public, :checked => true %>
+      </div>
     </div>
     <!-- End Left Side -->
     <% if @cohort %>
@@ -94,6 +98,9 @@
       <%end%>
       <% if params[:track_id] %>
       <%= form.hidden_field :track_id, :value => params[:track_id] %>
+      <%end%>
+       <% if params[:side_trip_id] %>
+      <%= form.hidden_field :side_trip_id, :value => params[:side_trip_id] %>
       <%end%>
   </div>
   <!-- End Row -->

@@ -55,6 +55,10 @@ class EventsController < ApplicationController
       @cohort = @track.cohort
       @event.cohort = @cohort
     end
+    if params[:event][:side_trip_id]
+      @side_trip = SideTrip.find(params[:event][:side_trip_id])
+      @event.side_trip = @side_trip
+    end
     respond_to do |format|
       if @event.save
         unless @track.nil?
@@ -114,7 +118,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type, :cohort_id, :track_id)
+    params.require(:event).permit(:date, :start_time, :end_time, :title, :description, :cost, :capacity, :location_id, :meeting_point, :event_type, :cohort_id, :track_id, :is_public)
   end
 
   def create_chat_room
@@ -131,13 +135,24 @@ class EventsController < ApplicationController
   end
 
   def send_notifications
-    if @side_trip.is_public
-      if @cohort.nil?
-        @cohort = Cohort.find(params[:event][:cohort_id])
-      end
-      @cohort.users.each do |user|
+    # Event for Cohort - Not Side Trip
+    byebug
+    if @side_trip.nil? && @event.is_public
+      notify_cohort
+    else
+      #Event for SideTrip not Cohort
+      @side_trip.users.each do |user|
         notification = Notification.create!(user: user, notification_type: "Event", notification_obeject_id: @event.id)
       end
+    end
+  end
+
+  def notify_cohort
+    if @cohort.nil?
+      @cohort = Cohort.find(params[:event][:cohort_id])
+    end
+    @cohort.users.each do |user|
+      notification = Notification.create!(user: user, notification_type: "Event", notification_obeject_id: @event.id)
     end
   end
 end

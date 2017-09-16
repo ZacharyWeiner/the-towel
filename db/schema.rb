@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916181453) do
+ActiveRecord::Schema.define(version: 20170916191141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20170916181453) do
     t.bigint "track_id"
     t.bigint "chat_room_id"
     t.bigint "side_trip_id"
+    t.boolean "is_public"
     t.index ["chat_room_id"], name: "index_events_on_chat_room_id"
     t.index ["cohort_id"], name: "index_events_on_cohort_id"
     t.index ["location_id"], name: "index_events_on_location_id"

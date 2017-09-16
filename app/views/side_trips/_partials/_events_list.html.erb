@@ -1,0 +1,6 @@
+
+  <div class="list-group">
+  <% @side_trip.events.order(date: :desc).each do |event| %>
+    <%= link_to "#{event.title}", event_path(event), class: 'list-group-item list-group-item-action' %>
+  <% end %>
+  </div>
