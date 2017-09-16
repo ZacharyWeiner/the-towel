@@ -1,6 +1,26 @@
-
-  <div class="list-group">
-  <% @cohort.events.order(date: :desc).each do |event| %>
-    <%= link_to "#{event.title}", event_path(event), class: 'list-group-item list-group-item-action' %>
-  <% end %>
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Events</h3> <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning pull-right' %>
   </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <ul class="products-list product-list-in-box">
+      <% @cohort.events.order(date: :desc).each do |event| %>
+      <li class="item">
+        <div class="product-info">
+          <%= link_to "#{event.title}", event_path(event), class: "product-title" %>
+            <span class="label label-success pull-right">$<%= event.cost %></span></a>
+          <span class="product-description">
+                <%= event.description %>
+              </span>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer text-center">
+    <!-- <a href="javascript:void(0)" class="uppercase">View All Products</a> -->
+  </div>
+  <!-- /.box-footer -->
+</div>

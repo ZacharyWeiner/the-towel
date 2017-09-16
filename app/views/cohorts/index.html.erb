@@ -1,37 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Cohorts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Banner image</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cohorts.each do |cohort| %>
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Cohorts for <%= @current_user.organization.name %></h3>
+    <%= link_to 'New Cohort', new_cohort_path, class: 'btn btn-primary pull-right' %>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body no-padding">
+    <table class="table table-striped">
+      <tbody><tr>
+        <th >Name</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>View</th>
+      </tr>
+      <% @cohorts.each do |cohort| %>
       <tr>
         <td><%= cohort.name %></td>
         <td><%= cohort.description %></td>
-        <td><%= cohort.start_date %></td>
-        <td><%= cohort.end_date %></td>
-        <td><%= cohort.banner_image %></td>
-        <td><%= cohort.image %></td>
-        <td><%= link_to 'Show', cohort %></td>
-        <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
-        <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', cohort, class: 'btn btn-success' %></td>
+        <td><%= link_to 'Edit', edit_cohort_path(cohort), class: 'btn btn-warning' %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Cohort', new_cohort_path %>
+      <% end %>
+    </tbody></table>
+  </div>
+  <!-- /.box-body -->
+</div>

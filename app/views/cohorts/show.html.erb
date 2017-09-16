@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="tab-pane" id="photos">
-          <%= link_to "Add", new_user_photo_path(current_user), class: 'nav-link' %>
+          <%= link_to "Add", new_user_photo_path(current_user), class: 'btn btn-primary pull-right' %>
           <div class='row'>
             <% @cohort.photos.each do |photo|%>
               <div class='col-md-4'>
@@ -62,11 +62,9 @@
           </div>
         </div>
         <div class="tab-pane" id="events">
-          <%= link_to "Add Event", cohort_new_event_path(@cohort), class: 'btn btn-warning btn-block' %>
           <%= render '/cohorts/cohort_events_widget' %>
         </div>
         <div class="tab-pane" id="members">
-          <h3> Memebers </h3>
           <%= render '/cohorts/cohort_user_list' %>
         </div>
     </div>

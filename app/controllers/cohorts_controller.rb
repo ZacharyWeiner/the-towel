@@ -5,17 +5,22 @@ class CohortsController < ApplicationController
   # GET /cohorts
   # GET /cohorts.json
   def index
-    @cohorts = Cohort.all
+    @cohorts = Cohort.where(organization_id: current_user.organization_id)
   end
 
   # GET /cohorts/1
   # GET /cohorts/1.json
   def show
     :authenticate_user!
-    @post = Post.new
-    @posts = Post.where(cohort: @cohort).order(created_at: :desc)
-    if @cohort.chat_rooms.count == 0
-      create_chat_room
+    #all users can see cohorts from the Towel Nation
+    if @cohort.organization.id == 1 || (@cohort.organization ==  current_user.organization)
+      @post = Post.new
+      @posts = Post.where(cohort: @cohort).order(created_at: :desc)
+      if @cohort.chat_rooms.count == 0
+        create_chat_room
+      end
+    else
+      redirect_to current_user.current_cohort
     end
   end
 

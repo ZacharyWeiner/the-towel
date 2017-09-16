@@ -1,6 +1,6 @@
-<div class='row' style='background-color: white'>
+<div class='row' style='background-color: white; margin:0px'>
   <% @posts.each do |post| %>
-    <div class="post">
+    <div class="post" >
     <div class="user-block text-left">
       <img class="img-circle img-bordered-sm" src="<%= post.user.gravitar_url %>" alt="user image">
           <span class="username">
