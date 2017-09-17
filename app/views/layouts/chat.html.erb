@@ -8,15 +8,16 @@
     <%= action_cable_meta_tag %>
     <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
     <%= javascript_include_tag "jquery_init" %>
-    <%= stylesheet_link_tag 'solidstate', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'chat', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'solidstate', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   </head>
   </head>
 
   <body>
     <%= yield %>
   </body>
+  <%= render partial: 'admin/shared/footer' %>
 </html>
 

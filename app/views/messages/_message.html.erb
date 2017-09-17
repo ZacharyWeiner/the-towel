@@ -1,20 +1,6 @@
-
-
-<li class="left clearfix" style="padding-top:12px;"><span class="chat-img pull-left">
-   <%=image_tag message.user.gravitar_url, class: "rounded-circle" %>
-</span>
-    <div class="chat-body clearfix">
-        <div class="header">
-            <strong class="primary-font text-muted"><%= message.user.safe_name %></strong> <small class="pull-right text-muted">
-                <span class="glyphicon glyphicon-time"></span><%= time_ago_in_words(message.created_at) %> mins ago</small>
-        </div>
-        <p>
-            <%= auto_html(message.body.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
-        </p>
+<div class="message">
+    <div class="photo" style='background-image: url("<%= message.user.gravitar_url %>");'>
     </div>
-</li>
-
-
-<style type="text/css">
-  p {color:white;}
-</style>
+        <%= auto_html(message.body.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+    <br/>
+</div>
