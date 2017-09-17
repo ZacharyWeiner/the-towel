@@ -1,5 +1,20 @@
-<div class="list-group">
+ <section class="discussions">
+<!--   <div class="discussion search">
+    <div class="searchbar">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input type="text" placeholder="Search..."></input>
+    </div>
+  </div> -->
   <% current_user.chat_rooms.each do |room| %>
-  <%= link_to room.title, room, class: 'list-group-item list-group-item-action' %>
+    <div class="discussion message-active">
+      <div class="photo" style='background-image: url("<%= room.messages.last.user.gravitar_url unless room.messages.last.nil? %>");']'>
+        <div class="online"></div>
+      </div>
+      <div class="desc-contact">
+        <p class="name"><%= link_to room.title, chat_room_path(room) %></p>
+        <p class="message"><%= room.messages.last.body %></p>
+      </div>
+      <div class="timer"><%= time_ago_in_words(message.created_at) %> mins ago</div>
+    </div>
   <% end %>
-</div>
+ </section>
