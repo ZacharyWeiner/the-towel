@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ratings
   get 'contact_submissions/message_thank_you', to: 'contact_submissions#message_thank_you'
   resources :contact_submissions
 
@@ -35,10 +36,12 @@ Rails.application.routes.draw do
     resources :photos
     get 'tags', to: 'housings#update_tags'
     post 'tags', to: 'housings#set_tags'
+    resources :ratings
   end
   resources :photos
   resources :tracks do
     resources :events
+    resources :ratings
   end
   resources :side_trips do
     get 'add/:id', to: 'side_trips#add_user', as: 'add_user'
@@ -61,6 +64,7 @@ Rails.application.routes.draw do
     resources :event_comments
     resources :event_rsvps
     resources :photos
+    resources :ratings
     get 'waitlist/add/:user_id', to: "event_waitlists#create", as:'waitlist_add_user'
     get 'waitlist/remove/:user_id', to: "event_waitlists#destroy", as:'waitlist_remove_user'
     get 'admin', to: 'admin#events'
@@ -68,6 +72,7 @@ Rails.application.routes.draw do
   end
   resources :locations do
     resources :location_details
+    resources :ratings
   end
 
   resources :cohorts do

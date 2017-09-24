@@ -33,4 +33,12 @@ class Event < ApplicationRecord
                       link: Rails.application.routes.url_helpers.event_path(self.id),
                       timezone: "#{self.location.name}/#{self.location.parent.parent.name}")
   end
+
+  def ratings
+    Rating.event_ratings(self.id)
+  end
+
+  def rating
+    self.ratings.average(:rating)
+  end
 end
