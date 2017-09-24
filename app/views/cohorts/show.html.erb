@@ -1,24 +1,5 @@
 <section class="content">
-<ul class="nav nav-pills nav-justified cohort-links">
-  <li class="nav-item">
-    <%= link_to "Announcements", cohort_announcements_path(@cohort), class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Itinerary", '/my-itinerary', class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Housing</a>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Tracks",  tracks_path , class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Side Trips", cohort_side_trips_path(@cohort), class: 'nav-link' %>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Gallery", cohort_list_photos_path(@cohort), class: 'nav-link' %>
-  </li>
-</ul>
+
 <hr>
 <div class="row">
   <div class="col-md-3">
@@ -31,6 +12,26 @@
     <div class="box box-primary">
 
     </div>
+    <ul class="nav cohort-links flex-column">
+      <li class="nav-item">
+        <%= link_to "Announcements", cohort_announcements_path(@cohort), class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Itinerary", '/my-itinerary', class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Housing</a>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Tracks",  tracks_path , class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Side Trips", cohort_side_trips_path(@cohort), class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Gallery", cohort_list_photos_path(@cohort), class: 'nav-link' %>
+      </li>
+    </ul>
     <!-- /.box -->
   </div>
   <!-- /.col -->
