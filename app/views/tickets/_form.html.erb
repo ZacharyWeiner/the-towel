@@ -1,0 +1,43 @@
+<%= form_with(model: ticket, local: true) do |form| %>
+  <% if ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+      <% ticket.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <h3> Created By:
+        <% if ticket.creator.nil? %>
+          <%= current_user.safe_name%>
+        <% else %>
+          <%= ticket.creator.safe_name %>
+        <% end %>
+    </h3>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :ticket_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :details %>
+    <%= form.text_area :details, id: :ticket_details, class: 'form-control' %>
+  </div>
+
+  <% if current_user.is_admin %>
+  <div class="form-group">
+    <%= form.label :resolution %>
+    <%= form.text_area :resolution, id: :ticket_resolution, class: 'form-control' %>
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

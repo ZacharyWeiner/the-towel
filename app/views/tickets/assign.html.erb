@@ -1,0 +1,18 @@
+<%= form_with(model: @ticket, local: true, url: "/tickets/#{@ticket.id}/assign", method: "post") do |form| %>
+  <div class="form-group">
+
+    <% if @ticket.assignee.nil? %>
+      <% assignee = 0 %>
+    <% else %>
+      <% assignee = @ticket.assignee.id %>
+    <% end%>
+    <%= form.label :assigned_to %>
+    <%= form.select 'assigned_to', options_for_select(
+      @ticket.cohort.admins.map {|a| [a.safe_name, a.id]},
+    assignee), {},
+    {:multiple => false, class: 'form-control'}%>
+  </div>
+  <div class='actions'>
+    <%= form.submit %>
+  </div>
+<% end %>

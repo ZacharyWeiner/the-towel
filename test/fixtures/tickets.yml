@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_by: 
+  assigned_to: 
+  status: MyString
+  details: MyText
+  resolution: MyText
+  resolved_on: 2017-09-24
+  title: MyString
+  resolved_by: 
+
+two:
+  created_by: 
+  assigned_to: 
+  status: MyString
+  details: MyText
+  resolution: MyText
+  resolved_on: 2017-09-24
+  title: MyString
+  resolved_by: 

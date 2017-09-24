@@ -12,17 +12,29 @@ class Cohort < ApplicationRecord
   has_many :schedule_items
   has_many :tracks
   has_many :announcements
+  has_many :tickets
 
   def main_chat
     self.chat_rooms.where(title: self.name).first
   end
 
   def admins
-    role = Role.where(title: Role.org_admin).first
+    roles = []
+    unless Role.where(title: Role.org_admin).first.nil?
+      roles << Role.where(title: Role.org_admin).first
+    end
+    unless Role.where(title: Role.cohort_admin).first.nil?
+      roles << Role.where(title: Role.cohort_admin).first
+    end
+    unless Role.where(title: Role.city_admin).first.nil?
+      roles << Role.where(title: Role.city_admin).first
+    end
     response = []
-    role.users.each do |user|
-      if user.cohorts.include?(self)
-        response << user
+    roles.each do |role |
+      role.users.each do |user|
+        if user.cohorts.include?(self)
+          response << user
+        end
       end
     end
     response

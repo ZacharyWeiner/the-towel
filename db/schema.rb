@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924035354) do
+ActiveRecord::Schema.define(version: 20170924143948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -505,6 +505,21 @@ ActiveRecord::Schema.define(version: 20170924035354) do
     t.index ["users_id"], name: "index_tags_users_on_users_id"
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.bigint "created_by"
+    t.bigint "assigned_to"
+    t.string "status"
+    t.text "details"
+    t.text "resolution"
+    t.date "resolved_on"
+    t.string "title"
+    t.bigint "resolved_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "cohort_id"
+    t.index ["cohort_id"], name: "index_tickets_on_cohort_id"
+  end
+
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -653,6 +668,7 @@ ActiveRecord::Schema.define(version: 20170924035354) do
   add_foreign_key "tags_tracks", "tracks", column: "tracks_id"
   add_foreign_key "tags_users", "tags", column: "tags_id"
   add_foreign_key "tags_users", "users", column: "users_id"
+  add_foreign_key "tickets", "cohorts"
   add_foreign_key "tracks", "chat_rooms"
   add_foreign_key "tracks", "cohorts"
   add_foreign_key "tracks", "events", column: "events_id"

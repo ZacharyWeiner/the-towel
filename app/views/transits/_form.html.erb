@@ -37,17 +37,17 @@
 
   <div class="form-group">
 
-        <% if @transit.company.nil? %>
-          <% company = 0 %>
-        <% else %>
-          <% company = @transit.company.id %>
-        <% end%>
-        <%= form.label :company %>
-        <%= form.select 'company_id', options_for_select(
-          Company.where(company_type: ['airline', 'bus']).map {|c| [c.name, c.id]},
-        company), {},
-        {:multiple => false, class: 'form-control'}%>
-      </div>
+  <% if @transit.company.nil? %>
+    <% company = 0 %>
+  <% else %>
+    <% company = @transit.company.id %>
+  <% end%>
+  <%= form.label :company %>
+  <%= form.select 'company_id', options_for_select(
+    Company.where(company_type: ['airline', 'bus']).map {|c| [c.name, c.id]},
+  company), {},
+  {:multiple => false, class: 'form-control'}%>
+</div>
 
   <div class="form-group">
     <%= form.label :route_number %>

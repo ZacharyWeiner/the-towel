@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :tickets do
+    get 'assign', to: 'tickets#assign', as: 'assign'
+    get 'resolve', to: 'tickets#resolve', as: 'resolve'
+    post 'assign/', to: 'tickets#assign_to', as: 'assign_user'
+  end
   resources :ratings
   get 'contact_submissions/message_thank_you', to: 'contact_submissions#message_thank_you'
   resources :contact_submissions
@@ -86,6 +91,7 @@ Rails.application.routes.draw do
     resources :schedule_items
     resources :announcements
     resources :side_trips
+    resources :tickets
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'
