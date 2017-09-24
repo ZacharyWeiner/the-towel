@@ -14,7 +14,11 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.json
   def show
-
+    notification = Notification.where(user: current_user, notification_type: "Ticket", notification_obeject_id: @ticket.id).first
+    unless notification.nil?
+      notification.read = true
+      notification.save
+    end
   end
 
   # GET /tickets/new
@@ -35,6 +39,7 @@ class TicketsController < ApplicationController
     @ticket.status = "In Queue"
     respond_to do |format|
       if @ticket.save
+        send_notifications
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
@@ -97,5 +102,11 @@ class TicketsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
       params.require(:ticket).permit(:created_by, :assigned_to, :status, :details, :resolution, :resolved_on, :title, :resolved_by, :cohort_id)
+    end
+
+    def send_notifications
+      @ticket.cohort.admins.each do |admin|
+        notification = Notification.create!(user: admin, notification_type: "Ticket", notification_obeject_id: @ticket.id)
+      end
     end
 end

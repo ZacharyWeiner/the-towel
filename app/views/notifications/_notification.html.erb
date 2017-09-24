@@ -16,5 +16,11 @@
   <%= link_to cohort_side_trip_path(cohort, side_trip) do %>
     <%= side_trip.title %> was created in <%= side_trip.cohort.name%>
   <% end %>
+<% elsif notification.notification_type == "Ticket" %>
+  <% ticket = Ticket.find(notification.notification_obeject_id) %>
+  <% cohort = Cohort.find(ticket.cohort.id)%>
+  <%= link_to ticket_path(ticket) do %>
+    <%= ticket.title %> was created in <%= ticket.cohort.name%>
+  <% end %>
 <% end %>
 </li>
