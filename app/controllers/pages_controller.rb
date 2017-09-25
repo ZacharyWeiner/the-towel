@@ -8,8 +8,8 @@ class PagesController < ApplicationController
         current_user.cohorts << current_user.organization.cohorts.first
         current_user.roles << Role.where(title: Role.cohort_member).first
       elsif current_user.organization.nil?
-        current_user.organization = 1
-        current_user.cohorts << Organization.find(1).cohorts.first
+        current_user.organization = Organization.find(1)
+        current_user.cohorts << current_user.organization.cohorts.first
         current_user.roles << Role.where(title: Role.cohort_member).first
       end
     end
