@@ -55,9 +55,9 @@
                       <% end %>
                     </td>
                     <td class="mailbox-subject">
-                      <%= conversation.emails.last.body %>
+                      <%= conversation.emails.last.body unless conversation.emails.last.nil? %>
                     </td>
-                    <td class="mailbox-date"><%= time_ago_in_words(conversation.emails.last.created_at) %> ago</td>
+                    <td class="mailbox-date"><%= time_ago_in_words(conversation.emails.last.created_at) unless conversation.emails.last.nil? %> ago</td>
                   </tr>
                 <% end %>
                 </tbody>

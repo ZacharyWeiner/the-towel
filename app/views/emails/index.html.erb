@@ -17,7 +17,6 @@
     <div class="direct-chat-messages">
       <% @emails.reverse.each do |message| %>
         <% unless message.user.nil? %>
-          <% puts "Xxxxxxxxxxxxxxxxxxxxxxxx #{message.user_id} Xxxxxxxxxxxxxxxxxxxxxxxx"%>
           <!-- Message. Default to the left -->
           <div class="direct-chat-msg">
             <div class="direct-chat-info clearfix">
@@ -27,7 +26,7 @@
             <!-- /.direct-chat-info -->
             <img class="direct-chat-img" src="<%= message.user.gravitar_url%>" alt="Message User Image"><!-- /.direct-chat-img -->
             <div class="direct-chat-text">
-              <%= message.body%>
+              <%= auto_html(message.body.html_safe){ image(:width => '100%'); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
             </div>
             <!-- /.direct-chat-text -->
           </div>
