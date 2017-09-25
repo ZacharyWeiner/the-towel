@@ -17,7 +17,7 @@ class InvitesController < ApplicationController
     @invitor = User.find(params[:user_id])
     @invite_email_address = params[:invite_email_address]
     @cohort = Cohort.find(params[:cohort_id])
-    @base_link = "http://localhost:3000"
+    @base_link = "https://the-towel.herokuapp.com"
     @link = @base_link + url_for(invite_path) + "?cohort=#{@cohort.id}"
 
     @invite_content = "You have been invited to Join the Group #{@cohort.name}, by #{@invitor.email}. Click this link to join the group: #{@link}"
