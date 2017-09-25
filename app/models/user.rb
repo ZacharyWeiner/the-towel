@@ -45,6 +45,19 @@ class User < ApplicationRecord
     end
   end
 
+  def events_missing_ratings
+    event_rsvps = EventRsvp.where(user: self)
+    completed = []
+    event_rsvps.each do |rsvp|
+      if rsvp.event.date < DateTime.now
+        notification = Notification.where(user: self).where(notification_type: "Event Rating Request").where(notification_obeject_id: rsvp.event.id).first
+        if notification.nil?
+          Notification.create!(user: self, notification_type: "Event Rating Request", notification_obeject_id: rsvp.event.id)
+        end
+      end
+    end
+  end
+
   def safe_name
     if self.profile.nil? || self.profile.display_name.nil?
       self.email

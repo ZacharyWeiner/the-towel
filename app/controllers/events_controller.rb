@@ -136,7 +136,6 @@ class EventsController < ApplicationController
 
   def send_notifications
     # Event for Cohort - Not Side Trip
-    byebug
     if @side_trip.nil? && @event.is_public
       notify_cohort
     else

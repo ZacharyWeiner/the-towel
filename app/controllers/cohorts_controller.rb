@@ -17,6 +17,7 @@ class CohortsController < ApplicationController
     if @cohort.chat_rooms.count == 0
       create_chat_room
     end
+    current_user.events_missing_ratings
   end
 
   # GET /cohorts/new

@@ -11,25 +11,26 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :rating %>
-    <%= form.number_field :rating, id: :rating_rating %>
+
+    <%= form.select "rating", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>".html_safe, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :note %>
-    <%= form.text_area :note, id: :rating_note %>
+    <%= form.text_area :note, id: :rating_note, class: 'form-control' %>
   </div>
 
   <%= form.hidden_field :user_id, id: :rating_user_id %>
   <% if params[:event_id] %>
-    <%= form.hidden_field :event_id, :value => params[:event_id] %>%
+    <%= form.hidden_field :event_id, :value => params[:event_id] %>
   <% end %>
    <% if params[:track_id] %>
-    <%= form.hidden_field :track_id, :value => params[:track_id] %>%
+    <%= form.hidden_field :track_id, :value => params[:track_id] %>
   <% end %>
   <% if params[:housing_id] %>
-    <%= form.hidden_field :housing_id, :value => params[:housing_id] %>%
+    <%= form.hidden_field :housing_id, :value => params[:housing_id] %>
   <% end %>
   <% if params[:tag_id] %>
     <%= form.hidden_field :tag_id, :value => params[:tag_id] %>

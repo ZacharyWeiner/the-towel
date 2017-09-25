@@ -22,5 +22,11 @@
   <%= link_to ticket_path(ticket) do %>
     <%= ticket.title %> was created in <%= ticket.cohort.name%>
   <% end %>
+<% elsif notification.notification_type == "Event Rating Request" %>
+  <% event = Event.find(notification.notification_obeject_id)%>
+  <% cohort = Cohort.find(event.cohort.id) %>
+  <%= link_to new_event_rating_path(event) do %>
+    Feedback Request For <%= event.title %>
+  <% end %>
 <% end %>
 </li>
