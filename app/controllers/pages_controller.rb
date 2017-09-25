@@ -4,10 +4,12 @@ class PagesController < ApplicationController
     @contact_submission = ContactSubmission.new
     #Manage off the street sign ups
     if current_user
-      if  current_user.organization_id = 1 && current_user.cohorts.count == 0
+      if  current_user.organization_id == 1 && current_user.cohorts.count == 0
+        byebug
         current_user.cohorts << current_user.organization.cohorts.first
         current_user.roles << Role.where(title: Role.cohort_member).first
       elsif current_user.organization.nil?
+        byebug
         current_user.organization = Organization.find(1)
         current_user.cohorts << current_user.organization.cohorts.first
         current_user.roles << Role.where(title: Role.cohort_member).first
