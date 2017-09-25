@@ -1,21 +1,20 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-3">You Have Been Invited To Group:</h1>
-    <p class="lead"></p>
+    <h3 class="display-3">You Have Been Invited To Group:</h3>
+    <p class="lead"><%= Cohort.find(@invited_cohort).name %></p>
   </div>
 </div>
 
 <%if  @invited_cohort.nil? %>
   <h3> We're Sorry, You Need An Invite Code To Join This Way </h3>
 <% else %>
-<div class='container'>
-  <div class='row'>
-    <div class="col-md-6">
-      Sign Up
+<!-- <div class='container'> -->
+  <div class='row' style="padding-left:24px; padding-right:24px;">
+   <!--  <div class="col-md-6"> -->
       <%= render 'devise/registrations/new' %>
-    </div>
+    <!-- </div>
     <div class="col-md-6">
-    </div>
+    </div> -->
   </div>
-</div>
+<!-- </div> -->
 <%end%>
