@@ -3,9 +3,15 @@ class PagesController < ApplicationController
   def home
     @contact_submission = ContactSubmission.new
     #Manage off the street sign ups
-    if current_user && current_user.organization_id = 1 && current_user.cohorts.count == 0
-      current_user.cohorts << current_user.organization.cohorts.first
-      current_user.roles << Role.where(title: Role.cohort_member).first
+    if current_user
+      if  current_user.organization_id = 1 && current_user.cohorts.count == 0
+        current_user.cohorts << current_user.organization.cohorts.first
+        current_user.roles << Role.where(title: Role.cohort_member).first
+      elsif current_user.organization.nil?
+        current_user.organization = 1
+        current_user.cohorts << Organization.find(1).cohorts.first
+        current_user.roles << Role.where(title: Role.cohort_member).first
+      end
     end
 
     #Manage Invited Users
@@ -13,6 +19,8 @@ class PagesController < ApplicationController
       @cohort = Cohort.find(session[:invited_cohort])
       unless current_user.cohorts.include?(@cohort)
         current_user.cohorts << @cohort
+        current_user.organization = @cohort.organization
+        current_user.save
       end
       session[:invited_cohort] = nil
     end

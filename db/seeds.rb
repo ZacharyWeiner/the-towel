@@ -29,8 +29,16 @@ nomad_nation = Cohort.create(name: "Nomad Nation", description:"We Dem DigiNoms"
 nation = Cohort.create!(name: "Remote Nation", description:"That Nomad Life", organization: remote_year)
 libertatem = Cohort.create!(name: "Libertatem", description:"Chasing Winter",  organization: remote_year, start_date:Date.parse('28-08-2016'), end_date: Date.parse('26-08-2017'))
 
-meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
-balboa = Cohort.create!(name: "Balboa", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-08-2017'))
+meraki = Cohort.create!(name: "Meraki", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('27-01-20178'))
+kublai = Cohort.create!(name: "Kublai", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('03-03-2018'))
+balboa = Cohort.create!(name: "Balboa", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('03-03-2018'))
+kaizen = Cohort.create!(name: "Kaizen", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('31-03-2018'))
+veritas = Cohort.create!(name: "Veritas", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('28-04-2018'))
+earhart = Cohort.create!(name: "Earhart", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-05-2018'))
+yugen = Cohort.create!(name: "Yugen", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('30-07-2018'))
+sonder = Cohort.create!(name: "Sonder", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('28-01-2017'), end_date: Date.parse('25-08-2018'))
+mangata = Cohort.create!(name: "Mangata", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('26-08-2018'), end_date: Date.parse('29-09-2018'))
+sisu = Cohort.create!(name: "Sisu", description:"Chasing Summer",  organization: remote_year, start_date:Date.parse('04-11-2018'), end_date: Date.parse('03-03-2018'))
 
 we_roam_nation = Cohort.create!(name: "We Roam Nation", description:"We Roam All Year Round",  organization: we_roam, start_date:Date.parse('28-01-2017'), end_date: Date.parse('26-01-2018'))
 puts 'End Build Cohorts'
@@ -57,6 +65,7 @@ geordan = User.create!(email:'geordan@ry.com', password: 'password',  organizati
 gemma = User.create!(email:'gemma@ry.com', password: 'password',  organization: remote_year)
 chech = User.create!(email:'chech@ry.com', password: 'password',  organization: remote_year)
 alison = User.create!(email:'alison@ry.com', password: 'password',  organization: remote_year)
+greg = User.create!(email:'greg@ry.com', password: 'password',  organization: remote_year)
 
 
 # Balboa People #
@@ -112,9 +121,10 @@ geordan.roles << client
 gemma.roles << client
 chech.roles << client
 alison.roles << client
+greg.roles << client
 
-libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra]
-nation.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra, jo, coti, paulina]
+libertatem.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra, greg]
+nation.users << [zack, trabka, andrea, geordan, gemma, chech, alison, westy, alexandra, jo, coti, paulina, greg]
 
 
 #Balboa Roles
@@ -317,10 +327,14 @@ kl = Location.create!(name: 'Kuala Lumpur', location_type:'city', parent: malays
 sandakan = Location.create!(name: 'Sandakan', location_type:'city', parent: malaysia)
 thailand = Location.create!(name:"Thailand", location_type: 'country', parent: asia)
 bangkok = Location.create!(name:"Bangkok", location_type: 'city', parent: thailand)
-changmai = Location.create!(name:"Chang Mai", location_type: 'city', parent: thailand)
+changmai = Location.create!(name:"Chiang Mai", location_type: 'city', parent: thailand)
 kohphanagan = Location.create!(name:"Koh Phangan", location_type: 'city', parent: thailand)
 cambodia = Location.create!(name: 'Cambodia', location_type: 'country', parent: asia)
 phnompenh = Location.create!(name: 'Phnom Penh', location_type:'city', parent: cambodia)
+japan = Location.create!(name: 'Japan', location_type: 'country', parent: asia)
+kyoto = Location.create!(name: 'Kyoto', location_type:'city', parent: japan)
+vietnam = Location.create!(name: 'Vietnam', location_type: 'country', parent: asia)
+hanoi = Location.create!(name: 'Hanoi', location_type:'city', parent: vietnam)
 
 europe = Location.create!(name:"Europe", location_type: 'region')
 england = Location.create!(name:"England", location_type: 'country', parent: europe)
@@ -333,6 +347,12 @@ czech = Location.create!(name: 'Czech Republik', location_type: 'country', paren
 prague = Location.create!(name: 'Prague', location_type: 'city', parent: czech)
 portugal = Location.create!(name: 'Portugal', location_type: 'country', parent: europe)
 lisbon = Location.create!(name: 'Lisbon', location_type: 'city', parent: portugal)
+spain = Location.create!(name: 'Spain', location_type: 'country', parent: europe)
+valencia = Location.create!(name: 'Valencia', location_type: 'city', parent: spain)
+bulgaria = Location.create!(name: 'Bulgaria', location_type: 'country', parent: europe)
+sofia = Location.create!(name: 'Sofia', location_type: 'city', parent: bulgaria)
+serbia = Location.create!(name: 'Serbia', location_type: 'country', parent: europe)
+belgrade = Location.create!(name: 'Belgrade', location_type: 'city', parent: serbia)
 
 latam = Location.create!(name:"Latin America", location_type: 'region')
 argentina = Location.create!(name:"Argentina", location_type: 'country', parent: latam)
@@ -348,6 +368,17 @@ bogota = Location.create!(name: 'Bogota', location_type: 'city', parent: colombi
 
 mexico = Location.create!(name:"Mexico", location_type: 'country', parent: latam)
 mexico_city = Location.create!(name: 'Mexico City', location_type: 'city', parent: mexico)
+
+chile = Location.create!(name:"Chile", location_type: 'country', parent: latam)
+santiago = Location.create!(name: 'Santiago', location_type: 'city', parent: chile)
+
+africa = Location.create!(name:"Africa", location_type: 'region')
+morocco = Location.create!(name:"Morocco", location_type: 'country', parent: africa)
+marrakesh = Location.create!(name: 'Merrakesh', location_type: 'city', parent: morocco)
+
+south_africa = Location.create!(name:"South Africa", location_type: 'country', parent: africa)
+capetown = Location.create!(name: 'Capetown', location_type: 'city', parent: south_africa)
+
 puts "End Build Locations"
 ################################## End Locations #######################################
 
@@ -400,7 +431,82 @@ balboa_bogota = ScheduleItem.create!(cohort: balboa, location: bogota, arrival_d
 balboa_mexico_city = ScheduleItem.create!(cohort: balboa, location: mexico_city, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
 
 
+meraki_valencia = ScheduleItem.create!(cohort: meraki, location: valencia, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+meraki_kl = ScheduleItem.create!(cohort: meraki, location: kl, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+meraki_chiangmai = ScheduleItem.create!(cohort: meraki, location: changmai, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+meraki_kyoto = ScheduleItem.create!(cohort: meraki, location: kyoto, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
 
+kublai_sofia = ScheduleItem.create!(cohort: kublai, location: sofia, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+kublai_ba = ScheduleItem.create!(cohort: kublai, location: buenos_aires, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+kublai_cordoba = ScheduleItem.create!(cohort: kublai, location: cordoba, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+kublai_santiago = ScheduleItem.create!(cohort: kublai, location: santiago, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+kublai_Lima = ScheduleItem.create!(cohort: kublai, location: lima, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+
+
+kaizen_chiangmai = ScheduleItem.create!(cohort: kaizen, location: changmai, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+kaizen_kyoto = ScheduleItem.create!(cohort: kaizen, location: kyoto, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+kaizen_kl = ScheduleItem.create!(cohort: kaizen, location: kl, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+kaizen_lima = ScheduleItem.create!(cohort: kaizen, location: lima, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+kaizen_medellin = ScheduleItem.create!(cohort: kaizen, location: medellin, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+kaizen_bogota = ScheduleItem.create!(cohort: kaizen, location: bogota, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
+kaizen_cdmx = ScheduleItem.create!(cohort: kaizen, location: mexico_city, arrival_date: Date.parse('03-03-2018'), departure_date: Date.parse('31-03-2018'))
+
+veritas_belgrade = ScheduleItem.create!(cohort: veritas, location: belgrade, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+veritas_marrakesh = ScheduleItem.create!(cohort: veritas, location: marrakesh, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+veritas_ba = ScheduleItem.create!(cohort: veritas, location: buenos_aires, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+veritas_cordoba = ScheduleItem.create!(cohort: veritas, location: cordoba, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+veritas_lima = ScheduleItem.create!(cohort: veritas, location: lima, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+veritas_medellin = ScheduleItem.create!(cohort: veritas, location: medellin, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
+veritas_bogota = ScheduleItem.create!(cohort: veritas, location: bogota, arrival_date: Date.parse('03-03-2018'), departure_date: Date.parse('31-03-2018'))
+veritas_cdmx = ScheduleItem.create!(cohort: veritas, location: mexico_city, arrival_date: Date.parse('31-03-2018'), departure_date: Date.parse('28-04-2018'))
+
+earhart_hanoi = ScheduleItem.create!(cohort: earhart, location: hanoi, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+earhart_chiangmai = ScheduleItem.create!(cohort: earhart, location: changmai, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+earhart_kl = ScheduleItem.create!(cohort: earhart, location: kl, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+earhart_ba = ScheduleItem.create!(cohort: earhart, location: buenos_aires, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+earhart_cordoba = ScheduleItem.create!(cohort: earhart, location: cordoba, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+earhart_lima = ScheduleItem.create!(cohort: earhart, location: lima, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
+earhart_medellin = ScheduleItem.create!(cohort: earhart, location: medellin, arrival_date: Date.parse('03-03-2018'), departure_date: Date.parse('31-03-2018'))
+earhart_bogota = ScheduleItem.create!(cohort: earhart, location: bogota, arrival_date: Date.parse('31-03-2018'), departure_date: Date.parse('28-04-2018'))
+earhart_cdmx = ScheduleItem.create!(cohort: earhart, location: mexico_city, arrival_date: Date.parse('28-04-2018'), departure_date: Date.parse('26-05-2018'))
+
+yugen_prague = ScheduleItem.create!(cohort: yugen, location: prague, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+yugen_lisbon = ScheduleItem.create!(cohort: yugen, location: lisbon, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+yugen_kyoto = ScheduleItem.create!(cohort: yugen, location: kyoto, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+yugen_kl = ScheduleItem.create!(cohort: yugen, location: kl, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+yugen_chiangmai = ScheduleItem.create!(cohort: yugen, location: changmai, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+yugen_ba = ScheduleItem.create!(cohort: yugen, location: buenos_aires, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
+yugen_cordoba = ScheduleItem.create!(cohort: yugen, location: cordoba, arrival_date: Date.parse('03-03-2018'), departure_date: Date.parse('31-03-2018'))
+yugen_lima = ScheduleItem.create!(cohort: yugen, location: lima, arrival_date: Date.parse('31-03-2018'), departure_date: Date.parse('28-04-2018'))
+yugen_medellin = ScheduleItem.create!(cohort: yugen, location: medellin, arrival_date: Date.parse('28-04-2018'), departure_date: Date.parse('26-05-2018'))
+yugen_bogota = ScheduleItem.create!(cohort: yugen, location: bogota, arrival_date: Date.parse('26-05-2018'), departure_date: Date.parse('30-06-2018'))
+yugen_cdmx = ScheduleItem.create!(cohort: yugen, location: mexico_city, arrival_date: Date.parse('30-06-2018'), departure_date: Date.parse('28-07-2018'))
+
+sonder_split = ScheduleItem.create!(cohort: sonder, location: split, arrival_date: Date.parse('26-08-2017'), departure_date: Date.parse('30-09-2017'))
+sonder_prague = ScheduleItem.create!(cohort: sonder, location: prague, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+sonder_lisbon = ScheduleItem.create!(cohort: sonder, location: lisbon, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+sonder_sofia = ScheduleItem.create!(cohort: sonder, location: sofia, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+sonder_marrakesh = ScheduleItem.create!(cohort: sonder, location: marrakesh, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+sonder_capetown = ScheduleItem.create!(cohort: sonder, location: capetown, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
+sonder_ba = ScheduleItem.create!(cohort: sonder, location: buenos_aires, arrival_date: Date.parse('03-03-2018'), departure_date: Date.parse('31-03-2018'))
+sonder_cordoba = ScheduleItem.create!(cohort: sonder, location: cordoba, arrival_date: Date.parse('31-03-2018'), departure_date: Date.parse('28-04-2018'))
+sonder_lima = ScheduleItem.create!(cohort: sonder, location: lima, arrival_date: Date.parse('28-04-2018'), departure_date: Date.parse('26-05-2018'))
+sonder_medellin = ScheduleItem.create!(cohort: sonder, location: medellin, arrival_date: Date.parse('26-05-2018'), departure_date: Date.parse('30-06-2018'))
+sonder_bogota = ScheduleItem.create!(cohort: sonder, location: bogota, arrival_date: Date.parse('30-06-2018'), departure_date: Date.parse('28-07-2018'))
+sonder_cdmx = ScheduleItem.create!(cohort: sonder, location: mexico_city, arrival_date: Date.parse('28-07-2018'), departure_date: Date.parse('25-08-2018'))
+
+mangata_split = ScheduleItem.create!(cohort: mangata, location: split, arrival_date: Date.parse('30-09-2017'), departure_date: Date.parse('04-11-2017'))
+mangata_prague = ScheduleItem.create!(cohort: mangata, location: prague, arrival_date: Date.parse('04-11-2017'), departure_date: Date.parse('02-12-2017'))
+mangata_lisbon = ScheduleItem.create!(cohort: mangata, location: lisbon, arrival_date: Date.parse('02-12-2017'), departure_date: Date.parse('30-12-2017'))
+mangata_kyoto = ScheduleItem.create!(cohort: mangata, location: kyoto, arrival_date: Date.parse('30-12-2017'), departure_date: Date.parse('27-01-2018'))
+mangata_chaingmai = ScheduleItem.create!(cohort: mangata, location: changmai, arrival_date: Date.parse('27-01-2018'), departure_date: Date.parse('03-03-2018'))
+mangata_kl = ScheduleItem.create!(cohort: mangata, location: kl, arrival_date: Date.parse('03-03-2018'), departure_date: Date.parse('31-03-2018'))
+mangata_buenos_aires = ScheduleItem.create!(cohort: mangata, location: buenos_aires, arrival_date: Date.parse('31-03-2018'), departure_date: Date.parse('28-04-2018'))
+mangata_cordoba = ScheduleItem.create!(cohort: mangata, location: cordoba, arrival_date: Date.parse('28-04-2018'), departure_date: Date.parse('26-05-2018'))
+mangata_lima = ScheduleItem.create!(cohort: mangata, location: lima, arrival_date: Date.parse('26-05-2018'), departure_date: Date.parse('30-06-2018'))
+mangata_medellin = ScheduleItem.create!(cohort: mangata, location: medellin, arrival_date: Date.parse('30-06-2018'), departure_date: Date.parse('28-07-2018'))
+mangata_bogota = ScheduleItem.create!(cohort: mangata, location: bogota, arrival_date: Date.parse('28-07-2018'), departure_date: Date.parse('25-08-2018'))
+mangata_cdmx = ScheduleItem.create!(cohort: mangata, location: mexico_city, arrival_date: Date.parse('25-08-2018'), departure_date: Date.parse('29-09-2018'))
 puts 'End Schedule Items'
 ################################## End Schedule Items  #######################################
 
@@ -431,6 +537,73 @@ balboa.transits << cordoba_to_lima
 balboa.transits << lima_to_medellin
 balboa.transits << medellin_to_bogota
 balboa.transits << bogota_to_cdmx
+
+
+meraki_valencia_to_kl = Transit.create(date: Date.parse('30-09-2017') , title: 'Meraki - Valencia To Kuala Lumpur', departure_location_id: valencia.id, arrival_location_id: kl.id)
+meraki_kl_to_cm = Transit.create(date: Date.parse('04-11-2017') , title: 'Meraki - Kuala Lumpur To Thailand', departure_location_id: kl.id, arrival_location_id: changmai.id)
+meraki_chiangmai_to_kyoto = Transit.create(date: Date.parse('02-12-2017') , title: 'Meraki - Thailand To Japan', departure_location_id: kl.id, arrival_location_id: changmai.id)
+meraki.transits << [meraki_valencia_to_kl, meraki_kl_to_cm, meraki_chiangmai_to_kyoto]
+
+
+kublai_sofia_to_ba = Transit.create(date: Date.parse('30-09-2017') , title: 'Kublai - Sofia to Buenos Aires', departure_location_id: sofia.id, arrival_location_id: buenos_aires.id)
+kublai_ba_to_cordoba = Transit.create(date: Date.parse('04-11-2017') , title: 'Kublai - Buenos Aires To Cordoba', departure_location_id: buenos_aires.id, arrival_location_id: cordoba.id)
+kublai_cordoba_to_santiago = Transit.create(date: Date.parse('02-12-2017') , title: 'Kublai - Cordoba To Santiago', departure_location_id: cordoba.id, arrival_location_id: santiago.id)
+kublai_santiago_lima = Transit.create(date: Date.parse('30-12-2017') , title: 'Kublai - Santiago To Lima', departure_location_id: santiago.id, arrival_location_id: lima.id)
+kublai.transits << [kublai_sofia_to_ba, kublai_ba_to_cordoba, kublai_cordoba_to_santiago, kublai_santiago_lima]
+
+
+kaizen_chiangmai_to_kyoto = Transit.create(date: Date.parse('30-09-2017') , title: 'Kaizen - Thailand To Japan', departure_location_id: changmai.id, arrival_location_id: kyoto.id)
+kaizen_kyoto_to_kl = Transit.create(date: Date.parse('04-11-2017') , title: 'Kaizen - Japan To Malaysia', departure_location_id: changmai.id, arrival_location_id: kyoto.id)
+kaizen_kl_to_lima = Transit.create(date: Date.parse('02-12-2017') , title: 'Kaizen - Malaysia To Peru', departure_location_id: kyoto.id, arrival_location_id: lima.id)
+kaizen_lima_to_medellin = Transit.create(date: Date.parse('30-12-2017') , title: 'Kaizen - Peru To Colombia', departure_location_id: lima.id, arrival_location_id: medellin.id)
+kaizen_medellin_to_bogota = Transit.create(date: Date.parse('27-01-2018') , title: 'Kaizen - Medellin To Bogota', departure_location_id: medellin.id, arrival_location_id: bogota.id)
+kaizen_bogota_to_mexico = Transit.create(date: Date.parse('03-03-2018') , title: 'Kaizen - Colombia To Mexico', departure_location_id: medellin.id, arrival_location_id: bogota.id)
+kaizen.transits << [kaizen_chiangmai_to_kyoto, kaizen_kyoto_to_kl, kaizen_kl_to_lima, kaizen_lima_to_medellin, kaizen_medellin_to_bogota, kaizen_bogota_to_mexico]
+
+veritas_belgrade_to_marrakesh = Transit.create(date: Date.parse('30-09-2017') , title: 'Veritas - Belgrade To Morocco', departure_location_id: belgrade.id, arrival_location_id: marrakesh.id)
+veritas_marrakesh_to_ba = Transit.create(date: Date.parse('04-11-2017') , title: 'Veritas - Morocco Argentina', departure_location_id: marrakesh.id, arrival_location_id: buenos_aires.id)
+veritas_ba_to_cordoba = Transit.create(date: Date.parse('02-12-2017') , title: 'Veritas - Buenos Aires To Cordoba', departure_location_id: buenos_aires.id, arrival_location_id: cordoba.id)
+veritas_cordoba_to_lima = Transit.create(date: Date.parse('30-12-2017') , title: 'Veritas - Argentina to Peru', departure_location_id: cordoba.id, arrival_location_id: lima.id)
+veritas_lima_to_medellin = Transit.create(date: Date.parse('27-01-2017') , title: 'Veritas - Peru To Colombia', departure_location_id: lima.id, arrival_location_id: medellin.id)
+veritas_medellin_to_bogota = Transit.create(date: Date.parse('03-03-2017') , title: 'Veritas - Medellin To Bogota', departure_location_id: medellin.id, arrival_location_id: bogota.id)
+veritas_bogota_to_cdmx = Transit.create(date: Date.parse('31-03-2017') , title: 'Veritas - Colombia To Mexico', departure_location_id: bogota.id, arrival_location_id: mexico_city.id)
+veritas.transits << [veritas_belgrade_to_marrakesh, veritas_marrakesh_to_ba, veritas_ba_to_cordoba, veritas_cordoba_to_lima, veritas_lima_to_medellin, veritas_medellin_to_bogota, veritas_bogota_to_cdmx]
+
+earhart_hanoi_to_cm = Transit.create(date: Date.parse('30-09-2017') , title: 'Earhart - Vietnam To Thailand', departure_location_id: hanoi.id, arrival_location_id: changmai.id)
+earhart_chiangmai_to_kl = Transit.create(date: Date.parse('04-11-2017') , title: 'Earhart - Thailand To Malaysia', departure_location_id: changmai.id, arrival_location_id: kl.id)
+earhart_kl_to_ba = Transit.create(date: Date.parse('02-12-2017') , title: 'Earhart - Malaysia To Argentina', departure_location_id: kl.id, arrival_location_id: buenos_aires.id)
+earhart_ba_to_cordoba = Transit.create(date: Date.parse('30-12-2017') , title: 'Earhart - Buenos Aires To Cordoba', departure_location_id: buenos_aires.id, arrival_location_id: cordoba.id)
+earhart_cordoba_to_lima = Transit.create(date: Date.parse('27-01-2018') , title: 'Earhart - Argentina To Peru', departure_location_id: cordoba.id, arrival_location_id: lima.id)
+earhart_lima_to_medellin = Transit.create(date: Date.parse('03-03-2018') , title: 'Earhart - Peru To Colombia', departure_location_id: lima.id, arrival_location_id: medellin.id)
+earhart_medellin_to_bogota = Transit.create(date: Date.parse('31-03-2018') , title: 'Earhart - Medellin To Bogota', departure_location_id: medellin.id, arrival_location_id: bogota.id)
+earhart_bogota_to_mexico = Transit.create(date: Date.parse('28-04-2018') , title: 'Earhart - Colombia to Mexico', departure_location_id: bogota.id, arrival_location_id: mexico_city.id)
+earhart.transits << [earhart_hanoi_to_cm, earhart_chiangmai_to_kl, earhart_kl_to_ba, earhart_ba_to_cordoba, earhart_cordoba_to_lima, earhart_lima_to_medellin, earhart_medellin_to_bogota, earhart_bogota_to_mexico]
+
+yugen_prague_to_lisbon = Transit.create(date: Date.parse('30-09-2017') , title: 'Yugen - Czech To Portugal ', departure_location_id: prague.id, arrival_location_id: lisbon.id)
+yugen_lisbon_to_kyoto = Transit.create(date: Date.parse('04-11-2017') , title: 'Yugen - Portugal To Japan ', departure_location_id: lisbon.id, arrival_location_id: kyoto.id)
+yugen_kyoto_to_kl = Transit.create(date: Date.parse('02-12-2017') , title: 'Yugen - Japan To Malaysia ', departure_location_id: kyoto.id, arrival_location_id: kl.id)
+yugen_kl_to_cm = Transit.create(date: Date.parse('30-12-2017') , title: 'Yugen - Malaysia To Thailand', departure_location_id: kl.id, arrival_location_id: changmai.id)
+yugen_chiangmai_to_ba = Transit.create(date: Date.parse('27-01-2018') , title: 'Yugen - Thailand To Argentina ', departure_location_id: changmai.id, arrival_location_id: buenos_aires.id)
+yugen_ba_to_cordoba = Transit.create(date: Date.parse('03-03-2018') , title: 'Yugen - Buenos Aires To Cordoba ', departure_location_id: buenos_aires.id, arrival_location_id: cordoba.id)
+yugen_cordob_to_lima = Transit.create(date: Date.parse('31-03-2018') , title: 'Yugen - Argentina To Peru', departure_location_id: cordoba.id, arrival_location_id: lima.id)
+yugen_lima_to_medellin = Transit.create(date: Date.parse('28-04-2018') , title: 'Yugen - Peru To Colombia ', departure_location_id: lima.id, arrival_location_id: medellin.id)
+yugen_medellin_to_bogota = Transit.create(date: Date.parse('26-05-2018') , title: 'Yugen - Medellin To Bogota', departure_location_id: medellin.id, arrival_location_id: bogota.id)
+yugen_bogota_to_mexico = Transit.create(date: Date.parse('30-06-2018') , title: 'Yugen - Colombia To Mexico', departure_location_id: bogota.id, arrival_location_id: mexico_city.id)
+yugen.transits << [yugen_prague_to_lisbon, yugen_lisbon_to_kyoto, yugen_kyoto_to_kl, yugen_kl_to_cm, yugen_chiangmai_to_ba, yugen_ba_to_cordoba, yugen_cordob_to_lima, yugen_lima_to_medellin, yugen_medellin_to_bogota, yugen_bogota_to_mexico]
+
+
+sonder_split_to_prague = Transit.create(date: Date.parse('30-09-2017') , title: 'Sonder - Croatia To Czech ', departure_location_id: split.id, arrival_location_id: prague.id)
+sonder_prague_to_lisbon = Transit.create(date: Date.parse('04-11-2017') , title: 'Sonder - Czech To Portugal ', departure_location_id: prague.id, arrival_location_id: lisbon.id)
+sonder_lisbon_to_sofia = Transit.create(date: Date.parse('02-12-2017') , title: 'Sonder - Portugal To Bulgaria ', departure_location_id: lisbon.id, arrival_location_id: sofia.id)
+sonder_sofia_to_marrakesh = Transit.create(date: Date.parse('30-12-2017') , title: 'Sonder - Bulgaria To Morocco ', departure_location_id: sofia.id, arrival_location_id: marrakesh.id)
+sonder_marrakesh_to_capetown = Transit.create(date: Date.parse('27-01-2018') , title: 'Sonder - Morocco To South Africa', departure_location_id: marrakesh.id, arrival_location_id: capetown.id)
+sonder_capetown_to_ba = Transit.create(date: Date.parse('03-03-2018') , title: 'Sonder - South Africa To Argentina', departure_location_id: capetown.id, arrival_location_id: buenos_aires.id)
+sonder_ba_to_cordoba = Transit.create(date: Date.parse('30-03-2018') , title: 'Sonder - Buenos Aires To Cordoba', departure_location_id: buenos_aires.id, arrival_location_id: cordoba.id)
+sonder_cordoba_to_lima = Transit.create(date: Date.parse('28-04-2018') , title: 'Sonder - Argentina To Peru', departure_location_id: cordoba.id, arrival_location_id: lima.id)
+sonder_lima_to_medellin = Transit.create(date: Date.parse('25-05-2018') , title: 'Sonder - Peru To Colombia', departure_location_id: lima.id, arrival_location_id: medellin.id)
+sonder_medellin_to_bogota = Transit.create(date: Date.parse('30-06-2018') , title: 'Sonder - Medellin To Bogota', departure_location_id: medellin.id, arrival_location_id: bogota.id)
+sonder_bogota_to_mexico = Transit.create(date: Date.parse('28-07-2018') , title: 'Sonder - Colombia To Mexico', departure_location_id: bogota.id, arrival_location_id: mexico_city.id)
+sonder.transits << [sonder_split_to_prague, sonder_prague_to_lisbon, sonder_lisbon_to_sofia, sonder_sofia_to_marrakesh, sonder_marrakesh_to_capetown, sonder_capetown_to_ba, sonder_ba_to_cordoba, sonder_cordoba_to_lima, sonder_lima_to_medellin, sonder_medellin_to_bogota, sonder_bogota_to_mexico]
 
 puts 'End Build Transits'
 ################################## End Transits  #######################################
