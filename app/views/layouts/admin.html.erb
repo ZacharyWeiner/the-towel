@@ -14,6 +14,16 @@
     <%= stylesheet_link_tag 'application_back', media: 'all' %>
     <%= csrf_meta_tags %>
     <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107060199-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments)};
+        gtag('js', new Date());
+
+        gtag('config', 'UA-107060199-1');
+      </script>
+
   </head>
 
   <body class="hold-transition skin-black-light sidebar-mini" <%= yield(:body_attributes) %>>
