@@ -22,6 +22,7 @@ class CohortsController < ApplicationController
     else
       redirect_to current_user.current_cohort
     end
+    current_user.events_missing_ratings
   end
 
   # GET /cohorts/new

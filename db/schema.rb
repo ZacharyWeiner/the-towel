@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916191141) do
+ActiveRecord::Schema.define(version: 20170924143948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -382,6 +382,19 @@ ActiveRecord::Schema.define(version: 20170916191141) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "rating"
+    t.text "note"
+    t.bigint "tags_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "object_id"
+    t.string "object_type"
+    t.index ["tags_id"], name: "index_ratings_on_tags_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "title"
     t.integer "permissions"
@@ -490,6 +503,21 @@ ActiveRecord::Schema.define(version: 20170916191141) do
     t.bigint "tags_id"
     t.index ["tags_id"], name: "index_tags_users_on_tags_id"
     t.index ["users_id"], name: "index_tags_users_on_users_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.bigint "created_by"
+    t.bigint "assigned_to"
+    t.string "status"
+    t.text "details"
+    t.text "resolution"
+    t.date "resolved_on"
+    t.string "title"
+    t.bigint "resolved_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "cohort_id"
+    t.index ["cohort_id"], name: "index_tickets_on_cohort_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -619,6 +647,8 @@ ActiveRecord::Schema.define(version: 20170916191141) do
   add_foreign_key "posts", "side_trips"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "ratings", "tags", column: "tags_id"
+  add_foreign_key "ratings", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "schedule_items", "cohorts"
@@ -638,6 +668,7 @@ ActiveRecord::Schema.define(version: 20170916191141) do
   add_foreign_key "tags_tracks", "tracks", column: "tracks_id"
   add_foreign_key "tags_users", "tags", column: "tags_id"
   add_foreign_key "tags_users", "users", column: "users_id"
+  add_foreign_key "tickets", "cohorts"
   add_foreign_key "tracks", "chat_rooms"
   add_foreign_key "tracks", "cohorts"
   add_foreign_key "tracks", "events", column: "events_id"

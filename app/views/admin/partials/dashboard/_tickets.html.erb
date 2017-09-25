@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Open Tickets</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody><tr>
+            <th>Reporter</th>
+            <th>Title</th>
+            <th>Assigned To</th>
+            <th>Manage</th>
+          </tr>
+         <% Ticket.where(cohort: current_user.current_cohort).where(resolved_on: nil).each do |ticket| %>
+            <tr>
+              <td><%= ticket.creator.safe_name %></td>
+              <td><%= ticket.title %></td>
+              <td><%= ticket.assignee.safe_name unless ticket.assignee.nil? %></td>
+              <td><%= link_to "Manage",  ticket_path(ticket)%></td>
+            </tr>
+          <% end %>
+        </tbody></table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

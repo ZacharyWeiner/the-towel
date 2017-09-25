@@ -1,0 +1,71 @@
+@media (max-width: 440px) {
+  .small{
+
+  }
+  .medium{
+    visibility: hidden;
+  }
+  .large{
+    visibility: hidden;
+  }
+  .extra-large{
+    visibility: hidden;
+  }
+  .super-sized{
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 800px) {
+  .small{
+     visibility: hidden;
+  }
+  .medium{
+    visibility: visible;
+  }
+  .large{
+    visibility: hidden;
+  }
+  .extra-large{
+    visibility: hidden;
+  }
+  .super-sized{
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 1400px) {
+  .small{
+     visibility: hidden;
+  }
+  .medium{
+    visibility: visible;
+  }
+  .large{
+    visibility: visible;
+  }
+  .extra-large{
+    visibility: hidden;
+  }
+  .super-sized{
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 1401px ) {
+  .small{
+     visibility: hidden;
+  }
+  .medium{
+    visibility: hidden;
+  }
+  .large{
+    visibility: hidden;
+  }
+  .extra-large{
+
+  }
+  .super-sized{
+    visibility: hidden;
+  }
+}

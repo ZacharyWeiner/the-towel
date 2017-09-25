@@ -1,0 +1,42 @@
+<%= form_with(model: rating, local: true) do |form| %>
+  <% if rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :rating %>
+
+    <%= form.select "rating", "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>".html_safe, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :note %>
+    <%= form.text_area :note, id: :rating_note, class: 'form-control' %>
+  </div>
+
+  <%= form.hidden_field :user_id, id: :rating_user_id %>
+  <% if params[:event_id] %>
+    <%= form.hidden_field :event_id, :value => params[:event_id] %>
+  <% end %>
+   <% if params[:track_id] %>
+    <%= form.hidden_field :track_id, :value => params[:track_id] %>
+  <% end %>
+  <% if params[:housing_id] %>
+    <%= form.hidden_field :housing_id, :value => params[:housing_id] %>
+  <% end %>
+  <% if params[:tag_id] %>
+    <%= form.hidden_field :tag_id, :value => params[:tag_id] %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

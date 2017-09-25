@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Open Tickets</h3>
+        <%= link_to 'New Ticket', new_cohort_ticket_path(current_user.current_cohort), class: 'pull-right' %>
+      </div>
+      <!-- /.box-header -->
+
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody>
+          <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Assigned to</th>
+            <th>Details</th>
+            <th>Resolution</th>
+            <th>Resolved on</th>
+            <th>Resolved by</th>
+            <% if current_user.is_admin %>
+              <th>Manage</th>
+            <% end %>
+          </tr>
+          <% @tickets.where(resolved_on: nil).each do |ticket| %>
+            <tr>
+              <td><%= ticket.title %></td>
+              <td><%= ticket.status %></td>
+              <td><%= ticket.assignee.safe_name unless ticket.assignee.nil? %></td>
+              <td><%= ticket.details %></td>
+              <td><%= ticket.resolution %></td>
+              <td><%= ticket.resolved_on %></td>
+              <td><%= ticket.resolver.safe_name unless ticket.resolver.nil? %></td>
+              <% if current_user.is_admin %>
+                <td><%= link_to "Manage",  edit_ticket_path(ticket)%></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody></table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Closed Tickets</h3>
+      </div>
+      <!-- /.box-header -->
+
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody>
+          <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Assigned to</th>
+            <th>Details</th>
+            <th>Resolution</th>
+            <th>Resolved on</th>
+            <th>Resolved by</th>
+            <% if current_user.is_admin %>
+              <th>Manage</th>
+            <% end %>
+          </tr>
+          <% @tickets.where.not(resolved_on: nil).each do |ticket| %>
+            <tr>
+              <td><%= ticket.title %></td>
+              <td><%= ticket.status %></td>
+              <td><%= ticket.assignee.safe_name unless ticket.assignee.nil? %></td>
+              <td><%= ticket.details %></td>
+              <td><%= ticket.resolution %></td>
+              <td><%= ticket.resolved_on %></td>
+              <td><%= ticket.resolver.safe_name unless ticket.resolver.nil? %></td>
+              <% if current_user.is_admin %>
+                <td><%= link_to "Manage",  edit_ticket_path(ticket)%></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody></table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+
+
+
