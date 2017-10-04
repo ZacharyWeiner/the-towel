@@ -24,6 +24,8 @@
       <% if params[:cohort] %>
         <% @organization = Cohort.find(params[:cohort]).organization %>
         <%= f.hidden_field :organization_id, :value => @organization.id %>
+      <% else %>
+        <%= f.hidden_field :organization_id, :value => 1 %>
       <% end %>
       <div class="actions">
         <%= f.submit "Sign up" %>
