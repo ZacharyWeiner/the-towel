@@ -52,7 +52,7 @@
 
         <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Company:</b> <a class="pull-right"><%= @transit.company.name %></a>
+              <b>Company:</b> <a class="pull-right"><%= @transit.company.name unless @transit.company.nil? %></a>
             </li>
             <li class="list-group-item">
               <b>Route number:</b> <a class="pull-right"><%= @transit.route_number %></a>
