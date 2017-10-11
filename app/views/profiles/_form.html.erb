@@ -11,61 +11,75 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :display_name %>
-    <%= form.text_field :display_name, id: :profile_display_name, class: 'form-control' %>
-  </div>
+<div class='row'>
+  <%= link_to "Edit Preferences", user_preferences_path(current_user), class: 'btn btn-primary pull-left' %>
+  <%= link_to "Change Profile Image", 'http://www.gravitar.com', class: 'btn btn-primary pull-right' %>
+</div>
+<br/>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <%= form.label :display_name %>
+        <%= form.text_field :display_name, id: :profile_display_name, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :hometown %>
-    <%= form.text_field :hometown, id: :profile_hometown, class: 'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :hometown %>
+        <%= form.text_field :hometown, id: :profile_hometown, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :job_title %>
-    <%= form.text_field :job_title, id: :profile_job_title, class: 'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :job_title %>
+        <%= form.text_field :job_title, id: :profile_job_title, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number, id: :profile_phone_number, class: 'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :birthday %>
+        <%= form.date_select :birthday, id: :profile_birthday, start_year: 1965, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :whatsapp %>
-    <%= form.check_box :whatsapp, id: :profile_whatsapp, class: 'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :bio %>
+        <%= form.text_area :bio, id: :profile_bio, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :facebook %>
-    <%= form.text_field :facebook, id: :profile_facebook, class: 'form-control' %>
-  </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <%= form.label :phone_number %>
+        <%= form.text_field :phone_number, id: :profile_phone_number, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :instagram %>
-    <%= form.text_field :instagram, id: :profile_instagram, class: 'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :whatsapp %>
+        <%= form.text_field :whatsapp, id: :profile_whatsapp, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :birthday %>
-    <%= form.date_select :birthday, id: :profile_birthday, start_year: 1965, class: 'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :facebook %>
+        <%= form.text_field :facebook, id: :profile_facebook, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :website %>
-    <%= form.text_field :website, id: :profile_website, class: 'form-control' %>
-  </div>
+      <div class="form-group">
+        <%= form.label :instagram %>
+        <%= form.text_field :instagram, id: :profile_instagram, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= form.label :snapchat %>
-    <%= form.text_field :snapchat, id: :profile_snapchat, class: 'form-control' %>
-  </div>
 
-  <div class="form-group">
-    <%= form.label :bio %>
-    <%= form.text_area :bio, id: :profile_bio, class: 'form-control' %>
-  </div>
 
+      <div class="form-group">
+        <%= form.label :website %>
+        <%= form.text_field :website, id: :profile_website, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :snapchat %>
+        <%= form.text_field :snapchat, id: :profile_snapchat, class: 'form-control' %>
+      </div>
+
+
+    </div>
+  </div>
   <div class="actions">
     <%= form.submit "Update", class: 'btn btn-primary' %>
   </div>

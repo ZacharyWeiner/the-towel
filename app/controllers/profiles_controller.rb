@@ -10,6 +10,9 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    if @profile.user != current_user
+      redirect_to root_path
+    end
   end
 
   # GET /profiles/new
@@ -19,6 +22,9 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    if @profile.user != current_user
+      redirect_to root_path
+    end
   end
 
   # POST /profiles

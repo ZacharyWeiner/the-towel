@@ -1,21 +1,21 @@
 <div class='row'>
   <%= form_tag("/users/#{current_user.id}/roomate_preferences", method: "post") do %>
     <% current_user.current_cohort.users.each do |user| %>
-      <div class='col-md-3'>
+
         <div class='row'>
-          <div class='col-md-6'>
-            <% if current_user.roomate_requests.where(requested: user.id).count > 0 %>
+          <div class='col-md-3'>
+            <% if RoomateRequest.where(requested: user.id).where(requested_by: current_user.id).count > 0 %>
               <%= check_box_tag(user.email, tag.email, true) %>
             <% else %>
               <%= check_box_tag(user.email, tag.email) %>
             <% end %>
           </div>
-          <div class='col-md-6'>
+          <div class='col-md-9'>
             <%= label_tag(user.email, user.email) %>
           </div>
         </div>
-      </div>
+
     <% end %>
-    <%= submit_tag("Update Prefs") %>
+    <%= submit_tag("Update Roomate Requests") %>
   <% end %>
 </div>
