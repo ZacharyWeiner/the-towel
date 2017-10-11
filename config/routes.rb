@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :tracks do
     resources :events
     resources :ratings
+    get 'manage', to: 'tracks#manage'
   end
   resources :side_trips do
     get 'add/:id', to: 'side_trips#add_user', as: 'add_user'
@@ -101,6 +102,7 @@ Rails.application.routes.draw do
   get 'my-photos', to: "user_pages#my_photos"
   get 'my-sidetrips', to: "user_pages#my_sidetrips"
   get 'my-housings', to: "user_pages#my_housings"
+  get 'my-tracks', to: "user_pages#my_tracks"
 
   devise_for :users, :skip => [:registrations], :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   as :user do

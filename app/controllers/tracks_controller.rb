@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_track, only: [:show, :edit, :update, :destroy]
+  before_action :set_track, only: [:show, :edit, :update, :destroy, :manage]
   before_action :authenticate_user!
   # GET /tracks
   # GET /tracks.json
@@ -70,10 +70,17 @@ class TracksController < ApplicationController
     end
   end
 
+  def manage
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_track
-      @track = Track.find(params[:id])
+      if params[:track_id].nil?
+        @track = Track.find(params[:id])
+      else
+        @track = Track.find(params[:track_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

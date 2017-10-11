@@ -22,4 +22,8 @@ class UserPagesController < ApplicationController
   def my_housings
     @housings = current_user.housings
   end
+
+  def my_tracks
+    @tracks = current_user.tracks
+  end
 end

@@ -13,30 +13,36 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :track_name %>
+    <%= form.text_field :name, id: :track_name, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :track_description %>
+    <%= form.text_area :description, id: :track_description, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :events_id %>
-    <%= form.text_field :events_id, id: :track_events_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :location_id %>
-    <%= form.text_field :location_id, id: :track_location_id %>
+    <% if @track.location.nil? %>
+          <% city = 0 %>
+        <% else %>
+          <% city = @track.location.id %>
+        <% end%>
+        <%= form.label :city %>
+        <%= form.select 'location_id', options_for_select(
+          Location.where(location_type: 'city').map {|c| [c.name, c.id]},
+        city), {},
+        {:multiple => false, class: 'form-control'}%>
   </div>
 
   <div class="field">
     <%= form.label :cohort_id %>
-    <%= form.text_field :cohort_id, id: :track_cohort_id %>
+    <%= form.select 'cohort_id', options_for_select(
+        Cohort.where(organization: current_user.organization).map {|o| [o.name, o.id]}, nil),{},
+      {:multiple => false, class: 'form-control'} %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <br/>
+    <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
