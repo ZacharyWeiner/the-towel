@@ -7,10 +7,10 @@
       <var class="atc_timezone" style='visibility: hidden;'>
         Pacific/Midway
       </var>
-      <var class="atc_title" style='visibility: hidden;'>Star Wars Day Party</var>
-      <var class="atc_description" style='visibility: hidden;'>May the force be with you</var>
-      <var class="atc_location" style='visibility: hidden;'>Tatooine</var>
-      <var class="atc_organizer" style='visibility: hidden;'>Luke Skywalker</var>
-      <var class="atc_organizer_email" style='visibility: hidden;'>luke@starwars.com</var>
+      <var class="atc_title" style='visibility: hidden;'><%= ii.title %></var>
+      <var class="atc_description" style='visibility: hidden;'><%= ii.description %></var>
+      <var class="atc_location" style='visibility: hidden;'><%= ii.location %></var>
+      <var class="atc_organizer" style='visibility: hidden;'><%= current_user.safe_name %></var>
+      <var class="atc_organizer_email" style='visibility: hidden;'><%= current_user.email %></var>
   </var>
 </span>
