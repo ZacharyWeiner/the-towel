@@ -107,7 +107,8 @@ Rails.application.routes.draw do
   # Registrations
   get   '/signup'   => 'devise/registrations#new', as: :new_user_registration
   post  '/signup'   => 'devise/registrations#create', as: :user_registration
-
+  get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+  put 'users' => 'devise/registrations#update', :as => 'user_updadte_registration'
   end
   get '/account', to: 'pages#account'
 

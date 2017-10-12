@@ -13,7 +13,10 @@
 
 <div class='row'>
   <%= link_to "Edit Preferences", user_preferences_path(current_user), class: 'btn btn-primary pull-left' %>
-  <%= link_to "Change Profile Image", 'http://www.gravatar.com', class: 'btn btn-primary pull-right' %>
+  <div class='pull-right'>
+    <%= link_to "Change Profile Image", 'http://www.gravatar.com', class: 'btn btn-primary' %>
+    <%= link_to "Change Password", edit_user_registration_path, class: 'btn btn-warning' %>
+  </div>
 </div>
 <br/>
   <div class='row'>
