@@ -25,11 +25,11 @@
       <div class="box-body">
         <strong><i class="fa fa-book margin-r-5"></i> Check In</strong>
         <p class="text-muted">
-         <%= @lodging.checkin_date %> - <%= @lodging.checkin_time %>
+         <%= @lodging.checkin_date %> <!-- - <%= @lodging.checkin_time %> -->
         </p>
         <hr>
         <strong><i class="fa fa-map-marker margin-r-5"></i> Check Out</strong>
-        <p class="text-muted"><%= @lodging.checkout_date %> -  <%= @lodging.checkout_time %></p>
+        <p class="text-muted"><%= @lodging.checkout_date %><!--  -  <%= @lodging.checkout_time %> --></p>
         <hr>
         <strong><i class="fa fa-file-text-o margin-r-5"></i> Address</strong>
         <p><%= @lodging.address %></p>

@@ -79,6 +79,7 @@
     <%= form.label :map %>
     <%= form.text_area :map, id: :lodging_map, class: 'form-control' %>
   </div>
+  <%= form.hidden_field :side_trip_id, :value => params[:side_trip_id] %>
 
   <div class="actions">
     <%= form.submit %>
