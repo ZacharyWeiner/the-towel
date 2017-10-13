@@ -1,3 +1,4 @@
+<style> .post-content img {width:100%;} </style>
 <div class='row' style='background-color: white; margin:0px'>
   <% @posts.each do |post| %>
     <div class="post" >
@@ -12,8 +13,8 @@
       <span class="description">Posted To: <%= post.posted_to%> - <%= time_ago_in_words(post.created_at) %> ago</span>
     </div>
     <!-- /.user-block -->
-    <div class='text-left' style='padding-left:12px'>
-       <%= auto_html(post.content.html_safe){ image(:width => '100%'); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+    <div class='text-left post-content' style='padding-left:12px'>
+       <%= auto_html(post.content.html_safe){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
       </div>
       <% unless post.photos.first.nil? %>
         <%= image_tag post.photos.first.picture, style: 'width:100%' %>
