@@ -28,6 +28,7 @@ class AdminController < ApplicationController
     @event = Event.find(params[:event_id])
     @user = User.find(params[:user_id])
     @event_rsvp = EventRsvp.create!(user: @user, event:@event)
+    @event.users << @user
     @event_waitlist = EventWaitlist.where(event: @event, user: @user).first
     @event_waitlist.destroy
     redirect_to event_admin_path(@event)
