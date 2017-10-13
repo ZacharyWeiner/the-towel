@@ -40,7 +40,9 @@ class TransitsController < ApplicationController
     respond_to do |format|
       if @transit.save
         if params[:transit][:side_trip_id]
+          @side_trip = SideTrip.find(params[:transit][:side_trip_id])
           @side_trip.transits << @transit
+          format.html { redirect_to @side_trip, notice: 'Transit was successfully created.' }
         end
         if params[:cohort_id]
           @cohorts.transits << @transit

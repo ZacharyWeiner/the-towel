@@ -90,7 +90,7 @@
   </div>
 
   <% if params[:side_trip_id] %>
-    <%= form.hidden_field :side_trip_id, :value => @side_trip.id%>
+    <%= form.hidden_field :side_trip_id, :value => params[:side_trip_id]%>
   <% end %>
 
   <div class="actions">

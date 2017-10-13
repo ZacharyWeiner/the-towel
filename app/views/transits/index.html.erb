@@ -1,4 +1,9 @@
-<%= link_to 'New Travel Plan', new_transit_path %>
+<% if params[:side_trip_id]%>
+  <% side_trip = SideTrip.find(params[:side_trip_id])%>
+  <%= link_to 'New Travel Plan', new_side_trip_transit_path(side_trip) %>
+<% else %>
+  <%= link_to 'New Travel Plan', new_transit_path %>
+<%end%>
 <div class="box">
   <div class="box-header">
     <h3 class="box-title">Travel Plans</h3>
