@@ -24,9 +24,14 @@ class UsersController < ApplicationController
   def update_roomate_preferences
     current_user.clear_roomate_preferences
     params.each do |param|
-      user = User.where(email: param).first
-      if user
-        current_user.roomate_requests << RoomateRequest.create!(requester: current_user, requested: user.id)
+      if param.include?("email")
+        user_email = params[param]
+        user = User.where(email: user_email).first
+         byebug
+        if user
+          rr = RoomateRequest.create!(requester: current_user, requested_roomate: user)
+          rr.save
+        end
       end
     end
     redirect_to user_preferences_path(current_user)

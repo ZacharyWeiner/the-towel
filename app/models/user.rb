@@ -207,7 +207,7 @@ class User < ApplicationRecord
   end
 
   def clear_roomate_preferences
-    @requests_to_destroy = self.roomate_requests
+    @requests_to_destroy = RoomateRequest.where(requested_by: self)
     @requests_to_destroy.each do |request|
       request.destroy
     end
