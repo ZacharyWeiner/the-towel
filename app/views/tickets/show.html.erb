@@ -21,8 +21,18 @@
 
           </li>
         </ul>
-        <%= link_to "Assign Owner", ticket_assign_path(@ticket), class: 'btn btn-warning btn-block' %>
-        <%= link_to "Mark As Resolved", ticket_resolve_path(@ticket), class: 'btn btn-success btn-block'%>
+        <% if current_user.is_admin %>
+          <% if @ticket.resolved_on.nil? %>
+            <%= link_to "Assign Owner", ticket_assign_path(@ticket), class: 'btn btn-warning btn-block' %>
+          <% end %>
+          <% if @ticket.assignee == current_user %>
+            <% if @ticket.resolved_on.nil? %>
+              <%= link_to "Mark As Resolved", ticket_resolve_path(@ticket), class: 'btn btn-success btn-block'%>
+            <% else %>
+              <%= link_to "Resolved", ticket_resolve_path(@ticket), class: 'btn btn-success btn-block disabled'%>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
       <!-- /.box-body -->
     </div>
@@ -36,7 +46,7 @@
       <h5><%= @ticket.details %></h5>
     </div>
     <div class='row'>
-      <h3> Resolution </h3>
+      <h3> Resolution </h3> <span class='pull-right'><%= link_to "Edit", edit_ticket_path(@ticket)%> </span>
       <h5><%= @ticket.resolution %></h5>
     </div>
   </div>
