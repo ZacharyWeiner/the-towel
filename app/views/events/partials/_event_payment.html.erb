@@ -9,7 +9,7 @@
       <span>Amount: $<%= @event.cost %></span>
     </label>
   </article>
-  <%= @event_cost = @event.cost * 100 %>
+  <% @event_cost = @event.cost * 100 %>
   <%= hidden_field_tag 'event_id', @event.id %>
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
