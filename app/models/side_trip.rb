@@ -7,7 +7,7 @@ class SideTrip < ApplicationRecord
   has_and_belongs_to_many :transits
   has_and_belongs_to_many :lodgings
   has_and_belongs_to_many :tags
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :photos
   has_many :events
   def self.create_itinerary_items(collection)
