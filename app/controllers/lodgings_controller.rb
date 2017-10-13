@@ -76,6 +76,6 @@ class LodgingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lodging_params
-      params.require(:lodging).permit(:name, :checkin_date, :checkin_time, :checkout_date, :checkout_time, :phone, :website, :address, :location_id, :map)
+      params.require(:lodging).permit(:name, :checkin_date, :checkin_time, :checkout_date, :checkout_time, :phone, :website, :address, :location_id, :map, :description)
     end
 end
