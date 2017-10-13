@@ -27,7 +27,6 @@ class UsersController < ApplicationController
       if param.include?("email")
         user_email = params[param]
         user = User.where(email: user_email).first
-         byebug
         if user
           rr = RoomateRequest.create!(requester: current_user, requested_roomate: user)
           rr.save
