@@ -1,6 +1,6 @@
 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Horizontal Form</h3>
+              <h3 class="box-title"></h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -19,7 +19,7 @@
 <div style="margin:36px">
 
   <div class="form-group">
-    <%= form.label :nme %>
+    <%= form.label :name %>
     <%= form.text_field :name, id: :lodging_name, class: 'form-control' %>
   </div>
 
@@ -59,10 +59,22 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :location_id %>
-    <%= form.text_field :location_id, id: :lodging_location_id, class: 'form-control' %>
-  </div>
 
+    <% if @lodging.location.nil? %>
+      <% city = 0 %>
+    <% else %>
+      <% city = @lodging.location.id %>
+    <% end%>
+    <%= form.label :city %>
+    <%= form.select 'location_id', options_for_select(
+      Location.where(location_type: 'city').map {|c| [c.name, c.id]},
+    city), {},
+    {:multiple => false, class: 'form-control'}%>
+  </div>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :event_description, class: 'form-control' %>
+  </div>
   <div class="form-group">
     <%= form.label :map %>
     <%= form.text_area :map, id: :lodging_map, class: 'form-control' %>
