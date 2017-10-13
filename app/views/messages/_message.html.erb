@@ -1,6 +1,13 @@
+<style> .message img {width:100%;} </style>
 <div class="message">
-    <div class="photo" style='background-image: url("<%= message.user.gravitar_url %>");'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <div class="photo" style='background-image: url("<%= message.user.gravitar_url %>");'>
+      </div>
     </div>
-        <%= auto_html(message.body.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+    <div class='col-md-9'>
+      <%= auto_html(message.body.html_safe){ image(:width => '100%'); youtube(:width => 400, :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+    </div>
     <br/>
+  </div>
 </div>
