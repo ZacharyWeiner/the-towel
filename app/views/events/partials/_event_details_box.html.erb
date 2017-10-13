@@ -2,9 +2,6 @@
   <div class="box-body box-profile">
     <!--  -->
     <h3 class="profile-username text-center"><%= @event.title%></h3>
-
-    <p class="text-muted text-center"><%= link_to "Chat", @event.chat_room, class: 'btn btn-secondary'%></p>
-
     <ul class="list-group list-group-unbordered">
       <li class="list-group-item">
         <b>Date:</b><%= @event.date.to_time.strftime('%A %b %d %Y') %>
@@ -37,13 +34,13 @@
         <% if rsvp.is_paid %>
           <%= link_to 'Paid', "#",  class: 'btn btn-success btn-block disabled' %>
         <% else %>
-          <% if @event.track.nil? || (@event.track.users.include?(current_user) == false) %>
+          <% if (@event.track.nil? || (@event.track.users.include?(current_user) == false)) && @event.cost > 0 %>
           <%= render 'events/partials/event_payment' %>
           <% end %>
         <% end %>
         <%= link_to 'Cancel RSVP', event_event_rsvp_path(@event, rsvp), { :method => :delete,  class: 'btn btn-warning btn-block'}%>
       <% end %>
-
+      <p class="text-muted text-center"><%= link_to "Chat", @event.chat_room, class: 'btn btn-primary btn-block'%></p>
   </div>
   <!-- /.box-body -->
 </div>
