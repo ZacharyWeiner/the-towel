@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Applicants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Facebook</th>
+      <th>Linkedin</th>
+      <th>Instagram</th>
+      <th>Job title</th>
+      <th>Company name</th>
+      <th>Is remote</th>
+      <th>Description</th>
+      <th>Why me</th>
+      <th>Current city</th>
+      <th>Is traveling</th>
+      <th>Best travel experience</th>
+      <th>Years in profession</th>
+      <th>Contact method</th>
+      <th>Whatsapp</th>
+      <th>Favorite country</th>
+      <th>Favorite city</th>
+      <th>Best project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @applicants.each do |applicant| %>
+      <tr>
+        <td><%= applicant.name %></td>
+        <td><%= applicant.email %></td>
+        <td><%= applicant.phone %></td>
+        <td><%= applicant.facebook %></td>
+        <td><%= applicant.linkedin %></td>
+        <td><%= applicant.instagram %></td>
+        <td><%= applicant.job_title %></td>
+        <td><%= applicant.company_name %></td>
+        <td><%= applicant.is_remote %></td>
+        <td><%= applicant.description %></td>
+        <td><%= applicant.why_me %></td>
+        <td><%= applicant.current_city %></td>
+        <td><%= applicant.is_traveling %></td>
+        <td><%= applicant.best_travel_experience %></td>
+        <td><%= applicant.years_in_profession %></td>
+        <td><%= applicant.contact_method %></td>
+        <td><%= applicant.whatsapp %></td>
+        <td><%= applicant.favorite_country %></td>
+        <td><%= applicant.favorite_city %></td>
+        <td><%= applicant.best_project %></td>
+        <td><%= link_to 'Show', applicant %></td>
+        <td><%= link_to 'Edit', edit_applicant_path(applicant) %></td>
+        <td><%= link_to 'Destroy', applicant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Applicant', new_applicant_path %>

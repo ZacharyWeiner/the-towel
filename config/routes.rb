@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :applicants
   resources :tickets do
     get 'assign', to: 'tickets#assign', as: 'assign'
     get 'resolve', to: 'tickets#resolve', as: 'resolve'

@@ -1,0 +1,184 @@
+<style> .text-area{min-height: 200px;}</style>
+<div class='container'>
+  <%= form_with(model: applicant, local: true) do |form| %>
+    <% if applicant.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(applicant.errors.count, "error") %> prohibited this applicant from being saved:</h2>
+
+        <ul>
+        <% applicant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class='row'>
+      <h2> Who Are You? </h2>
+    </div>
+    <hr>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :applicant_name %>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <%= form.label :email %>
+          <%= form.text_field :email, id: :applicant_email %>
+        </div>
+      </div>
+    </div>
+     <br>
+    <div class='row'>
+      <h2> How Social Are You? </h2>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class="form-group">
+            <%= form.label :phone %>
+            <%= form.text_field :phone, id: :applicant_phone %>
+          </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+            <%= form.label :whatsapp %>
+            <%= form.text_field :whatsapp, id: :applicant_whatsapp %>
+          </div>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class="form-group">
+            <%= form.label :contact_method %>
+            <%= form.text_field :contact_method, id: :applicant_contact_method %>
+          </div>
+      </div>
+      <div class='col-md-6'>
+          <div class="form-group">
+            <%= form.label :facebook %>
+            <%= form.text_field :facebook, id: :applicant_facebook %>
+
+          </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+         <div class="form-group">
+            <%= form.label :instagram %>
+            <%= form.text_field :instagram, id: :applicant_instagram %>
+          </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+            <%= form.label :linkedin %>
+            <%= form.text_field :linkedin, id: :applicant_linkedin %>
+          </div>
+      </div>
+    </div>
+    <hr>
+    <div class='row'>
+      <h2> Professional Info </h2>
+
+    </div>
+     <div class='row'>
+      <div class='col-md-6'>
+        <div class="form-group">
+            <%= form.label :job_title %>
+            <%= form.text_field :job_title, id: :applicant_job_title %>
+          </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <%= form.label :company_name %>
+          <%= form.text_field :company_name, id: :applicant_company_name %>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+         <div class="form-group">
+            <%= form.label :current_city %>
+            <%= form.text_field :current_city, id: :applicant_current_city %>
+          </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <%= form.label :years_in_profession %>
+            <%= form.number_field :years_in_profession, id: :applicant_years_in_profession %>
+          </div>
+      </div>
+    </div>
+
+    <hr>
+    <div class='row'>
+      <h2> The Good Stuff </h2>
+
+    </div>
+
+     <div class='row'>
+      <div class='col-md-6'>
+        <div class="form-group">
+            <%= form.label :favorite_country %>
+            <%= form.text_field :favorite_country, id: :applicant_favorite_country %>
+          </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+            <%= form.label :favorite_city %>
+            <%= form.text_field :favorite_city, id: :applicant_favorite_city %>
+          </div>
+      </div>
+    </div>
+    <br>
+      <div class='row'>
+        <div class="col-md-12">
+          <%= form.label :description %>
+          <%= form.text_area :description, id: :applicant_description, class: 'text-area' %>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class="col-md-12">
+          <%= form.label :why_me %>
+          <%= form.text_area :why_me, id: :applicant_why_me, class: 'text-area' %>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class="col-md-12">
+          <%= form.label :best_travel_experience %>
+          <%= form.text_area :best_travel_experience, id: :applicant_best_travel_experience, class: 'text-area' %>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class="col-md-12">
+          <%= form.label :best_project %>
+          <%= form.text_area :best_project, id: :applicant_best_project, class: 'text-area' %>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :is_remote %>
+            <%= form.check_box :is_remote, id: :applicant_is_remote %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :is_traveling %>
+            <%= form.check_box :is_traveling, id: :applicant_is_traveling %>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <%= form.submit "Sign Me Up!" %>
+      </div>
+
+  <% end %>
+</div>
