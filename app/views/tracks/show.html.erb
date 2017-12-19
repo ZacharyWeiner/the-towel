@@ -4,6 +4,9 @@
     <p><%= @track.cohort.name %></p>
     <p><%= @track.location.name %></p>
     <p> <%= link_to "Chat", @track.chat_room, class: 'btn btn-secondary'%></p>
+    <% if current_user.is_cohort_admin %>
+      <%= link_to "Add Event", new_track_event_path(@track), class: 'btn btn-success' %>
+    <% end %>
   </div>
 </div>
 <div class='container text-center'>

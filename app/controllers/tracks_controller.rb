@@ -33,7 +33,8 @@ class TracksController < ApplicationController
   # POST /tracks.json
   def create
     @track = Track.new(track_params)
-
+    @track.location = Location.find(params[:location_id])
+    @track.cohort = Cohort.find(params[:cohort_id])
     respond_to do |format|
       if @track.save
         create_chat_room
@@ -50,6 +51,8 @@ class TracksController < ApplicationController
   # PATCH/PUT /tracks/1.json
   def update
     respond_to do |format|
+      @track.location = Location.find(params[:location_id])
+      @track.cohort = Cohort.find(params[:cohort_id])
       if @track.update(track_params)
         format.html { redirect_to @track, notice: 'Track was successfully updated.' }
         format.json { render :show, status: :ok, location: @track }

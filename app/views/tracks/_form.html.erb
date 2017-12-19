@@ -1,42 +1,61 @@
-<%= form_with(model: track, local: true) do |form| %>
-  <% if track.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(track.errors.count, "error") %> prohibited this track from being saved:</h2>
 
-      <ul>
-      <% track.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="box-body">
+    <div class='row'>
+      <div class='col-md-8 col-md-offset-2'>
+
+
+    <%= form_with(model: track, local: true) do |form| %>
+      <% if track.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(track.errors.count, "error") %> prohibited this track from being saved:</h2>
+
+          <ul>
+            <% track.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <%= form.text_field :name, id: :track_name, class: "form-control", placeholder: "Track Name" %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :track_name %>
+      </div>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon"><i class='fa fa-users'></i></span>
+        <%= select_tag 'cohort_id', options_for_select(
+          Cohort.where(organization: current_user.organization).map {|o| [o.name, o.id]},
+        current_user.current_cohort),
+        {:multiple => false, class: 'cohort-select form-control', style: 'min-width:200px;'}%>
+      </div>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon"><i class='fa fa-users'></i></span>
+        <%= select_tag 'location_id', options_for_select(
+          Location.all.map {|o| [o.name, o.id]}),
+        {:multiple => false, class: 'cohort-select form-control', style: 'min-width:200px;'}%>
+      </div>
+      <br>
+
+      <div class="input-group">
+        <span class="input-group-addon"><i class='fa fa-info'></i></span>
+        <%= form.text_area :description, id: :track_description, class: "form-control", placeholder: 'Description Of The Track' %>
+
+      </div>
+      <br>
+
+      <div class="actions">
+        <%= form.submit "Save", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+     </div>
+   </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :track_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :events_id %>
-    <%= form.text_field :events_id, id: :track_events_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :location_id %>
-    <%= form.text_field :location_id, id: :track_location_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cohort_id %>
-    <%= form.text_field :cohort_id, id: :track_cohort_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+  <!-- End body -->
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.cohort-select').select2();
+});
+</script>
