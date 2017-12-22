@@ -93,6 +93,7 @@ Rails.application.routes.draw do
     resources :announcements
     resources :side_trips
     resources :tickets
+    resources :tracks
   end
   get 'home', to: 'pages#home'
   get 'about', to: 'pages#about'

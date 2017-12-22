@@ -1,3 +1,3 @@
-//= require jquery3
+//= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs

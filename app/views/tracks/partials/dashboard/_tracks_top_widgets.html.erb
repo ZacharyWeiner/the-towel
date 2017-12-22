@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3><%= @tracks.count %></h3>
+
+        <p>Tracks</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-list"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <% event_counter = 0 %>
+        <% events = []%>
+        <% @tracks.each.map{|t|t.events.each.map{|e| events << e; event_counter = event_counter + 1 }}%>
+        <h3><%= event_counter %></h3>
+
+        <p>Events</p>
+      </div>
+      <div class="icon">
+        <i class="ion fa fa-bar-chart"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <% rsvp_counter = 0 %>
+        <% capacity = 0 %>
+        <% events.each do |e| %>
+          <% capacity = capacity + e.capacity unless e.capacity.nil? %>
+          <% e.event_rsvps.each do |r| %>
+            <% rsvp_counter = rsvp_counter +1 %>
+          <% end %>
+        <% end %>
+        <h3><%= rsvp_counter %></h3>
+
+        <p>RSVP's</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+
+        <h3><%= capacity - rsvp_counter %></h3>
+
+        <p>Available Spots</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-question-circle"></i>
+      </div>
+      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+</div>

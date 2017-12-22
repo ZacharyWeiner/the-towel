@@ -7,9 +7,12 @@ class TracksController < ApplicationController
   def index
     if current_user.is_in_role(Role.cohort_member) || current_user.is_in_role(Role.cohort_admin)
       @tracks = Track.where(cohort: current_user.current_cohort)
+    elsif params[:cohort_id]
+      @tracks = Track.where(cohort: Cohort.find(params[:cohort_id]))
     else
       @tracks = Track.all
     end
+    return @tracks
   end
 
   # GET /tracks/1
