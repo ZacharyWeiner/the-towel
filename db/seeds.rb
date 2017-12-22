@@ -99,7 +99,8 @@ sara = User.create!(email:'sara@ry.com', password: 'password',  organization: re
 
 
 
-
+phil = User.create!(email:'phil@we-roam.com', password: 'password',  organization: we_roam)
+phil.roles << org_admin
 
 justin = User.create!(email:'justin@weroam.com', password: 'password',  organization: we_roam)
 patrick = User.create!(email:'patrick@weroam.com', password: 'password',  organization: we_roam)
